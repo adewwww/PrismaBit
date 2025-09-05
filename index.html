@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prismabit | Digital Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Hide scrollbars during splash screen */
+            background-color: #0f172a; /* Dark background for the whole page */
+        }
+
+        /* Scan line overlay effect for a subtle texture */
+        @keyframes scanline {
+            from { background-position: 0 0; }
+            to { background-position: 0 4px; }
+        }
+
+        .scanline-overlay::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: linear-gradient(
+                to bottom,
+                rgba(255, 255, 255, 0.02) 50%,
+                transparent 50%
+            );
+            background-size: 100% 4px;
+            animation: scanline 0.4s linear infinite;
+            opacity: 0.3;
+        }
+
+        /* Splash Screen Animations */
+        @keyframes slideUp {
+            from { transform: translateY(0); }
+            to { transform: translateY(-100%); }
+        }
+        
+        .animate-slide-up {
+            animation: slideUp 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+        }
+
+        @keyframes slideUpLetter {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0%); opacity: 1; }
+        }
+
+        #logo-text span {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(100%);
+        }
+
+        #logo-text span.animate {
+            animation: slideUpLetter 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+        }
+        
+        /* Main Content Animations & Styles */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #main-content .animate-fade-in-up {
+            opacity: 0; /* Start hidden */
+            animation: fadeInUp 0.8s both cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        #header-nav {
+             opacity: 0; /* Start hidden */
+             animation: fadeIn 1s 0.5s both; /* Fade in after a small delay */
+        }
+        
+        .bg-grid-pattern {
+            background-image: linear-gradient(rgba(255,255,255,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.07) 1px, transparent 1px);
+            background-size: 2rem 2rem;
+        }
+
+        /* On-Scroll Animation */
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1), transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+        .reveal-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Glassmorphism Card Style */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Gradient Text */
+        .gradient-text {
+            background-image: linear-gradient(to right, #e0e7ff, #c7d2fe);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+    </style>
+</head>
+<body class="bg-slate-900 text-gray-100">
+
+    <!-- Splash Screen -->
+    <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black scanline-overlay">
+        <!-- Main animation container -->
+        <div id="logo-container" class="flex items-center justify-center">
+            <!-- SVG Logo Wrapper (for transition) -->
+            <div class="relative w-20 h-20 md:w-24 md:h-24">
+                <!-- prism-outline (starts visible) -->
+                    <div id="prism-outline" class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100">
+                        <svg viewBox="-51.2 -51.2 614.40 614.40" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                            <path d="M229.73,45.88,37.53,327.79a31.79,31.79,0,0,0,11.31,46L241,476.26a31.77,31.77,0,0,0,29.92,0l192.2-102.51a31.79,31.79,0,0,0,11.31-46L282.27,45.88A31.8,31.8,0,0,0,229.73,45.88Z" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="18"/>
+                            <line x1="256" y1="32" x2="256" y2="480" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="18"/>
+                        </svg>
+                    </div>
+
+                    <!-- prism-filled (starts hidden) -->
+                    <div id="prism-filled" class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0">
+                         <svg viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                             <path d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z" fill="#f0f9ff"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Text container (letters injected by JS) -->
+                <h1 id="logo-text" class="font-bold text-4xl md:text-5xl text-slate-100 ml-4 tracking-wider flex" style="white-space: nowrap; overflow: hidden;">
+                    <!-- Spans for "Prismabit" will be generated here -->
+                </h1>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header id="header-nav" class="fixed top-0 left-0 right-0 z-40 bg-slate-900/50 backdrop-blur-sm">
+         <nav class="container mx-auto flex justify-between items-center p-6">
+            <!-- Logo -->
+            <a href="#" class="flex items-center space-x-2">
+                <div class="w-8 h-8">
+                    <svg viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                         <path d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z" fill="#f0f9ff"/>
+                    </svg>
+                </div>
+                <span class="font-bold text-xl text-white">Prismabit</span>
+            </a>
+            <!-- Nav links -->
+            <div class="hidden md:flex space-x-8 text-slate-300">
+                <a href="#" class="hover:text-white transition-colors">Work</a>
+                <a href="#" class="hover:text-white transition-colors">Services</a>
+                <a href="#" class="hover:text-white transition-colors">About</a>
+                <a href="#" class="hover:text-white transition-colors">Contact</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content (Initially hidden) -->
+    <main id="main-content" class="hidden opacity-0 transition-opacity duration-500">
+        <!-- HERO SECTION -->
+        <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-grid-pattern opacity-50"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+            
+            <div class="text-center z-10 p-4 max-w-4xl mx-auto">
+                <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight text-white animate-fade-in-up">Crafting Digital Futures</h1>
+                <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">We transform complex ideas into elegant digital solutions. From stunning websites to powerful applications, our prism reveals the full spectrum of possibility.</p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.4s;">
+                    <button class="bg-slate-100 text-slate-900 font-bold py-3 px-8 rounded-lg hover:bg-slate-200 transition-transform hover:scale-105">View Our Work</button>
+                    <button class="border border-slate-500 text-slate-100 font-bold py-3 px-8 rounded-lg hover:bg-slate-800 transition-transform hover:scale-105">Get In Touch</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section class="py-20 sm:py-32 container mx-auto px-6">
+            <div class="text-center mb-16 reveal-on-scroll">
+                <h2 class="text-3xl md:text-4xl font-bold gradient-text">Our Spectrum of Services</h2>
+                <p class="text-slate-400 mt-4 max-w-2xl mx-auto">We offer a complete suite of services to bring your vision from concept to reality.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service Card 1 -->
+                <div class="glass-card p-8 rounded-2xl reveal-on-scroll">
+                    <h3 class="font-bold text-xl text-white mb-2">Web Development</h3>
+                    <p class="text-slate-400">Building responsive, high-performance websites and web applications with modern technologies.</p>
+                </div>
+                <!-- Service Card 2 -->
+                <div class="glass-card p-8 rounded-2xl reveal-on-scroll" style="transition-delay: 150ms;">
+                    <h3 class="font-bold text-xl text-white mb-2">UI/UX Design</h3>
+                    <p class="text-slate-400">Creating intuitive and beautiful user interfaces that provide a seamless user experience.</p>
+                </div>
+                <!-- Service Card 3 -->
+                <div class="glass-card p-8 rounded-2xl reveal-on-scroll" style="transition-delay: 300ms;">
+                    <h3 class="font-bold text-xl text-white mb-2">Cloud Solutions</h3>
+                    <p class="text-slate-400">Leveraging cloud infrastructure for scalable, secure, and reliable application deployment.</p>
+                </div>
+                <!-- Service Card 4 -->
+                <div class="glass-card p-8 rounded-2xl reveal-on-scroll" style="transition-delay: 450ms;">
+                    <h3 class="font-bold text-xl text-white mb-2">AI Integration</h3>
+                    <p class="text-slate-400">Embedding intelligent features and automation into your products with cutting-edge AI.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED WORK SECTION -->
+        <section class="py-20 sm:py-32">
+            <div class="container mx-auto px-6">
+                 <div class="text-center mb-16 reveal-on-scroll">
+                    <h2 class="text-3xl md:text-4xl font-bold gradient-text">Featured Work</h2>
+                    <p class="text-slate-400 mt-4 max-w-2xl mx-auto">A glimpse into the innovative solutions we've delivered.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Project Card 1 -->
+                    <div class="rounded-2xl overflow-hidden group reveal-on-scroll">
+                        <img src="https://placehold.co/800x600/1e293b/e2e8f0?text=Project+Alpha" alt="Project Alpha" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <!-- Project Card 2 -->
+                     <div class="rounded-2xl overflow-hidden group reveal-on-scroll" style="transition-delay: 150ms;">
+                        <img src="https://placehold.co/800x600/1e293b/e2e8f0?text=Project+Beta" alt="Project Beta" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+         <!-- CTA SECTION -->
+        <section class="py-20 sm:py-32">
+            <div class="container mx-auto px-6 text-center reveal-on-scroll">
+                <h2 class="text-3xl md:text-5xl font-bold text-white max-w-3xl mx-auto">Have a project in mind?</h2>
+                <p class="text-slate-300 mt-6 max-w-xl mx-auto">Let's build something extraordinary together. We're ready to listen to your ideas and turn them into a digital masterpiece.</p>
+                <button class="bg-slate-100 text-slate-900 font-bold py-4 px-10 rounded-lg hover:bg-slate-200 transition-transform hover:scale-105 mt-10 text-lg">
+                    Contact Us
+                </button>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="py-8 border-t border-slate-800">
+            <div class="container mx-auto px-6 text-center text-slate-500">
+                <p>&copy; 2025 Prismabit. All rights reserved.</p>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const splashScreen = document.getElementById('splash-screen');
+            const mainContent = document.getElementById('main-content');
+            
+            // --- Splash Screen Logic ---
+            const prismOutline = document.getElementById('prism-outline');
+            const prismFilled = document.getElementById('prism-filled');
+            const logoContainer = document.getElementById('logo-container');
+            const logoText = document.getElementById('logo-text');
+
+            const textToAnimate = "Prismabit";
+            logoText.innerHTML = textToAnimate.split('').map(char => `<span>${char}</span>`).join('');
+            const letterSpans = logoText.querySelectorAll('span');
+            logoText.style.maxWidth = '0';
+
+            setTimeout(() => {
+                prismOutline.style.opacity = '0';
+                prismFilled.style.opacity = '1';
+                
+                const firstRect = logoContainer.getBoundingClientRect();
+                logoText.style.maxWidth = '300px';
+                const lastRect = logoContainer.getBoundingClientRect();
+                const deltaX = firstRect.left - lastRect.left;
+                
+                logoContainer.style.transition = 'none';
+                logoContainer.style.transform = `translateX(${deltaX}px)`; 
+                
+                logoContainer.offsetHeight; 
+                
+                logoContainer.style.transition = 'transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
+                logoContainer.style.transform = '';
+
+                letterSpans.forEach((span, index) => {
+                    span.classList.add('animate');
+                    span.style.animationDelay = `${index * 75}ms`;
+                });
+
+            }, 800);
+
+            setTimeout(() => {
+                splashScreen.classList.add('animate-slide-up');
+                splashScreen.addEventListener('animationend', () => {
+                    splashScreen.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                    mainContent.classList.remove('hidden');
+                    setTimeout(() => mainContent.classList.remove('opacity-0'), 20);
+                }, { once: true });
+            }, 3500);
+
+            // --- On-Scroll Animation Logic ---
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            });
+
+            const elementsToReveal = document.querySelectorAll('.reveal-on-scroll');
+            elementsToReveal.forEach(el => observer.observe(el));
+        });
+    </script>
+
+</body>
+</html>
+
+
