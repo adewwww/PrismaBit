@@ -42,19 +42,32 @@
       animation: slideUp 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
     }
 
-    /* Letter reveal */
-    @keyframes slideUpLetter {
-      from { transform: translateY(100%); opacity: 0; }
-      to   { transform: translateY(0%);   opacity: 1; }
+    /* --- NEW Apple-style word reveal --- */
+    @keyframes apple-style-reveal {
+      0% {
+        transform: translateY(100%);
+        opacity: 0;
+        filter: blur(5px);
+        text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+        filter: blur(0);
+        text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+      }
     }
-    #logo-text span {
+    
+    .word-part {
       display: inline-block;
       opacity: 0;
       transform: translateY(100%);
     }
-    #logo-text span.animate {
-      animation: slideUpLetter 0.7s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+
+    .word-part.animate {
+      animation: apple-style-reveal 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
     }
+
 
     /* Main content fades */
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -155,9 +168,6 @@
     }
     #prism-outline.glowing-intensely svg {
       filter: drop-shadow(0 0 12px #ffffff) drop-shadow(0 0 25px rgba(255, 255, 255, 0.7));
-    }
-    #logo-text {
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
     }
     
   </style>
@@ -328,10 +338,9 @@
       const lightRay      = document.getElementById('light-ray');
       const dispersion    = document.getElementById('dispersion');
 
-      // Inject letters
-      const textToAnimate = "Prismabit";
-      logoText.innerHTML = textToAnimate.split('').map(c => `<span>${c}</span>`).join('');
-      const letterSpans = logoText.querySelectorAll('span');
+      // Inject words
+      logoText.innerHTML = '<span class="word-part">Prisma</span><span class="word-part">bit</span>';
+      const wordSpans = logoText.querySelectorAll('.word-part');
       logoText.style.maxWidth = '0';
 
       // --- Timeline ---
@@ -369,10 +378,10 @@
               logoContainer.style.transform  = '';
             }
 
-            // Per-letter rise
-            letterSpans.forEach((span, i) => {
+            // Word-part rise
+            wordSpans.forEach((span, i) => {
               span.classList.add('animate');
-              span.style.animationDelay = `${i * 75}ms`;
+              span.style.animationDelay = `${i * 200}ms`; // Stagger "Prisma" and "bit"
             });
           }, 350); // allow the split to be seen
         }, 200);   // split shortly after ray starts
@@ -401,4 +410,5 @@
   </script>
 </body>
 </html>
+
 
