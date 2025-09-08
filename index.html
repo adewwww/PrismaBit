@@ -42,45 +42,19 @@
       animation: slideUp 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
     }
 
-    /* --- NEW Apple-style word reveal --- */
+    /* Apple-style word reveal */
     @keyframes apple-style-reveal {
-      0% {
-        transform: translateY(100%);
-        opacity: 0;
-        filter: blur(5px);
-        text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-        filter: blur(0);
-        text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
-      }
+      0% { transform: translateY(100%); opacity: 0; filter: blur(5px); text-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
+      100% { transform: translateY(0); opacity: 1; filter: blur(0); text-shadow: 0 0 8px rgba(255, 255, 255, 0.6); }
     }
-    
-    .word-part {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(100%);
-    }
-
-    .word-part.animate {
-      animation: apple-style-reveal 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-    }
-
+    .word-part { display: inline-block; opacity: 0; transform: translateY(100%); }
+    .word-part.animate { animation: apple-style-reveal 1s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
 
     /* Main content fades */
     @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-    #main-content .animate-fade-in-up {
-      opacity: 0;
-      animation: fadeInUp 0.8s both cubic-bezier(0.65, 0, 0.35, 1);
-    }
-    #header-nav {
-      opacity: 0;
-      animation: fadeIn 1s 0.5s both;
-    }
+    #main-content .animate-fade-in-up { opacity: 0; animation: fadeInUp 0.8s both cubic-bezier(0.65, 0, 0.35, 1); }
+    #header-nav { opacity: 0; animation: fadeIn 1s 0.5s both; }
 
     /* Grid bg helper */
     .bg-grid-pattern {
@@ -91,17 +65,12 @@
     }
 
     /* Reveal on scroll */
-    .reveal-on-scroll {
-      opacity: 0;
-      transform: translateY(30px);
+    .reveal-on-scroll { opacity: 0; transform: translateY(30px);
       transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1),
-                  transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
-    }
-    .reveal-on-scroll.visible {
-      opacity: 1; transform: translateY(0);
-    }
+                  transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
+    .reveal-on-scroll.visible { opacity: 1; transform: translateY(0); }
 
-    /* Gradient text */
+    /* Gradient text helper */
     .gradient-text {
       background-image: linear-gradient(to right, #1e3a8a, #3b82f6);
       -webkit-background-clip: text;
@@ -115,7 +84,7 @@
     .light-ray {
       position: absolute;
       top: 50%;
-      left: 50%; 
+      left: 50%;
       width: 150vw;
       height: 4px;
       background: linear-gradient(90deg,
@@ -137,11 +106,7 @@
     }
 
     /* Split halves motion */
-    .prism-half {
-      transition: transform 700ms cubic-bezier(0.65, 0, 0.35, 1), opacity 500ms ease;
-      transform-origin: center;
-      opacity: 1;
-    }
+    .prism-half { transition: transform 700ms cubic-bezier(0.65, 0, 0.35, 1), opacity 500ms ease; transform-origin: center; opacity: 1; }
     .prism-half.left.split  { transform: translateX(-16px) rotate(-1.5deg); }
     .prism-half.right.split { transform: translateX(16px)  rotate(1.5deg); }
 
@@ -161,42 +126,82 @@
       pointer-events: none;
     }
 
-    /* --- NEW GLOW EFFECTS --- */
-    #prism-outline svg, #prism-filled svg {
-      filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
-      transition: filter 400ms ease-in-out;
-    }
-    #prism-outline.glowing-intensely svg {
-      filter: drop-shadow(0 0 12px #ffffff) drop-shadow(0 0 25px rgba(255, 255, 255, 0.7));
-    }
-    /* Make header logo 3D prism rotation on hover */
-#header-logo {
-  perspective: 1000px;
-}
-#header-logo svg {
-  transition: transform 0.8s ease-in-out;
-  transform-style: preserve-3d;
-  transform-origin: center center;
-}
-#header-logo:hover svg {
-  transform: rotateY(180deg) rotateX(15deg);
-}
-#header-dispersion {
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-#header-logo:hover #header-dispersion {
-  opacity: 0.6;
-}
+    /* Glow effects for splash logo */
+    #prism-outline svg, #prism-filled svg { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6)); transition: filter 400ms ease-in-out; }
+    #prism-outline.glowing-intensely svg { filter: drop-shadow(0 0 12px #ffffff) drop-shadow(0 0 25px rgba(255, 255, 255, 0.7)); }
 
-/* Enhanced 3D effect for prism halves */
-#header-logo:hover #header-prism-left {
-  transform: translateX(-1px) rotateY(-5deg);
-}
-#header-logo:hover #header-prism-right {
-  transform: translateX(1px) rotateY(5deg);
-}
+    /* Header logo 3D prism rotation on hover */
+    #header-logo { perspective: 1000px; }
+    #header-logo svg { transition: transform 0.8s ease-in-out; transform-style: preserve-3d; transform-origin: center center; }
+    #header-logo:hover svg { transform: rotateY(180deg) rotateX(15deg); }
+    #header-dispersion { opacity: 0; transition: opacity 0.4s ease; }
+    #header-logo:hover #header-dispersion { opacity: 0.6; }
+    #header-logo:hover #header-prism-left { transform: translateX(-1px) rotateY(-5deg); }
+    #header-logo:hover #header-prism-right { transform: translateX(1px) rotateY(5deg); }
 
+    /* =========================================================
+       NEW: Per-letter Rainbow Glow on Navbar "Prismabit"
+       ========================================================= */
+    @keyframes rainbow-shift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    @keyframes glow-pulse {
+      0%,100% { text-shadow:
+          0 0 6px rgba(255,255,255,0.8),
+          0 0 12px rgba(255,0,200,0.5),
+          0 0 24px rgba(0,200,255,0.45); }
+      50% { text-shadow:
+          0 0 10px rgba(255,255,255,1),
+          0 0 22px rgba(255,120,0,0.6),
+          0 0 40px rgba(120,0,255,0.55); }
+    }
+    /* container to keep spacing stable */
+    #header-wordmark { display: inline-flex; gap: 0; line-height: 1; }
+    /* base letter style */
+    .rainbow-letter {
+      position: relative;
+      display: inline-block;
+      font-weight: 700;
+      color: #0f172a;              /* default slate text */
+      transition: transform .18s ease, filter .18s ease, color .18s ease;
+      will-change: transform, filter;
+    }
+    /* hover: switch to gradient text + animated glow */
+    .rainbow-letter:hover {
+      color: transparent;
+      background-image: linear-gradient(
+        90deg,
+        #ff0033, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00ea, #ff0033
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: rainbow-shift 1.2s linear infinite, glow-pulse 1.2s ease-in-out infinite;
+      transform: translateY(-1px) scale(1.06);
+      cursor: default;
+    }
+    /* slight magnetic feel when moving across letters */
+    #header-wordmark:hover .rainbow-letter {
+      transition: transform .18s ease, filter .18s ease, color .18s ease, background-position .18s linear;
+    }
+    /* optional subtle halo on hovered letter using a pseudo element */
+    .rainbow-letter::after {
+      content: "";
+      position: absolute;
+      inset: -0.25em;
+      border-radius: 8px;
+      pointer-events: none;
+      opacity: 0;
+      filter: blur(14px);
+      transition: opacity .2s ease;
+    }
+    .rainbow-letter:hover::after {
+      opacity: .35;
+      background: radial-gradient(closest-side,
+        rgba(255,255,255,.6),
+        rgba(255,255,255,0) 70%);
+    }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -217,12 +222,8 @@
             <line x1="256" y1="32" x2="256" y2="480" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="10"/>
             <!-- Clips to form left/right halves -->
             <defs>
-              <clipPath id="clipLeft">
-                <rect x="-60" y="-60" width="316" height="620" />
-              </clipPath>
-              <clipPath id="clipRight">
-                <rect x="256" y="-60" width="420" height="620" />
-              </clipPath>
+              <clipPath id="clipLeft"><rect x="-60" y="-60" width="316" height="620" /></clipPath>
+              <clipPath id="clipRight"><rect x="256" y="-60" width="420" height="620" /></clipPath>
             </defs>
             <!-- Left half -->
             <g id="prism-left" class="prism-half left" clip-path="url(#clipLeft)">
@@ -257,16 +258,12 @@
         <div class="w-8 h-8 relative">
           <!-- Dispersion Glow (hidden initially) -->
           <div id="header-dispersion" class="absolute inset-[-4px] dispersion-glow opacity-0 transition-opacity duration-300"></div>
-          
+
           <!-- SVG with split halves -->
           <svg viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
             <defs>
-              <clipPath id="headerClipLeft">
-                <rect x="-3" y="-3" width="15" height="30" />
-              </clipPath>
-              <clipPath id="headerClipRight">
-                <rect x="12" y="-3" width="16.5" height="30" />
-              </clipPath>
+              <clipPath id="headerClipLeft"><rect x="-3" y="-3" width="15" height="30" /></clipPath>
+              <clipPath id="headerClipRight"><rect x="12" y="-3" width="16.5" height="30" /></clipPath>
             </defs>
             <!-- Left half -->
             <g id="header-prism-left" class="prism-half left" clip-path="url(#headerClipLeft)" style="transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);">
@@ -278,7 +275,8 @@
             </g>
           </svg>
         </div>
-        <span class="font-bold text-xl text-slate-900">Prismabit</span>
+        <!-- CHANGED: add id so JS can split letters -->
+        <span id="header-wordmark" class="font-bold text-xl text-slate-900">Prismabit</span>
       </a>
       <div class="hidden md:flex space-x-8 text-slate-600">
         <a href="work.html" class="hover:text-slate-900 transition-colors">Work</a>
@@ -384,7 +382,7 @@
       const lightRay      = document.getElementById('light-ray');
       const dispersion    = document.getElementById('dispersion');
 
-      // Inject words
+      // Inject words for splash title animation
       logoText.innerHTML = '<span class="word-part">Prisma</span><span class="word-part">bit</span>';
       const wordSpans = logoText.querySelectorAll('.word-part');
       logoText.style.maxWidth = '0';
@@ -418,8 +416,7 @@
 
               logoContainer.style.transition = 'none';
               logoContainer.style.transform  = `translateX(${deltaX}px)`;
-              // reflow
-              void logoContainer.offsetHeight;
+              void logoContainer.offsetHeight; // reflow
               logoContainer.style.transition = 'transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
               logoContainer.style.transform  = '';
             }
@@ -444,21 +441,44 @@
         }, { once: true });
       }, 3500);
 
-
       // On-Scroll reveal
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) entry.target.classList.add('visible');
         });
       }, { threshold: 0.1 });
-
       document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
 
-      // --- NEW: Interactive Header Logo Animation ---
+      /* =========================================================
+         NEW: Split navbar "Prismabit" into per-letter spans
+         so each letter can have its own rainbow hover glow.
+         ========================================================= */
+      const wordmark = document.getElementById('header-wordmark');
+      if (wordmark) {
+        const text = wordmark.textContent.trim();
+        wordmark.textContent = ''; // clear
+        [...text].forEach((ch, idx) => {
+          const span = document.createElement('span');
+          span.className = 'rainbow-letter';
+          span.textContent = ch;
+          span.setAttribute('aria-label', ch);
+          // tiny staggered transform when entering the container
+          span.style.transitionDelay = `${(idx * 8)}ms`;
+          wordmark.appendChild(span);
+        });
+      }
 
+      // (Optional nicety): slight scale on the whole word when hovering the group
+      const headerLogo = document.getElementById('header-logo');
+      if (headerLogo) {
+        headerLogo.addEventListener('mouseenter', () => {
+          wordmark && (wordmark.style.transform = 'translateY(-0.5px)');
+        });
+        headerLogo.addEventListener('mouseleave', () => {
+          wordmark && (wordmark.style.transform = '');
+        });
+      }
     });
   </script>
 </body>
 </html>
-
-
