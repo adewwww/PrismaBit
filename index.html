@@ -8,10 +8,16 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="assets/css/common.css">
-  <script src="assets/Javascript/common.js" defer></script>
 
   <style>
+    /* Base */
+    :root { color-scheme: light; }
+    body {
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;          /* Hide scrollbars during splash */
+      background-color: #f8fafc;   /* Entire page bg - Neutral White (Slate 50) */
+    }
+
     /* Subtle scanline texture on splash */
     @keyframes scanline {
       from { background-position: 0 0; }
@@ -28,12 +34,19 @@
     }
 
     /* Splash slide-away */
-    @keyframes slideUp {
+    @keyframes splitUp {
       from { transform: translateY(0); }
       to   { transform: translateY(-100%); }
     }
-    .animate-slide-up {
-      animation: slideUp 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    @keyframes splitDown {
+      from { transform: translateY(0); }
+      to   { transform: translateY(100%); }
+    }
+    #splash-top.animate-split {
+      animation: splitUp 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    }
+    #splash-bottom.animate-split {
+      animation: splitDown 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
     }
 
     /* Apple-style word reveal */
@@ -45,6 +58,7 @@
     .word-part.animate { animation: apple-style-reveal 1s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
 
     /* Main content fades */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     #main-content .animate-fade-in-up { opacity: 0; animation: fadeInUp 0.8s both cubic-bezier(0.65, 0, 0.35, 1); }
     #header-nav { opacity: 0; animation: fadeIn 1s 0.5s both; }
@@ -56,6 +70,21 @@
         linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
       background-size: 2rem 2rem;
     }
+
+    /* Reveal on scroll */
+    .reveal-on-scroll { opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+                  transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
+    .reveal-on-scroll.visible { opacity: 1; transform: translateY(0); }
+
+    /* Gradient text helper */
+    .gradient-text {
+      background-image: linear-gradient(to right, #1e3a8a, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
     /* --- Splash FX --- */
 
     /* White light ray sweeping across */
@@ -105,75 +134,147 @@
     }
 
     /* Glow effects for splash logo */
-    #prism-outline svg, #prism-filled svg { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6)); transition: filter 400ms ease-in-out; }
-    #prism-outline.glowing-intensely svg { filter: drop-shadow(0 0 12px #ffffff) drop-shadow(0 0 25px rgba(255, 255, 255, 0.7)); }
+    #prism-outline svg, #prism-filled svg, #prism-outline-bottom svg, #prism-filled-bottom svg { 
+        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6)); 
+        transition: filter 400ms ease-in-out; 
+    }
+    #prism-outline.glowing-intensely svg, #prism-outline-bottom.glowing-intensely svg { 
+        filter: drop-shadow(0 0 12px #ffffff) drop-shadow(0 0 25px rgba(255, 255, 255, 0.7)); 
+    }
+
+    /* --- From logo.css --- */
+    #header-logo { perspective: 1000px; }
+    #header-logo svg { 
+      transition: transform 0.8s ease-in-out; 
+      transform-style: preserve-3d; 
+      transform-origin: center center; 
+    }
+    #header-logo:hover svg { 
+      transform: rotateY(180deg) rotateX(15deg); 
+    }
+    #header-dispersion { 
+      opacity: 0; 
+      transition: opacity 0.4s ease; 
+    }
+    #header-logo:hover #header-dispersion { 
+      opacity: 0.6; 
+    }
+    #header-logo:hover #header-prism-left { 
+      transform: translateX(-1px) rotateY(-5deg); 
+    }
+    #header-logo:hover #header-prism-right { 
+      transform: translateX(1px) rotateY(5deg); 
+    }
+
+    @keyframes rainbow-shift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    @keyframes glow-pulse {
+      0%,100% { 
+        text-shadow: 
+          0 0 6px rgba(255,255,255,0.8),
+          0 0 12px rgba(255,0,200,0.5),
+          0 0 24px rgba(0,200,255,0.45); 
+      }
+      50% { 
+        text-shadow:
+          0 0 10px rgba(255,255,255,1),
+          0 0 22px rgba(255,120,0,0.6),
+          0 0 40px rgba(120,0,255,0.55); 
+      }
+    }
+
+    #header-wordmark { 
+      display: inline-flex; 
+      gap: 0; 
+      line-height: 1; 
+    }
+
+    .rainbow-letter {
+      position: relative;
+      display: inline-block;
+      font-weight: 700;
+      color: #0f172a;
+      transition: transform .18s ease, filter .18s ease, color .18s ease;
+      will-change: transform, filter;
+    }
+
+    .rainbow-letter:hover {
+      color: transparent;
+      background-image: linear-gradient(
+        90deg,
+        #ff0033, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00ea, #ff0033
+      );
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: rainbow-shift 1.2s linear infinite, glow-pulse 1.2s ease-in-out infinite;
+      transform: translateY(-1px) scale(1.06);
+      cursor: default;
+    }
+
   </style>
-
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    fetch('assets/html/footer.html')
-      .then(response => response.text())
-      .then(data => {
-        document.getElementById('footer-container').innerHTML = data;
-      });
-  });
-</script>
-
 </head>
 <body class="bg-slate-50 text-slate-800">
 
   <!-- Splash Screen -->
-  <div id="splash-screen" class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-black scanline-overlay">
-    <div id="logo-container" class="flex items-center justify-center">
-      <!-- SVG Logo Wrapper -->
-      <div class="relative w-20 h-20 md:w-24 md:h-24">
-        <!-- light ray -->
-        <div id="light-ray" class="light-ray"></div>
-        <div id="dispersion" class="dispersion-glow"></div>
-
-        <!-- Outline prism (split halves) -->
-        <div id="prism-outline" class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100">
-          <svg viewBox="-51.2 -51.2 614.40 614.40" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-            <!-- center spine -->
-            <line x1="256" y1="32" x2="256" y2="480" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="10"/>
-            <!-- Clips to form left/right halves -->
-            <defs>
-              <clipPath id="clipLeft"><rect x="-60" y="-60" width="316" height="620" /></clipPath>
-              <clipPath id="clipRight"><rect x="256" y="-60" width="420" height="620" /></clipPath>
-            </defs>
-            <!-- Left half -->
-            <g id="prism-left" class="prism-half left" clip-path="url(#clipLeft)">
-              <path d="M229.73,45.88,37.53,327.79a31.79,31.79,0,0,0,11.31,46L241,476.26a31.77,31.77,0,0,0,29.92,0l192.2-102.51a31.79,31.79,0,0,0,11.31-46L282.27,45.88A31.8,31.8,0,0,0,229.73,45.88Z"
-                fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="18"/>
-            </g>
-            <!-- Right half -->
-            <g id="prism-right" class="prism-half right" clip-path="url(#clipRight)">
-              <path d="M229.73,45.88,37.53,327.79a31.79,31.79,0,0,0,11.31,46L241,476.26a31.77,31.77,0,0,0,29.92,0l192.2-102.51a31.79,31.79,0,0,0,11.31-46L282.27,45.88A31.8,31.8,0,0,0,229.73,45.88Z"
-                fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="18"/>
-            </g>
-          </svg>
-        </div>
-
-        <!-- Filled prism (fades in after split) -->
-        <div id="prism-filled" class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0">
-          <svg viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
-            <path d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z" fill="#f0f9ff"/>
-          </svg>
+  <div id="splash-container" class="fixed inset-0 z-50 overflow-hidden">
+    <!-- Top Half -->
+    <div id="splash-top" class="absolute top-0 left-0 w-full h-1/2 bg-black overflow-hidden">
+      <div class="w-full h-full relative flex flex-col items-center justify-end scanline-overlay">
+        <!-- Duplicated content, positioned to align with bottom half -->
+        <div id="logo-group-top" class="flex items-center justify-center translate-y-1/2">
+          <div class="relative w-20 h-20 md:w-24 md:h-24">
+            <div id="light-ray" class="light-ray"></div>
+            <div id="dispersion" class="dispersion-glow"></div>
+            <div id="prism-outline" class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100">
+              <svg viewBox="-51.2 -51.2 614.40 614.40" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                <line x1="256" y1="32" x2="256" y2="480" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="10"/>
+                <defs><clipPath id="clipLeft"><rect x="-60" y="-60" width="316" height="620" /></clipPath><clipPath id="clipRight"><rect x="256" y="-60" width="420" height="620" /></clipPath></defs>
+                <g id="prism-left" class="prism-half left" clip-path="url(#clipLeft)"><path d="M229.73,45.88,37.53,327.79a31.79,31.79,0,0,0,11.31,46L241,476.26a31.77,31.77,0,0,0,29.92,0l192.2-102.51a31.79,31.79,0,0,0,11.31-46L282.27,45.88A31.8,31.8,0,0,0,229.73,45.88Z" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="18"/></g>
+                <g id="prism-right" class="prism-half right" clip-path="url(#clipRight)"><path d="M229.73,45.88,37.53,327.79a31.79,31.79,0,0,0,11.31,46L241,476.26a31.77,31.77,0,0,0,29.92,0l192.2-102.51a31.79,31.79,0,0,0,11.31-46L282.27,45.88A31.8,31.8,0,0,0,229.73,45.88Z" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="18"/></g>
+              </svg>
+            </div>
+            <div id="prism-filled" class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0">
+              <svg viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" class="w-full h-full"><path d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z" fill="#f0f9ff"/></svg>
+            </div>
+          </div>
+          <h1 id="logo-text" class="font-bold text-4xl md:text-5xl text-slate-100 ml-4 tracking-wider flex" style="white-space: nowrap; overflow: hidden;"></h1>
         </div>
       </div>
-
-      <!-- Text container (letters injected by JS) -->
-      <h1 id="logo-text" class="font-bold text-4xl md:text-5xl text-slate-100 ml-4 tracking-wider flex" style="white-space: nowrap; overflow: hidden;"></h1>
+    </div>
+    <!-- Bottom Half -->
+    <div id="splash-bottom" class="absolute bottom-0 left-0 w-full h-1/2 bg-black overflow-hidden">
+       <div class="w-full h-full relative flex flex-col items-center justify-start scanline-overlay">
+         <!-- Duplicated content, positioned to align with top half -->
+        <div id="logo-group-bottom" class="flex items-center justify-center -translate-y-1/2">
+          <div class="relative w-20 h-20 md:w-24 md:h-24">
+            <div id="light-ray-bottom" class="light-ray"></div>
+            <div id="dispersion-bottom" class="dispersion-glow"></div>
+            <div id="prism-outline-bottom" class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-100">
+              <svg viewBox="-51.2 -51.2 614.40 614.40" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                <line x1="256" y1="32" x2="256" y2="480" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="10"/>
+                <defs><clipPath id="clipLeft-2"><rect x="-60" y="-60" width="316" height="620" /></clipPath><clipPath id="clipRight-2"><rect x="256" y="-60" width="420" height="620" /></clipPath></defs>
+                <g id="prism-left-bottom" class="prism-half left" clip-path="url(#clipLeft-2)"><path d="M229.73,45.88,37.53,327.79a31.79,31.79,0,0,0,11.31,46L241,476.26a31.77,31.77,0,0,0,29.92,0l192.2-102.51a31.79,31.79,0,0,0,11.31-46L282.27,45.88A31.8,31.8,0,0,0,229.73,45.88Z" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="18"/></g>
+                <g id="prism-right-bottom" class="prism-half right" clip-path="url(#clipRight-2)"><path d="M229.73,45.88,37.53,327.79a31.79,31.79,0,0,0,11.31,46L241,476.26a31.77,31.77,0,0,0,29.92,0l192.2-102.51a31.79,31.79,0,0,0,11.31-46L282.27,45.88A31.8,31.8,0,0,0,229.73,45.88Z" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-linejoin="round" stroke-width="18"/></g>
+              </svg>
+            </div>
+            <div id="prism-filled-bottom" class="absolute inset-0 transition-opacity duration-700 ease-in-out opacity-0">
+              <svg viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" class="w-full h-full"><path d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z" fill="#f0f9ff"/></svg>
+            </div>
+          </div>
+          <h1 id="logo-text-bottom" class="font-bold text-4xl md:text-5xl text-slate-100 ml-4 tracking-wider flex" style="white-space: nowrap; overflow: hidden;"></h1>
+        </div>
+       </div>
     </div>
   </div>
 
   <!-- Header Navigation -->
-  <header id="header-nav" class="fixed top-0 left-0 right-0 z-40 bg-slate-50/80 backdrop-blur-sm border-b border-slate-200 transition-all duration-500 ease-in-out">
+  <header id="header-nav" class="fixed top-0 left-0 right-0 z-40 bg-slate-50/80 backdrop-blur-sm border-b border-slate-200 transition-transform duration-300 ease-in-out">
     <nav class="container mx-auto flex justify-between items-center p-6">
       <a href="index.html" id="header-logo" class="flex items-center space-x-2 group">
         <div class="w-8 h-8 relative">
-          <div id="header-dispersion" class="absolute inset-[-4px] dispersion-glow opacity-0 transition-opacity duration-300"></div>
-          <!-- Dispersion Glow (hidden initially) -->
           <div id="header-dispersion" class="absolute inset-[-4px] dispersion-glow opacity-0 transition-opacity duration-300"></div>
 
           <!-- SVG with split halves -->
@@ -192,7 +293,6 @@
             </g>
           </svg>
         </div>
-        <!-- CHANGED: add id so JS can split letters -->
         <span id="header-wordmark" class="font-bold text-xl text-slate-900">Prismabit</span>
       </a>
       <div class="hidden md:flex space-x-8 text-slate-600">
@@ -278,7 +378,11 @@
     </section>
 
     <!-- FOOTER -->
-    <div id="footer-container"></div>
+    <footer class="py-8 border-t border-slate-200">
+      <div class="container mx-auto px-6 text-center text-slate-500">
+        <p>&copy; 2025 Prismabit. All rights reserved.</p>
+      </div>
+    </footer>
   </main>
 
   <script>
@@ -287,6 +391,9 @@
       const mainContent   = document.getElementById('main-content');
       const logoContainer = document.getElementById('logo-container');
       const logoText      = document.getElementById('logo-text');
+      const logoTextBottom = document.getElementById('logo-text-bottom');
+      const logoGroupTop = document.getElementById('logo-group-top');
+      const logoGroupBottom = document.getElementById('logo-group-bottom');
 
       const prismOutline  = document.getElementById('prism-outline');
       const prismFilled   = document.getElementById('prism-filled');
@@ -295,49 +402,96 @@
       const lightRay      = document.getElementById('light-ray');
       const dispersion    = document.getElementById('dispersion');
 
-      // Inject words for splash title animation
-      logoText.innerHTML = '<span class="word-part">Prisma</span><span class="word-part">bit</span>';
-      const wordSpans = logoText.querySelectorAll('.word-part');
+      // Get bottom elements
+      const prismOutlineBottom  = document.getElementById('prism-outline-bottom');
+      const prismFilledBottom   = document.getElementById('prism-filled-bottom');
+      const prismLeftBottom     = document.getElementById('prism-left-bottom');
+      const prismRightBottom    = document.getElementById('prism-right-bottom');
+      const lightRayBottom      = document.getElementById('light-ray-bottom');
+      const dispersionBottom    = document.getElementById('dispersion-bottom');
+
+      // Inject words for splash title animation into BOTH halves
+      const wordHTML = '<span class="word-part">Prisma</span><span class="word-part">bit</span>';
+      logoText.innerHTML = wordHTML;
+      logoTextBottom.innerHTML = wordHTML;
+      
+      const wordSpans = document.querySelectorAll('#logo-text .word-part');
+      const wordSpansBottom = document.querySelectorAll('#logo-text-bottom .word-part');
       logoText.style.maxWidth = '0';
+      logoTextBottom.style.maxWidth = '0';
 
       // --- Timeline ---
       // t=0.8s: sweep the white light ray
       setTimeout(() => {
+        // Animate both rays
         lightRay.style.animation = 'raySweep 900ms cubic-bezier(0.65,0,0.35,1) forwards';
+        lightRayBottom.style.animation = 'raySweep 900ms cubic-bezier(0.65,0,0.35,1) forwards';
         lightRay.style.opacity = '1';
-        dispersion.style.opacity = '0.35'; // brief glow
-        prismOutline.classList.add('glowing-intensely'); // INTENSIFY GLOW
+        lightRayBottom.style.opacity = '1';
+
+        // Animate both glows
+        dispersion.style.opacity = '0.35';
+        dispersionBottom.style.opacity = '0.35';
+        prismOutline.classList.add('glowing-intensely');
+        prismOutlineBottom.classList.add('glowing-intensely');
 
         // then split
         setTimeout(() => {
           prismLeft.classList.add('split');
           prismRight.classList.add('split');
+          prismLeftBottom.classList.add('split');
+          prismRightBottom.classList.add('split');
 
           // fade outline -> filled prism, start text animation
           setTimeout(() => {
             prismOutline.style.opacity = '0';
             prismFilled.style.opacity  = '1';
+            prismOutlineBottom.style.opacity = '0';
+            prismFilledBottom.style.opacity  = '1';
+
             dispersion.style.opacity   = '0';
-            prismOutline.classList.remove('glowing-intensely'); // REMOVE GLOW
+            dispersionBottom.style.opacity   = '0';
+            prismOutline.classList.remove('glowing-intensely');
+            prismOutlineBottom.classList.remove('glowing-intensely');
 
-            // Slide text container softly
-            if (logoContainer) {
-              const firstRect = logoContainer.getBoundingClientRect();
-              logoText.style.maxWidth = '300px';
-              const lastRect = logoContainer.getBoundingClientRect();
-              const deltaX = firstRect.left - lastRect.left;
+            // --- RE-IMPLEMENTED SMOOTH MOTION (FLIP ANIMATION) ---
+            
+            // 1. Get initial positions
+            const firstRectTop = logoGroupTop.getBoundingClientRect();
+            const firstRectBottom = logoGroupBottom.getBoundingClientRect();
 
-              logoContainer.style.transition = 'none';
-              logoContainer.style.transform  = `translateX(${deltaX}px)`;
-              void logoContainer.offsetHeight; // reflow
-              logoContainer.style.transition = 'transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
-              logoContainer.style.transform  = '';
-            }
+            // 2. Make final state changes to calculate where they will end up
+            logoText.style.maxWidth = '300px';
+            logoTextBottom.style.maxWidth = '300px';
+            const lastRectTop = logoGroupTop.getBoundingClientRect();
+            const lastRectBottom = logoGroupBottom.getBoundingClientRect();
 
-            // Word-part rise
+            // 3. Calculate the difference and apply an inverted transform instantly
+            const deltaXTop = firstRectTop.left - lastRectTop.left;
+            const deltaXBottom = firstRectBottom.left - lastRectBottom.left;
+
+            logoGroupTop.style.transition = 'none';
+            logoGroupBottom.style.transition = 'none';
+            logoGroupTop.style.transform = `translateX(${deltaXTop}px) translateY(50%)`;
+            logoGroupBottom.style.transform = `translateX(${deltaXBottom}px) translateY(-50%)`;
+
+            // 4. Force reflow and then animate back to the natural position
+            void logoGroupTop.offsetHeight;
+
+            logoGroupTop.style.transition = 'transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
+            logoGroupBottom.style.transition = 'transform 1.5s cubic-bezier(0.65, 0, 0.35, 1)';
+            logoGroupTop.style.transform = 'translateY(50%)';
+            logoGroupBottom.style.transform = 'translateY(-50%)';
+
+
+            // Word-part rise in both halves
             wordSpans.forEach((span, i) => {
               span.classList.add('animate');
-              span.style.animationDelay = `${i * 200}ms`; // Stagger "Prisma" and "bit"
+              span.style.animationDelay = `${i * 200}ms`;
+            });
+            wordSpansBottom.forEach((span, i) => {
+              span.classList.add('animate');
+              span.style.animationDelay = `${i * 200}ms`;
             });
           }, 350); // allow the split to be seen
         }, 200);   // split shortly after ray starts
@@ -345,15 +499,78 @@
 
       // Slide splash away & reveal main
       setTimeout(() => {
-        splashScreen.classList.add('animate-slide-up');
-        splashScreen.addEventListener('animationend', () => {
-          splashScreen.classList.add('hidden');
-          document.body.style.overflow = 'auto';
-          mainContent.classList.remove('hidden');
-          setTimeout(() => mainContent.classList.remove('opacity-0'), 20);
-        }, { once: true });
+        const splashTop = document.getElementById('splash-top');
+        const splashBottom = document.getElementById('splash-bottom');
+        const splashContainer = document.getElementById('splash-container');
+
+        if(splashTop && splashBottom && splashContainer) {
+          splashTop.classList.add('animate-split');
+          splashBottom.classList.add('animate-split');
+
+          splashTop.addEventListener('animationend', () => {
+            splashContainer.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            mainContent.classList.remove('hidden');
+            setTimeout(() => mainContent.classList.remove('opacity-0'), 20);
+          }, { once: true });
+        }
       }, 3500);
+
+      // On-Scroll reveal
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+      
+      // --- From logo.js ---
+      const wordmark = document.getElementById('header-wordmark');
+      if (wordmark) {
+        const text = wordmark.textContent.trim();
+        wordmark.textContent = ''; // clear
+        [...text].forEach((ch, idx) => {
+          const span = document.createElement('span');
+          span.className = 'rainbow-letter';
+          span.textContent = ch;
+          span.setAttribute('aria-label', ch);
+          span.style.transitionDelay = `${(idx * 8)}ms`;
+          wordmark.appendChild(span);
+        });
+      }
+
+      // This is different from the splitting animation, keeping as is from the repo
+      const headerLogo = document.getElementById('header-logo');
+      if (headerLogo && wordmark) {
+        headerLogo.addEventListener('mouseenter', () => {
+          wordmark.style.transform = 'translateY(-0.5px)';
+        });
+        headerLogo.addEventListener('mouseleave', () => {
+          wordmark.style.transform = '';
+        });
+      }
+
+      // --- NEW: Hide/Show Nav on Scroll ---
+      const headerNav = document.getElementById('header-nav');
+      let lastScrollTop = 0;
+      window.addEventListener('scroll', () => {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        // Hide only if scrolling down and past the header
+        if (scrollTop > lastScrollTop && scrollTop > headerNav.offsetHeight) {
+          headerNav.style.transform = 'translateY(-100%)'; // Hide nav
+        } else {
+          headerNav.style.transform = 'translateY(0)'; // Show nav
+        }
+        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+      });
+
     });
   </script>
 </body>
 </html>
+
+
+
+
+
+
