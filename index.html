@@ -169,7 +169,34 @@
     #prism-outline.glowing-intensely svg {
       filter: drop-shadow(0 0 12px #ffffff) drop-shadow(0 0 25px rgba(255, 255, 255, 0.7));
     }
-    
+    /* Make header logo 3D prism rotation on hover */
+#header-logo {
+  perspective: 1000px;
+}
+#header-logo svg {
+  transition: transform 0.8s ease-in-out;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+}
+#header-logo:hover svg {
+  transform: rotateY(180deg) rotateX(15deg);
+}
+#header-dispersion {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+#header-logo:hover #header-dispersion {
+  opacity: 0.6;
+}
+
+/* Enhanced 3D effect for prism halves */
+#header-logo:hover #header-prism-left {
+  transform: translateX(-1px) rotateY(-5deg);
+}
+#header-logo:hover #header-prism-right {
+  transform: translateX(1px) rotateY(5deg);
+}
+
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -428,22 +455,7 @@
       document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
 
       // --- NEW: Interactive Header Logo Animation ---
-      const headerLogo = document.getElementById('header-logo');
-      const headerPrismLeft = document.getElementById('header-prism-left');
-      const headerPrismRight = document.getElementById('header-prism-right');
-      const headerDispersion = document.getElementById('header-dispersion');
 
-      headerLogo.addEventListener('mouseenter', () => {
-        headerPrismLeft.style.transform = 'translateX(-2px) rotate(-3deg)';
-        headerPrismRight.style.transform = 'translateX(2px) rotate(3deg)';
-        headerDispersion.style.opacity = '1';
-      });
-
-      headerLogo.addEventListener('mouseleave', () => {
-        headerPrismLeft.style.transform = 'none';
-        headerPrismRight.style.transform = 'none';
-        headerDispersion.style.opacity = '0';
-      });
     });
   </script>
 </body>
