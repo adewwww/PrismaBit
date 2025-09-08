@@ -8,19 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="assets/css/logo.css">
-  <script src="assets/Javascript/logo.js" defer></script>
-  <script src="assets/Javascript/navbar_scroll.js" defer></script>
+  <link rel="stylesheet" href="assets/css/common.css">
+  <script src="assets/Javascript/common.js" defer></script>
 
   <style>
-    /* Base */
-    :root { color-scheme: light; }
-    body {
-      font-family: 'Inter', sans-serif;
-      overflow: hidden;          /* Hide scrollbars during splash */
-      background-color: #f8fafc;   /* Entire page bg - Neutral White (Slate 50) */
-    }
-
     /* Subtle scanline texture on splash */
     @keyframes scanline {
       from { background-position: 0 0; }
@@ -54,7 +45,6 @@
     .word-part.animate { animation: apple-style-reveal 1s cubic-bezier(0.65, 0, 0.35, 1) forwards; }
 
     /* Main content fades */
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
     #main-content .animate-fade-in-up { opacity: 0; animation: fadeInUp 0.8s both cubic-bezier(0.65, 0, 0.35, 1); }
     #header-nav { opacity: 0; animation: fadeIn 1s 0.5s both; }
@@ -66,21 +56,6 @@
         linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
       background-size: 2rem 2rem;
     }
-
-    /* Reveal on scroll */
-    .reveal-on-scroll { opacity: 0; transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1),
-                  transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
-    .reveal-on-scroll.visible { opacity: 1; transform: translateY(0); }
-
-    /* Gradient text helper */
-    .gradient-text {
-      background-image: linear-gradient(to right, #1e3a8a, #3b82f6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
     /* --- Splash FX --- */
 
     /* White light ray sweeping across */
@@ -133,6 +108,17 @@
     #prism-outline svg, #prism-filled svg { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6)); transition: filter 400ms ease-in-out; }
     #prism-outline.glowing-intensely svg { filter: drop-shadow(0 0 12px #ffffff) drop-shadow(0 0 25px rgba(255, 255, 255, 0.7)); }
   </style>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    fetch('assets/html/footer.html')
+      .then(response => response.text())
+      .then(data => {
+        document.getElementById('footer-container').innerHTML = data;
+      });
+  });
+</script>
+
 </head>
 <body class="bg-slate-50 text-slate-800">
 
@@ -292,11 +278,7 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="py-8 border-t border-slate-200">
-      <div class="container mx-auto px-6 text-center text-slate-500">
-        <p>&copy; 2025 Prismabit. All rights reserved.</p>
-      </div>
-    </footer>
+    <div id="footer-container"></div>
   </main>
 
   <script>
@@ -371,14 +353,6 @@
           setTimeout(() => mainContent.classList.remove('opacity-0'), 20);
         }, { once: true });
       }, 3500);
-
-      // On-Scroll reveal
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
     });
   </script>
 </body>

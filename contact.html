@@ -8,44 +8,21 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="assets/css/logo.css">
-  <script src="assets/Javascript/logo.js" defer></script>
-  <script src="assets/Javascript/navbar_scroll.js" defer></script>
+  <link rel="stylesheet" href="assets/css/common.css">
+  <script src="assets/Javascript/common.js" defer></script>
 
-  <style>
-    /* Base */
-    :root { color-scheme: light; }
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #f8fafc;
-    }
-    
-    /* Main content animations */
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    #main-content {
-      opacity: 0;
-      animation: fadeIn 0.8s 0.2s both;
-    }
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Load footer
+      fetch('assets/html/footer.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading footer:', error));
+    });
+  </script>
 
-    /* Reveal on scroll */
-    .reveal-on-scroll {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1),
-                  transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
-    }
-    .reveal-on-scroll.visible {
-      opacity: 1; transform: translateY(0);
-    }
-
-    /* Gradient text */
-    .gradient-text {
-      background-image: linear-gradient(to right, #1e3a8a, #3b82f6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-  </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
@@ -146,22 +123,6 @@
   </main>
   
   <!-- FOOTER -->
-  <footer class="py-8 border-t border-slate-200">
-    <div class="container mx-auto px-6 text-center text-slate-500">
-      <p>&copy; 2025 Prismabit. All rights reserved.</p>
-    </div>
-  </footer>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // On-Scroll reveal
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
-    });
-  </script>
+  <div id="footer-container"></div>
 </body>
 </html>
