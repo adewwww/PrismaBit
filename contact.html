@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prismabit | Contact Us</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* Base */
+    :root { color-scheme: light; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+    }
+    
+    /* Main content animations */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    #main-content {
+      opacity: 0;
+      animation: fadeIn 0.8s 0.2s both;
+    }
+
+    /* Reveal on scroll */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+                  transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .reveal-on-scroll.visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background-image: linear-gradient(to right, #1e3a8a, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Interactive logo styles */
+    .prism-half {
+      transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .dispersion-glow {
+      position: absolute; inset: -8px;
+      background:
+        radial-gradient(closest-side, rgba(59, 130, 246, 0.25), rgba(59, 130, 246, 0) 70%);
+      filter: blur(10px);
+      opacity: 0;
+      transition: opacity 400ms ease;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-40 bg-slate-50/80 backdrop-blur-sm border-b border-slate-200">
+    <nav class="container mx-auto flex justify-between items-center p-6">
+      <a href="index.html" id="header-logo" class="flex items-center space-x-2 group">
+        <div class="w-8 h-8 relative">
+          <div id="header-dispersion" class="dispersion-glow opacity-0 transition-opacity duration-300"></div>
+          <svg viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+            <defs>
+              <clipPath id="headerClipLeft"><rect x="-3" y="-3" width="15" height="30" /></clipPath>
+              <clipPath id="headerClipRight"><rect x="12" y="-3" width="16.5" height="30" /></clipPath>
+            </defs>
+            <g id="header-prism-left" class="prism-half left" clip-path="url(#headerClipLeft)">
+               <path d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z" fill="#1e293b"/>
+            </g>
+            <g id="header-prism-right" class="prism-half right" clip-path="url(#headerClipRight)">
+               <path d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z" fill="#1e293b"/>
+            </g>
+          </svg>
+        </div>
+        <span class="font-bold text-xl text-slate-900">Prismabit</span>
+      </a>
+      <div class="hidden md:flex space-x-8 text-slate-600">
+        <a href="work.html" class="hover:text-slate-900 transition-colors">Work</a>
+        <a href="services.html" class="hover:text-slate-900 transition-colors">Services</a>
+        <a href="about.html" class="hover:text-slate-900 transition-colors">About</a>
+        <a href="contact.html" class="text-blue-600 font-bold transition-colors">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- CONTACT HERO -->
+    <section class="py-20 sm:py-32 text-center container mx-auto px-6">
+      <h1 class="text-4xl md:text-6xl font-bold gradient-text mb-4">Let's Connect</h1>
+      <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+        Have a question, a project idea, or just want to say hello? We'd love to hear from you.
+      </p>
+    </section>
+    
+    <!-- CONTACT FORM & DETAILS -->
+    <section class="pb-20 sm:pb-32 container mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <!-- Contact Form -->
+            <div class="lg:col-span-2 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm reveal-on-scroll">
+                <h2 class="text-2xl font-bold text-slate-900 mb-6">Send Us a Message</h2>
+                <form action="#" method="POST" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="first-name" class="block text-sm font-medium text-slate-700">First Name</label>
+                            <input type="text" name="first-name" id="first-name" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3">
+                        </div>
+                        <div>
+                            <label for="last-name" class="block text-sm font-medium text-slate-700">Last Name</label>
+                            <input type="text" name="last-name" id="last-name" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-700">Email</label>
+                        <input type="email" name="email" id="email" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-slate-700">Message</label>
+                        <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3"></textarea>
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Contact Details -->
+            <div class="space-y-8 reveal-on-scroll" style="transition-delay:150ms;">
+                <div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Our Office</h3>
+                    <p class="text-slate-600">Near Zudio Showroom, Chachal, VIP Road, Six Mile</p>
+                </div>
+                 <div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Email Us</h3>
+                    <a href="mailto:hello@prismabit.com" class="text-blue-600 hover:underline">prismabitdigital@gmail.com</a>
+                </div>
+                 <div>
+                    <h3 class="text-xl font-bold text-slate-900 mb-2">Call Us</h3>
+                    <p class="text-slate-600">+91 70024 43005</p>
+                </div>
+                <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden border border-slate-200">
+                   <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.76694228709!2d91.80850747486859!3d26.139140892907125!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375a597fb1c9cf19%3A0x84c59b766c534616!2sTech%20Junction!5e0!3m2!1sen!2sin!4v1757329713224!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  </main>
+  
+  <!-- FOOTER -->
+  <footer class="py-8 border-t border-slate-200">
+    <div class="container mx-auto px-6 text-center text-slate-500">
+      <p>&copy; 2025 Prismabit. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // On-Scroll reveal
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+      // Interactive Header Logo Animation
+      const headerLogo = document.getElementById('header-logo');
+      const headerPrismLeft = document.getElementById('header-prism-left');
+      const headerPrismRight = document.getElementById('header-prism-right');
+      const headerDispersion = document.getElementById('header-dispersion');
+
+      headerLogo.addEventListener('mouseenter', () => {
+        headerPrismLeft.style.transform = 'translateX(-2px) rotate(-3deg)';
+        headerPrismRight.style.transform = 'translateX(2px) rotate(3deg)';
+        headerDispersion.style.opacity = '1';
+      });
+      headerLogo.addEventListener('mouseleave', () => {
+        headerPrismLeft.style.transform = 'none';
+        headerPrismRight.style.transform = 'none';
+        headerDispersion.style.opacity = '0';
+      });
+    });
+  </script>
+</body>
+</html>

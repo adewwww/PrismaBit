@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prismabit | Our Services</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    /* Base */
+    :root { color-scheme: light; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f8fafc;
+    }
+    
+    /* Main content animations */
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    #main-content {
+      opacity: 0;
+      animation: fadeIn 0.8s 0.2s both;
+    }
+
+    /* Reveal on scroll */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1),
+                  transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+    }
+    .reveal-on-scroll.visible {
+      opacity: 1; transform: translateY(0);
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background-image: linear-gradient(to right, #1e3a8a, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* Interactive logo styles */
+    .prism-half {
+      transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .dispersion-glow {
+      position: absolute; inset: -8px;
+      background:
+        radial-gradient(closest-side, rgba(59, 130, 246, 0.25), rgba(59, 130, 246, 0) 70%);
+      filter: blur(10px);
+      opacity: 0;
+      transition: opacity 400ms ease;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+  <!-- Header Navigation -->
+  <header class="sticky top-0 z-40 bg-slate-50/80 backdrop-blur-sm border-b border-slate-200">
+    <nav class="container mx-auto flex justify-between items-center p-6">
+      <a href="index.html" id="header-logo" class="flex items-center space-x-2 group">
+        <div class="w-8 h-8 relative">
+          <div id="header-dispersion" class="dispersion-glow opacity-0 transition-opacity duration-300"></div>
+          <svg viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+            <defs>
+              <clipPath id="headerClipLeft"><rect x="-3" y="-3" width="15" height="30" /></clipPath>
+              <clipPath id="headerClipRight"><rect x="12" y="-3" width="16.5" height="30" /></clipPath>
+            </defs>
+            <g id="header-prism-left" class="prism-half left" clip-path="url(#headerClipLeft)">
+               <path d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z" fill="#1e293b"/>
+            </g>
+            <g id="header-prism-right" class="prism-half right" clip-path="url(#headerClipRight)">
+               <path d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z" fill="#1e293b"/>
+            </g>
+          </svg>
+        </div>
+        <span class="font-bold text-xl text-slate-900">Prismabit</span>
+      </a>
+      <div class="hidden md:flex space-x-8 text-slate-600">
+        <a href="work.html" class="hover:text-slate-900 transition-colors">Work</a>
+        <a href="services.html" class="text-blue-600 font-bold transition-colors">Services</a>
+        <a href="about.html" class="hover:text-slate-900 transition-colors">About</a>
+        <a href="contact.html" class="hover:text-slate-900 transition-colors">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    <!-- SERVICES HERO -->
+    <section class="py-20 sm:py-32 text-center container mx-auto px-6">
+      <h1 class="text-4xl md:text-6xl font-bold gradient-text mb-4">Our Spectrum of Services</h1>
+      <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+        We provide end-to-end digital services designed to elevate your brand, engage your audience, and drive growth.
+      </p>
+    </section>
+
+    <!-- DETAILED SERVICES LIST -->
+    <section class="container mx-auto px-6 pb-20 sm:pb-32 space-y-16">
+
+      <!-- Service 1: Web Development -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center reveal-on-scroll">
+        <div class="lg:col-span-1">
+          <h2 class="text-3xl font-bold text-slate-900 mb-2">Web Development</h2>
+          <p class="text-slate-500">We build fast, scalable, and secure web applications tailored to your specific needs, from marketing sites to complex enterprise platforms.</p>
+        </div>
+        <div class="lg:col-span-2 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+          <h3 class="font-semibold text-slate-700 mb-4">Key Offerings:</h3>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-slate-600">
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> Front-end Development (React, Vue)</li>
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> Back-end Development (Node.js, Python)</li>
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> E-commerce Solutions</li>
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> Content Management Systems (CMS)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Service 2: UI/UX Design -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center reveal-on-scroll">
+        <div class="lg:col-span-1">
+          <h2 class="text-3xl font-bold text-slate-900 mb-2">UI/UX Design</h2>
+          <p class="text-slate-500">Our design process is centered on creating intuitive, engaging, and aesthetically pleasing interfaces that your users will love.</p>
+        </div>
+        <div class="lg:col-span-2 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+          <h3 class="font-semibold text-slate-700 mb-4">Our Process:</h3>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-slate-600">
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> User Research & Strategy</li>
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> Wireframing & Prototyping</li>
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> Visual Design & Branding</li>
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> Usability Testing</li>
+          </ul>
+        </div>
+      </div>
+
+       <!-- Service 3: Cloud Solutions -->
+       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center reveal-on-scroll">
+        <div class="lg:col-span-1">
+          <h2 class="text-3xl font-bold text-slate-900 mb-2">Cloud Solutions</h2>
+          <p class="text-slate-500">We architect and manage robust cloud infrastructures that provide the foundation for scalable and resilient applications.</p>
+        </div>
+        <div class="lg:col-span-2 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+          <h3 class="font-semibold text-slate-700 mb-4">Platforms & Services:</h3>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-slate-600">
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> AWS, Google Cloud & Azure</li>
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> DevOps & CI/CD Pipelines</li>
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> Serverless Architecture</li>
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> Database Management</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Service 4: AI Integration -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center reveal-on-scroll">
+        <div class="lg:col-span-1">
+          <h2 class="text-3xl font-bold text-slate-900 mb-2">AI Integration</h2>
+          <p class="text-slate-500">Unlock new capabilities by embedding artificial intelligence into your products for automation, insights, and enhanced user experiences.</p>
+        </div>
+        <div class="lg:col-span-2 bg-white border border-slate-200 p-8 rounded-2xl shadow-sm">
+          <h3 class="font-semibold text-slate-700 mb-4">Example Applications:</h3>
+          <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-slate-600">
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> LLM-Powered Chatbots & Assistants</li>
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> Data Analysis & Prediction</li>
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> Computer Vision</li>
+            <li class="flex items-start"><span class="text-blue-500 mr-2 mt-1">&#10003;</span> Process Automation</li>
+          </ul>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 sm:py-32 bg-white">
+      <div class="container mx-auto px-6 text-center reveal-on-scroll">
+        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 max-w-3xl mx-auto">Ready to start your project?</h2>
+        <p class="text-slate-600 mt-6 max-w-xl mx-auto">Let's discuss how our services can be tailored to meet your unique goals. We're excited to hear from you.</p>
+        <a href="contact.html" class="inline-block bg-blue-600 text-white font-bold py-4 px-10 rounded-lg hover:bg-blue-700 transition-transform hover:scale-105 mt-10 text-lg">Get a Free Consultation</a>
+      </div>
+    </section>
+  </main>
+  
+  <!-- FOOTER -->
+  <footer class="py-8 border-t border-slate-200">
+    <div class="container mx-auto px-6 text-center text-slate-500">
+      <p>&copy; 2025 Prismabit. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // On-Scroll reveal
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+
+      // Interactive Header Logo Animation
+      const headerLogo = document.getElementById('header-logo');
+      const headerPrismLeft = document.getElementById('header-prism-left');
+      const headerPrismRight = document.getElementById('header-prism-right');
+      const headerDispersion = document.getElementById('header-dispersion');
+
+      headerLogo.addEventListener('mouseenter', () => {
+        headerPrismLeft.style.transform = 'translateX(-2px) rotate(-3deg)';
+        headerPrismRight.style.transform = 'translateX(2px) rotate(3deg)';
+        headerDispersion.style.opacity = '1';
+      });
+      headerLogo.addEventListener('mouseleave', () => {
+        headerPrismLeft.style.transform = 'none';
+        headerPrismRight.style.transform = 'none';
+        headerDispersion.style.opacity = '0';
+      });
+    });
+  </script>
+</body>
+</html>
