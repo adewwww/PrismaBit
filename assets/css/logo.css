@@ -1,0 +1,72 @@
+/* Interactive logo styles */
+#header-logo { perspective: 1000px; }
+#header-logo svg { 
+  transition: transform 0.8s ease-in-out; 
+  transform-style: preserve-3d; 
+  transform-origin: center center; 
+}
+#header-logo:hover svg { 
+  transform: rotateY(180deg) rotateX(15deg); 
+}
+#header-dispersion { 
+  opacity: 0; 
+  transition: opacity 0.4s ease; 
+}
+#header-logo:hover #header-dispersion { 
+  opacity: 0.6; 
+}
+#header-logo:hover #header-prism-left { 
+  transform: translateX(-1px) rotateY(-5deg); 
+}
+#header-logo:hover #header-prism-right { 
+  transform: translateX(1px) rotateY(5deg); 
+}
+
+/* Rainbow text animation for Prismabit */
+@keyframes rainbow-shift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+@keyframes glow-pulse {
+  0%,100% { 
+    text-shadow: 
+      0 0 6px rgba(255,255,255,0.8),
+      0 0 12px rgba(255,0,200,0.5),
+      0 0 24px rgba(0,200,255,0.45); 
+  }
+  50% { 
+    text-shadow:
+      0 0 10px rgba(255,255,255,1),
+      0 0 22px rgba(255,120,0,0.6),
+      0 0 40px rgba(120,0,255,0.55); 
+  }
+}
+
+#header-wordmark { 
+  display: inline-flex; 
+  gap: 0; 
+  line-height: 1; 
+}
+
+.rainbow-letter {
+  position: relative;
+  display: inline-block;
+  font-weight: 700;
+  color: #0f172a;
+  transition: transform .18s ease, filter .18s ease, color .18s ease;
+  will-change: transform, filter;
+}
+
+.rainbow-letter:hover {
+  color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    #ff0033, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00ea, #ff0033
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: rainbow-shift 1.2s linear infinite, glow-pulse 1.2s ease-in-out infinite;
+  transform: translateY(-1px) scale(1.06);
+  cursor: default;
+}

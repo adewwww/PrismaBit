@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/logo.css">
+  <script src="assets/Javascript/logo.js" defer></script>
 
   <style>
     /* Base */
@@ -81,7 +83,7 @@
             </g>
           </svg>
         </div>
-        <span class="font-bold text-xl text-slate-900">Prismabit</span>
+        <span id="header-wordmark" class="font-bold text-xl text-slate-900">Prismabit</span>
       </a>
       <div class="hidden md:flex space-x-8 text-slate-600">
         <a href="work.html" class="text-blue-600 font-bold transition-colors">Work</a>
@@ -195,23 +197,6 @@
         });
       }, { threshold: 0.1 });
       document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
-
-      // Interactive Header Logo Animation
-      const headerLogo = document.getElementById('header-logo');
-      const headerPrismLeft = document.getElementById('header-prism-left');
-      const headerPrismRight = document.getElementById('header-prism-right');
-      const headerDispersion = document.getElementById('header-dispersion');
-
-      headerLogo.addEventListener('mouseenter', () => {
-        headerPrismLeft.style.transform = 'translateX(-2px) rotate(-3deg)';
-        headerPrismRight.style.transform = 'translateX(2px) rotate(3deg)';
-        headerDispersion.style.opacity = '1';
-      });
-      headerLogo.addEventListener('mouseleave', () => {
-        headerPrismLeft.style.transform = 'none';
-        headerPrismRight.style.transform = 'none';
-        headerDispersion.style.opacity = '0';
-      });
     });
   </script>
 </body>

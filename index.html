@@ -8,6 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/logo.css">
+  <script src="assets/Javascript/logo.js" defer></script>
 
   <style>
     /* Base */
@@ -129,79 +131,6 @@
     /* Glow effects for splash logo */
     #prism-outline svg, #prism-filled svg { filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6)); transition: filter 400ms ease-in-out; }
     #prism-outline.glowing-intensely svg { filter: drop-shadow(0 0 12px #ffffff) drop-shadow(0 0 25px rgba(255, 255, 255, 0.7)); }
-
-    /* Header logo 3D prism rotation on hover */
-    #header-logo { perspective: 1000px; }
-    #header-logo svg { transition: transform 0.8s ease-in-out; transform-style: preserve-3d; transform-origin: center center; }
-    #header-logo:hover svg { transform: rotateY(180deg) rotateX(15deg); }
-    #header-dispersion { opacity: 0; transition: opacity 0.4s ease; }
-    #header-logo:hover #header-dispersion { opacity: 0.6; }
-    #header-logo:hover #header-prism-left { transform: translateX(-1px) rotateY(-5deg); }
-    #header-logo:hover #header-prism-right { transform: translateX(1px) rotateY(5deg); }
-
-    /* =========================================================
-       NEW: Per-letter Rainbow Glow on Navbar "Prismabit"
-       ========================================================= */
-    @keyframes rainbow-shift {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
-    }
-    @keyframes glow-pulse {
-      0%,100% { text-shadow:
-          0 0 6px rgba(255,255,255,0.8),
-          0 0 12px rgba(255,0,200,0.5),
-          0 0 24px rgba(0,200,255,0.45); }
-      50% { text-shadow:
-          0 0 10px rgba(255,255,255,1),
-          0 0 22px rgba(255,120,0,0.6),
-          0 0 40px rgba(120,0,255,0.55); }
-    }
-    /* container to keep spacing stable */
-    #header-wordmark { display: inline-flex; gap: 0; line-height: 1; }
-    /* base letter style */
-    .rainbow-letter {
-      position: relative;
-      display: inline-block;
-      font-weight: 700;
-      color: #0f172a;              /* default slate text */
-      transition: transform .18s ease, filter .18s ease, color .18s ease;
-      will-change: transform, filter;
-    }
-    /* hover: switch to gradient text + animated glow */
-    .rainbow-letter:hover {
-      color: transparent;
-      background-image: linear-gradient(
-        90deg,
-        #ff0033, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00ea, #ff0033
-      );
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      animation: rainbow-shift 1.2s linear infinite, glow-pulse 1.2s ease-in-out infinite;
-      transform: translateY(-1px) scale(1.06);
-      cursor: default;
-    }
-    /* slight magnetic feel when moving across letters */
-    #header-wordmark:hover .rainbow-letter {
-      transition: transform .18s ease, filter .18s ease, color .18s ease, background-position .18s linear;
-    }
-    /* optional subtle halo on hovered letter using a pseudo element */
-    .rainbow-letter::after {
-      content: "";
-      position: absolute;
-      inset: -0.25em;
-      border-radius: 8px;
-      pointer-events: none;
-      opacity: 0;
-      filter: blur(14px);
-      transition: opacity .2s ease;
-    }
-    .rainbow-letter:hover::after {
-      opacity: .35;
-      background: radial-gradient(closest-side,
-        rgba(255,255,255,.6),
-        rgba(255,255,255,0) 70%);
-    }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -448,36 +377,6 @@
         });
       }, { threshold: 0.1 });
       document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
-
-      /* =========================================================
-         NEW: Split navbar "Prismabit" into per-letter spans
-         so each letter can have its own rainbow hover glow.
-         ========================================================= */
-      const wordmark = document.getElementById('header-wordmark');
-      if (wordmark) {
-        const text = wordmark.textContent.trim();
-        wordmark.textContent = ''; // clear
-        [...text].forEach((ch, idx) => {
-          const span = document.createElement('span');
-          span.className = 'rainbow-letter';
-          span.textContent = ch;
-          span.setAttribute('aria-label', ch);
-          // tiny staggered transform when entering the container
-          span.style.transitionDelay = `${(idx * 8)}ms`;
-          wordmark.appendChild(span);
-        });
-      }
-
-      // (Optional nicety): slight scale on the whole word when hovering the group
-      const headerLogo = document.getElementById('header-logo');
-      if (headerLogo) {
-        headerLogo.addEventListener('mouseenter', () => {
-          wordmark && (wordmark.style.transform = 'translateY(-0.5px)');
-        });
-        headerLogo.addEventListener('mouseleave', () => {
-          wordmark && (wordmark.style.transform = '');
-        });
-      }
     });
   </script>
 </body>
