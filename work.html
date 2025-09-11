@@ -8,42 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="assets/Javascript/common.js" defer></script>
+
   <style>
-    body { font-family: 'Inter', sans-serif; }
-    
-    .gradient-text {
-      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .dispersion-glow {
-      background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
-      border-radius: 50%;
-    }
-    
-    .prism-half {
-      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    
-    .prism-half.left { transform-origin: 50% 50%; }
-    .prism-half.right { transform-origin: 50% 50%; }
-    
-    #header-logo:hover .prism-half.left { transform: translateX(-8px) rotate(-15deg); }
-    #header-logo:hover .prism-half.right { transform: translateX(8px) rotate(15deg); }
-    #header-logo:hover #header-dispersion { opacity: 1; }
-    
-    .reveal-on-scroll {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-    
-    .reveal-on-scroll.revealed {
-      opacity: 1;
-      transform: translateY(0);
-    }
 
     .project-card {
       transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
