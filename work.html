@@ -7,21 +7,160 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="assets/css/common.css">
-  <script src="assets/Javascript/common.js" defer></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      // Load footer
-      fetch('assets/html/footer.html')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('footer-container').innerHTML = data;
-        })
-        .catch(error => console.error('Error loading footer:', error));
-    });
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #60a5fa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .dispersion-glow {
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    
+    .prism-half {
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .prism-half.left { transform-origin: 50% 50%; }
+    .prism-half.right { transform-origin: 50% 50%; }
+    
+    #header-logo:hover .prism-half.left { transform: translateX(-8px) rotate(-15deg); }
+    #header-logo:hover .prism-half.right { transform: translateX(8px) rotate(15deg); }
+    #header-logo:hover #header-dispersion { opacity: 1; }
+    
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    
+    .reveal-on-scroll.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
+    .project-card {
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      border: 1px solid rgba(226, 232, 240, 0.6);
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+      border-color: rgba(59, 130, 246, 0.2);
+    }
+
+    .project-image {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .project-image img {
+      transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .project-card:hover .project-image img {
+      transform: scale(1.05);
+    }
+
+    .project-category {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .hero-section {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      position: relative;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .section-title {
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #3b82f6, #60a5fa);
+      transition: width 0.6s ease-out;
+    }
+
+    .section-title.visible::after {
+      width: 100%;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: white;
+      border-radius: 1rem;
+      border: 1px solid rgba(226, 232, 240, 0.6);
+      transition: all 0.3s ease;
+    }
+
+    .stat-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-bottom: 3rem;
+    }
+
+    .filter-tab {
+      padding: 0.75rem 1.5rem;
+      border: 1px solid #e2e8f0;
+      border-radius: 2rem;
+      background: white;
+      color: #64748b;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+    }
+
+    .filter-tab:hover, .filter-tab.active {
+      background: #3b82f6;
+      color: white;
+      border-color: #3b82f6;
+    }
+  </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
@@ -47,6 +186,7 @@
         <span id="header-wordmark" class="font-bold text-xl text-slate-900">Prismabit</span>
       </a>
       <div class="hidden md:flex space-x-8 text-slate-600">
+        <a href="index.html" class="hover:text-slate-900 transition-colors">Home</a>
         <a href="work.html" class="text-blue-600 font-bold transition-colors">Work</a>
         <a href="services.html" class="hover:text-slate-900 transition-colors">Services</a>
         <a href="about.html" class="hover:text-slate-900 transition-colors">About</a>
@@ -56,93 +196,436 @@
   </header>
 
   <!-- Main Content -->
-  <main id="main-content">
-    <!-- WORK HERO -->
-    <section class="py-20 sm:py-32 text-center container mx-auto px-6">
-      <h1 class="text-4xl md:text-6xl font-bold gradient-text mb-4">Our Work</h1>
-      <p class="text-lg md:text-xl text-slate-600 max-w-2xl mx-auto">
-        We partner with innovative brands to create exceptional digital experiences. Here’s a selection of our favorite projects.
-      </p>
-    </section>
-
-    <!-- PROJECTS GRID -->
-    <section class="container mx-auto px-6 pb-20 sm:pb-32">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+  <main id="main-content" class="pt-20">
+    
+    <!-- HERO SECTION -->
+    <section class="hero-section py-24 sm:py-32 relative">
+      <div class="container mx-auto px-6 text-center">
+        <div class="reveal-on-scroll">
+          <h1 class="text-5xl md:text-7xl font-bold gradient-text mb-8 leading-tight">
+            Our Work
+          </h1>
+          <p class="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto mb-12 leading-relaxed font-light">
+            We build digital solutions that transform businesses. From enterprise systems to mobile experiences, 
+            each project reflects our commitment to innovation and excellence.
+          </p>
+        </div>
         
-        <!-- Project 1 -->
-        <div class="reveal-on-scroll">
-          <a href="#" class="block group">
-            <div class="overflow-hidden rounded-2xl mb-6 shadow-md group-hover:shadow-2xl transition-shadow">
-              <img src="https://placehold.co/800x600/1e293b/e2e8f0?text=Project+Nova" alt="Project Nova" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"/>
-            </div>
-            <h3 class="text-2xl font-bold text-slate-900">Project Nova</h3>
-            <p class="text-slate-500 mt-2">An enterprise-level analytics dashboard for a leading fintech company.</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Web App</span>
-              <span class="bg-slate-200 text-slate-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">UI/UX</span>
-            </div>
-          </a>
+        <!-- Stats -->
+        <div class="stats-grid max-w-4xl mx-auto reveal-on-scroll" style="transition-delay: 200ms;">
+          <div class="stat-item">
+            <div class="text-3xl font-bold gradient-text mb-2">150+</div>
+            <div class="text-slate-600">Projects Delivered</div>
+          </div>
+          <div class="stat-item">
+            <div class="text-3xl font-bold gradient-text mb-2">50+</div>
+            <div class="text-slate-600">Happy Clients</div>
+          </div>
+          <div class="stat-item">
+            <div class="text-3xl font-bold gradient-text mb-2">8+</div>
+            <div class="text-slate-600">Years Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="text-3xl font-bold gradient-text mb-2">24/7</div>
+            <div class="text-slate-600">Support</div>
+          </div>
         </div>
-
-        <!-- Project 2 -->
-        <div class="reveal-on-scroll" style="transition-delay:150ms;">
-          <a href="#" class="block group">
-            <div class="overflow-hidden rounded-2xl mb-6 shadow-md group-hover:shadow-2xl transition-shadow">
-              <img src="https://placehold.co/800x600/4f46e5/e0e7ff?text=Project+Helios" alt="Project Helios" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"/>
-            </div>
-            <h3 class="text-2xl font-bold text-slate-900">Project Helios</h3>
-            <p class="text-slate-500 mt-2">Marketing website and brand identity for a renewable energy startup.</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Web Development</span>
-              <span class="bg-slate-200 text-slate-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Branding</span>
-            </div>
-          </a>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="reveal-on-scroll">
-          <a href="#" class="block group">
-            <div class="overflow-hidden rounded-2xl mb-6 shadow-md group-hover:shadow-2xl transition-shadow">
-              <img src="https://placehold.co/800x600/be123c/fecdd3?text=Project+Orion" alt="Project Orion" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"/>
-            </div>
-            <h3 class="text-2xl font-bold text-slate-900">Project Orion</h3>
-            <p class="text-slate-500 mt-2">AI-powered logistics platform to optimize supply chain management.</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">AI Integration</span>
-              <span class="bg-slate-200 text-slate-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Cloud</span>
-            </div>
-          </a>
-        </div>
-
-        <!-- Project 4 -->
-        <div class="reveal-on-scroll" style="transition-delay:150ms;">
-          <a href="#" class="block group">
-            <div class="overflow-hidden rounded-2xl mb-6 shadow-md group-hover:shadow-2xl transition-shadow">
-              <img src="https://placehold.co/800x600/0f766e/ccfbf1?text=Project+Cygnus" alt="Project Cygnus" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"/>
-            </div>
-            <h3 class="text-2xl font-bold text-slate-900">Project Cygnus</h3>
-            <p class="text-slate-500 mt-2">Mobile application for a wellness and mental health service.</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Mobile App</span>
-              <span class="bg-slate-200 text-slate-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">UI/UX</span>
-            </div>
-          </a>
-        </div>
-
       </div>
     </section>
 
-    <!-- CTA -->
+    <!-- FILTER TABS -->
+    <section class="py-12">
+      <div class="container mx-auto px-6">
+        <div class="filter-tabs reveal-on-scroll">
+          <button class="filter-tab active" data-filter="all">All Projects</button>
+          <button class="filter-tab" data-filter="erp">Enterprise Systems</button>
+          <button class="filter-tab" data-filter="government">Government Portals</button>
+          <button class="filter-tab" data-filter="mobile">Mobile Apps</button>
+          <button class="filter-tab" data-filter="web">Websites</button>
+          <button class="filter-tab" data-filter="infrastructure">Infrastructure</button>
+          <button class="filter-tab" data-filter="ai">AI Solutions</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SHOWCASE -->
+    <section class="pb-20 sm:pb-32">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12" id="projects-grid">
+          
+          <!-- Project 1: ERP System -->
+          <div class="reveal-on-scroll project-card rounded-2xl overflow-hidden bg-white" data-category="erp">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&h=600&fit=crop&crop=center" alt="Enterprise ERP Dashboard" class="w-full h-full object-cover"/>
+              <div class="project-category bg-white/90 text-blue-600 text-sm font-semibold px-3 py-1 rounded-full">
+                Enterprise ERP
+              </div>
+            </div>
+            <div class="p-8">
+              <h3 class="text-2xl font-bold text-slate-900 mb-3">Manufacturing ERP Suite</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed">Complete enterprise resource planning system for a large manufacturing company, integrating inventory, production, finance, and HR modules.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-3 py-1 rounded-full">ERP System</span>
+                <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full">Cloud Architecture</span>
+                <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full">Data Analytics</span>
+              </div>
+              <div class="flex items-center text-blue-600 font-medium group cursor-pointer">
+                View Case Study
+                <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: Government Portal -->
+          <div class="reveal-on-scroll project-card rounded-2xl overflow-hidden bg-white" data-category="government" style="transition-delay: 100ms;">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&h=600&fit=crop&crop=center" alt="Government Digital Portal" class="w-full h-full object-cover"/>
+              <div class="project-category bg-white/90 text-green-600 text-sm font-semibold px-3 py-1 rounded-full">
+                Government Portal
+              </div>
+            </div>
+            <div class="p-8">
+              <h3 class="text-2xl font-bold text-slate-900 mb-3">Citizen Services Portal</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed">Digital transformation platform enabling citizens to access government services online, reducing bureaucracy and improving service delivery.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-green-100 text-green-800 text-xs font-semibold px-3 py-1 rounded-full">Government Tech</span>
+                <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full">Accessibility</span>
+                <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full">Security</span>
+              </div>
+              <div class="flex items-center text-blue-600 font-medium group cursor-pointer">
+                View Case Study
+                <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: Mobile App -->
+          <div class="reveal-on-scroll project-card rounded-2xl overflow-hidden bg-white" data-category="mobile" style="transition-delay: 200ms;">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop&crop=center" alt="Mobile Banking App" class="w-full h-full object-cover"/>
+              <div class="project-category bg-white/90 text-purple-600 text-sm font-semibold px-3 py-1 rounded-full">
+                Mobile App
+              </div>
+            </div>
+            <div class="p-8">
+              <h3 class="text-2xl font-bold text-slate-900 mb-3">FinTech Mobile Platform</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed">Cross-platform mobile application for digital banking with advanced security features and intuitive user experience.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-purple-100 text-purple-800 text-xs font-semibold px-3 py-1 rounded-full">React Native</span>
+                <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full">Biometric Auth</span>
+                <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full">Real-time</span>
+              </div>
+              <div class="flex items-center text-blue-600 font-medium group cursor-pointer">
+                View Case Study
+                <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: AI-Powered Website -->
+          <div class="reveal-on-scroll project-card rounded-2xl overflow-hidden bg-white" data-category="ai web" style="transition-delay: 300ms;">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&crop=center" alt="AI-Powered Website" class="w-full h-full object-cover"/>
+              <div class="project-category bg-white/90 text-cyan-600 text-sm font-semibold px-3 py-1 rounded-full">
+                AI Integration
+              </div>
+            </div>
+            <div class="p-8">
+              <h3 class="text-2xl font-bold text-slate-900 mb-3">AI-Driven E-commerce Platform</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed">Intelligent e-commerce website with AI-powered product recommendations, chatbot support, and predictive analytics.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-cyan-100 text-cyan-800 text-xs font-semibold px-3 py-1 rounded-full">Machine Learning</span>
+                <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full">Chatbot</span>
+                <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full">Analytics</span>
+              </div>
+              <div class="flex items-center text-blue-600 font-medium group cursor-pointer">
+                View Case Study
+                <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 5: Cloud Infrastructure -->
+          <div class="reveal-on-scroll project-card rounded-2xl overflow-hidden bg-white" data-category="infrastructure" style="transition-delay: 400ms;">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&crop=center" alt="Cloud Infrastructure" class="w-full h-full object-cover"/>
+              <div class="project-category bg-white/90 text-orange-600 text-sm font-semibold px-3 py-1 rounded-full">
+                Cloud Hosting
+              </div>
+            </div>
+            <div class="p-8">
+              <h3 class="text-2xl font-bold text-slate-900 mb-3">Scalable Cloud Architecture</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed">Multi-cloud infrastructure setup for enterprise client with auto-scaling, load balancing, and disaster recovery capabilities.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-orange-100 text-orange-800 text-xs font-semibold px-3 py-1 rounded-full">AWS/Azure</span>
+                <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full">DevOps</span>
+                <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full">Monitoring</span>
+              </div>
+              <div class="flex items-center text-blue-600 font-medium group cursor-pointer">
+                View Case Study
+                <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 6: Network Setup -->
+          <div class="reveal-on-scroll project-card rounded-2xl overflow-hidden bg-white" data-category="infrastructure" style="transition-delay: 500ms;">
+            <div class="project-image">
+              <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop&crop=center" alt="Network Infrastructure" class="w-full h-full object-cover"/>
+              <div class="project-category bg-white/90 text-indigo-600 text-sm font-semibold px-3 py-1 rounded-full">
+                Network Setup
+              </div>
+            </div>
+            <div class="p-8">
+              <h3 class="text-2xl font-bold text-slate-900 mb-3">Enterprise Network Infrastructure</h3>
+              <p class="text-slate-600 mb-6 leading-relaxed">Complete LAN/WAN setup for corporate campus with high-speed connectivity, security protocols, and network monitoring systems.</p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="bg-indigo-100 text-indigo-800 text-xs font-semibold px-3 py-1 rounded-full">LAN/WAN</span>
+                <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full">Security</span>
+                <span class="bg-slate-100 text-slate-700 text-xs font-semibold px-3 py-1 rounded-full">Monitoring</span>
+              </div>
+              <div class="flex items-center text-blue-600 font-medium group cursor-pointer">
+                View Case Study
+                <svg class="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPABILITIES SECTION -->
     <section class="py-20 sm:py-32 bg-white">
-      <div class="container mx-auto px-6 text-center reveal-on-scroll">
-        <h2 class="text-3xl md:text-5xl font-bold text-slate-900 max-w-3xl mx-auto">Have a project in mind?</h2>
-        <p class="text-slate-600 mt-6 max-w-xl mx-auto">Let's build something extraordinary together. We're ready to listen to your ideas and turn them into a digital masterpiece.</p>
-        <a href="contact.html" class="inline-block bg-blue-600 text-white font-bold py-4 px-10 rounded-lg hover:bg-blue-700 transition-transform hover:scale-105 mt-10 text-lg">Contact Us</a>
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16 reveal-on-scroll">
+          <h2 class="section-title text-3xl md:text-5xl font-bold text-slate-900 mb-6">Our Capabilities</h2>
+          <p class="text-xl text-slate-600 max-w-3xl mx-auto">
+            We combine technical expertise with creative vision to deliver comprehensive digital solutions.
+          </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="reveal-on-scroll text-center p-8 rounded-xl border border-slate-200 hover:border-blue-200 transition-colors" style="transition-delay: 100ms;">
+            <div class="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Enterprise Systems</h3>
+            <p class="text-slate-600">Custom ERP solutions, CRM systems, and enterprise applications.</p>
+          </div>
+          
+          <div class="reveal-on-scroll text-center p-8 rounded-xl border border-slate-200 hover:border-blue-200 transition-colors" style="transition-delay: 200ms;">
+            <div class="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Mobile Development</h3>
+            <p class="text-slate-600">Native and cross-platform mobile applications with AI integration.</p>
+          </div>
+          
+          <div class="reveal-on-scroll text-center p-8 rounded-xl border border-slate-200 hover:border-blue-200 transition-colors" style="transition-delay: 300ms;">
+            <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center mx-auto mb-6">
+              <svg class="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"/>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-3">Cloud Infrastructure</h3>
+            <p class="text-slate-600">Scalable cloud hosting, DevOps, and network infrastructure solutions.</p>
+          </div>
+        </div>
       </div>
     </section>
+
+    <!-- CTA SECTION -->
+    <section class="py-20 sm:py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white">
+      <div class="container mx-auto px-6 text-center reveal-on-scroll">
+        <h2 class="text-3xl md:text-5xl font-bold mb-6">Ready to build something amazing?</h2>
+        <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+          Let's discuss your project and explore how we can bring your vision to life with our expertise.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="contact.html" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-xl">
+            Start Your Project
+          </a>
+          <a href="services.html" class="border-2 border-white/20 hover:border-white text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 hover:bg-white/10">
+            View Our Services
+          </a>
+        </div>
+      </div>
+    </section>
+
   </main>
-  
+
   <!-- FOOTER -->
-  <div id="footer-container"></div>
+  <footer class="bg-slate-900 text-white py-16">
+    <div class="container mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-2 mb-6">
+            <div class="w-8 h-8 relative">
+              <svg viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+                <path d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z" fill="#3b82f6"/>
+              </svg>
+            </div>
+            <span class="font-bold text-xl">Prismabit</span>
+          </div>
+          <p class="text-slate-400 mb-6 max-w-md">
+            We specialize in creating innovative digital solutions that transform businesses and enhance user experiences.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-slate-400 hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-slate-400 hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+            </a>
+            <a href="#" class="text-slate-400 hover:text-white transition-colors">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.097.118.112.222.083.343-.09.378-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.750-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24c6.624 0 11.99-5.367 11.99-12C24.007 5.367 18.641.001 12.017.001z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+        
+        <div>
+          <h3 class="font-bold text-lg mb-4">Services</h3>
+          <ul class="space-y-2 text-slate-400">
+            <li><a href="#" class="hover:text-white transition-colors">ERP Systems</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Mobile Apps</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Web Development</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Cloud Hosting</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">AI Integration</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="font-bold text-lg mb-4">Company</h3>
+          <ul class="space-y-2 text-slate-400">
+            <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
+            <li><a href="work.html" class="hover:text-white transition-colors">Our Work</a></li>
+            <li><a href="contact.html" class="hover:text-white transition-colors">Contact</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Careers</a></li>
+            <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <p class="text-slate-400 text-sm">© 2024 Prismabit. All rights reserved.</p>
+        <div class="flex space-x-6 mt-4 md:mt-0">
+          <a href="#" class="text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+          <a href="#" class="text-slate-400 hover:text-white text-sm transition-colors">Terms of Service</a>
+          <a href="#" class="text-slate-400 hover:text-white text-sm transition-colors">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          if (entry.target.classList.contains('section-title')) {
+            entry.target.classList.add('visible');
+          }
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-on-scroll, .section-title').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Filter functionality
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Remove active class from all tabs
+        filterTabs.forEach(t => t.classList.remove('active'));
+        // Add active class to clicked tab
+        tab.classList.add('active');
+
+        const filterValue = tab.getAttribute('data-filter');
+
+        projectCards.forEach(card => {
+          if (filterValue === 'all') {
+            card.style.display = 'block';
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, 100);
+          } else {
+            const cardCategory = card.getAttribute('data-category');
+            if (cardCategory.includes(filterValue)) {
+              card.style.display = 'block';
+              setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+              }, 100);
+            } else {
+              card.style.opacity = '0';
+              card.style.transform = 'translateY(20px)';
+              setTimeout(() => {
+                card.style.display = 'none';
+              }, 300);
+            }
+          }
+        });
+      });
+    });
+
+    // Header scroll effect
+    const header = document.getElementById('header-nav');
+    let lastScrollTop = 0;
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > lastScrollTop && scrollTop > 100) {
+        header.style.transform = 'translateY(-100%)';
+      } else {
+        header.style.transform = 'translateY(0)';
+      }
+      
+      if (scrollTop > 50) {
+        header.classList.add('bg-slate-50/95');
+        header.classList.remove('bg-slate-50/80');
+      } else {
+        header.classList.add('bg-slate-50/80');
+        header.classList.remove('bg-slate-50/95');
+      }
+      
+      lastScrollTop = scrollTop;
+    });
+  </script>
+
 </body>
 </html>
