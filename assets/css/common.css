@@ -113,3 +113,24 @@ body {
   transform: translateY(-1px) scale(1.06);
   cursor: default;
 }
+
+.nav-link {
+  position: relative;
+  padding-bottom: 6px; /* Add some space for the line */
+  transition: color 0.3s ease;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #2563eb; /* Tailwind's blue-600 */
+  transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
