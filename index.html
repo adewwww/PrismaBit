@@ -8,16 +8,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/common.css">
+  <script src="assets/Javascript/common.js" defer></script>
 
   <style>
-    /* Base */
-    :root { color-scheme: light; }
-    body {
-      font-family: 'Inter', sans-serif;
-      overflow: hidden;          /* Hide scrollbars during splash */
-      background-color: #f8fafc;   /* Entire page bg - Neutral White (Slate 50) */
-    }
-
     /* Subtle scanline texture on splash */
     @keyframes scanline {
       from { background-position: 0 0; }
@@ -70,21 +64,6 @@
         linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
       background-size: 2rem 2rem;
     }
-
-    /* Reveal on scroll */
-    .reveal-on-scroll { opacity: 0; transform: translateY(30px);
-      transition: opacity 0.8s cubic-bezier(0.65, 0, 0.35, 1),
-                  transform 0.8s cubic-bezier(0.65, 0, 0.35, 1); }
-    .reveal-on-scroll.visible { opacity: 1; transform: translateY(0); }
-
-    /* Gradient text helper */
-    .gradient-text {
-      background-image: linear-gradient(to right, #1e3a8a, #3b82f6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
     /* --- Splash FX --- */
 
     /* White light ray sweeping across */
@@ -141,79 +120,6 @@
     #prism-outline.glowing-intensely svg, #prism-outline-bottom.glowing-intensely svg { 
         filter: drop-shadow(0 0 12px #ffffff) drop-shadow(0 0 25px rgba(255, 255, 255, 0.7)); 
     }
-
-    /* --- From logo.css --- */
-    #header-logo { perspective: 1000px; }
-    #header-logo svg { 
-      transition: transform 0.8s ease-in-out; 
-      transform-style: preserve-3d; 
-      transform-origin: center center; 
-    }
-    #header-logo:hover svg { 
-      transform: rotateY(180deg) rotateX(15deg); 
-    }
-    #header-dispersion { 
-      opacity: 0; 
-      transition: opacity 0.4s ease; 
-    }
-    #header-logo:hover #header-dispersion { 
-      opacity: 0.6; 
-    }
-    #header-logo:hover #header-prism-left { 
-      transform: translateX(-1px) rotateY(-5deg); 
-    }
-    #header-logo:hover #header-prism-right { 
-      transform: translateX(1px) rotateY(5deg); 
-    }
-
-    @keyframes rainbow-shift {
-      0% { background-position: 0% 50%; }
-      100% { background-position: 200% 50%; }
-    }
-    @keyframes glow-pulse {
-      0%,100% { 
-        text-shadow: 
-          0 0 6px rgba(255,255,255,0.8),
-          0 0 12px rgba(255,0,200,0.5),
-          0 0 24px rgba(0,200,255,0.45); 
-      }
-      50% { 
-        text-shadow:
-          0 0 10px rgba(255,255,255,1),
-          0 0 22px rgba(255,120,0,0.6),
-          0 0 40px rgba(120,0,255,0.55); 
-      }
-    }
-
-    #header-wordmark { 
-      display: inline-flex; 
-      gap: 0; 
-      line-height: 1; 
-    }
-
-    .rainbow-letter {
-      position: relative;
-      display: inline-block;
-      font-weight: 700;
-      color: #0f172a;
-      transition: transform .18s ease, filter .18s ease, color .18s ease;
-      will-change: transform, filter;
-    }
-
-    .rainbow-letter:hover {
-      color: transparent;
-      background-image: linear-gradient(
-        90deg,
-        #ff0033, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00ea, #ff0033
-      );
-      background-size: 200% 100%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      animation: rainbow-shift 1.2s linear infinite, glow-pulse 1.2s ease-in-out infinite;
-      transform: translateY(-1px) scale(1.06);
-      cursor: default;
-    }
-
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -271,9 +177,9 @@
   </div>
 
   <!-- Header Navigation -->
-  <header id="header-nav" class="fixed top-0 left-0 right-0 z-40 bg-slate-50/80 backdrop-blur-sm border-b border-slate-200 transition-transform duration-300 ease-in-out">
+  <header id="header-nav" class="fixed top-0 left-0 right-0 z-40 bg-slate-50/80 backdrop-blur-sm border-b border-slate-200 transition-transform duration-500 ease-in-out">
     <nav class="container mx-auto flex justify-between items-center p-6">
-      <a href="index.html" id="header-logo" class="flex items-center space-x-2 group">
+      <a id="header-logo" class="flex items-center space-x-2 group">
         <div class="w-8 h-8 relative">
           <div id="header-dispersion" class="absolute inset-[-4px] dispersion-glow opacity-0 transition-opacity duration-300"></div>
 
@@ -378,12 +284,6 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="py-8 border-t border-slate-200">
-      <div class="container mx-auto px-6 text-center text-slate-500">
-        <p>&copy; 2025 Prismabit. All rights reserved.</p>
-      </div>
-    </footer>
   </main>
 
   <script>
@@ -516,14 +416,6 @@
           }, { once: true });
         }
       }, 3500);
-
-      // On-Scroll reveal
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
       
       // --- From logo.js ---
       const wordmark = document.getElementById('header-wordmark');
@@ -550,21 +442,6 @@
           wordmark.style.transform = '';
         });
       }
-
-      // --- NEW: Hide/Show Nav on Scroll ---
-      const headerNav = document.getElementById('header-nav');
-      let lastScrollTop = 0;
-      window.addEventListener('scroll', () => {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        // Hide only if scrolling down and past the header
-        if (scrollTop > lastScrollTop && scrollTop > headerNav.offsetHeight) {
-          headerNav.style.transform = 'translateY(-100%)'; // Hide nav
-        } else {
-          headerNav.style.transform = 'translateY(0)'; // Show nav
-        }
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-      });
-
     });
   </script>
 </body>
