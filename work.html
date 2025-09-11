@@ -7,12 +7,11 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/common.css">
   <script src="assets/Javascript/common.js" defer></script>
 
   <style>
-
     .project-card {
       transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
       border: 1px solid rgba(226, 232, 240, 0.6);
@@ -151,7 +150,7 @@
             </g>
           </svg>
         </div>
-        <span id="header-wordmark" class="font-bold text-xl text-slate-900">Prismabit</span>
+        <span id="header-wordmark" class="font-bold text-xl text-slate-900 cursor-pointer">Prismabit</span>
       </a>
       <div class="hidden md:flex space-x-8 text-slate-600">
         <a href="index.html?nosplash=true" class="hover:text-slate-900 transition-colors">Home</a>
@@ -164,41 +163,38 @@
   </header>
 
   <!-- Main Content -->
-  <main id="main-content" class="pt-20">
+  <main id="main-content">
     
     <!-- HERO SECTION -->
-    <section class="hero-section py-24 sm:py-32 relative">
-      <div class="container mx-auto px-6 text-center">
-        <div class="reveal-on-scroll">
-          <h1 class="text-5xl md:text-7xl font-bold gradient-text mb-8 leading-tight">
-            Our Work
-          </h1>
-          <p class="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto mb-12 leading-relaxed font-light">
-            We build digital solutions that transform businesses. From enterprise systems to mobile experiences, 
-            each project reflects our commitment to innovation and excellence.
-          </p>
-        </div>
+    <section class="py-20 sm:py-32 text-center container mx-auto px-6">
+      <h1 class="text-4xl md:text-6xl font-bold gradient-text mb-4">Our Work</h1>
+      <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+        We build digital solutions that transform businesses. From enterprise systems to mobile experiences, each project reflects our commitment to innovation and excellence.
+      </p>
+    </section>
         
         <!-- Stats -->
-        <div class="stats-grid max-w-4xl mx-auto reveal-on-scroll" style="transition-delay: 200ms;">
-          <div class="stat-item">
-            <div class="text-3xl font-bold gradient-text mb-2">150+</div>
-            <div class="text-slate-600">Projects Delivered</div>
-          </div>
-          <div class="stat-item">
-            <div class="text-3xl font-bold gradient-text mb-2">50+</div>
-            <div class="text-slate-600">Happy Clients</div>
-          </div>
-          <div class="stat-item">
-            <div class="text-3xl font-bold gradient-text mb-2">8+</div>
-            <div class="text-slate-600">Years Experience</div>
-          </div>
-          <div class="stat-item">
-            <div class="text-3xl font-bold gradient-text mb-2">24/7</div>
-            <div class="text-slate-600">Support</div>
-          </div>
+        <section class="pb-20 sm:pb-32">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="reveal-on-scroll">
+                    <h2 class="text-4xl md:text-5xl font-bold text-blue-600">150+</h2>
+                    <p class="text-slate-500 mt-2">Projects Delivered</p>
+                </div>
+                <div class="reveal-on-scroll" style="transition-delay:150ms;">
+                    <h2 class="text-4xl md:text-5xl font-bold text-blue-600">50+</h2>
+                    <p class="text-slate-500 mt-2">Happy Clients</p>
+                </div>
+                <div class="reveal-on-scroll" style="transition-delay:300ms;">
+                    <h2 class="text-4xl md:text-5xl font-bold text-blue-600">8+</h2>
+                    <p class="text-slate-500 mt-2">Years Experience</p>
+                </div>
+                <div class="reveal-on-scroll" style="transition-delay:450ms;">
+                    <h2 class="text-4xl md:text-5xl font-bold text-blue-600">24/7</h2>
+                    <p class="text-slate-500 mt-2">Support</p>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- FILTER TABS -->
