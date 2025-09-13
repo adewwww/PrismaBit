@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="assets/css/common.css">
-  <script src="assets/Javascript/common.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
 
   <style>
     .project-card {
@@ -159,11 +159,28 @@
         <a href="about.html" class="nav-link hover:text-slate-900 transition-colors">About</a>
         <a href="contact.html" class="nav-link hover:text-slate-900 transition-colors">Contact</a>
       </div>
+      <!-- Mobile menu button -->
+      <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" class="text-slate-800 hover:text-blue-600 focus:outline-none">
+              <svg id="menu-open-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+              <svg id="menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+      </div>
     </nav>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
+        <div class="px-6 py-4 space-y-1">
+            <a href="index.html?nosplash=true" class="block py-2 px-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-blue-600">Home</a>
+            <a href="work.html" class="block py-2 px-3 rounded-md text-base font-medium bg-blue-50 text-blue-700">Work</a>
+            <a href="services.html" class="block py-2 px-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-blue-600">Services</a>
+            <a href="about.html" class="block py-2 px-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-blue-600">About</a>
+            <a href="contact.html" class="block py-2 px-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-blue-600">Contact</a>
+        </div>
+    </div>
   </header>
 
   <!-- Main Content -->
-  <main id="main-content">
+  <main id="main-content" class="pt-24">
     
     <!-- HERO SECTION -->
     <section class="py-20 sm:py-32 text-center container mx-auto px-6">
@@ -503,93 +520,6 @@
       </div>
     </div>
   </footer>
-
-  <script>
-    // Scroll animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('revealed');
-          if (entry.target.classList.contains('section-title')) {
-            entry.target.classList.add('visible');
-          }
-        }
-      });
-    }, observerOptions);
-
-    document.querySelectorAll('.reveal-on-scroll, .section-title').forEach(el => {
-      observer.observe(el);
-    });
-
-    // Filter functionality
-    const filterTabs = document.querySelectorAll('.filter-tab');
-    const projectCards = document.querySelectorAll('.project-card');
-
-    filterTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        // Remove active class from all tabs
-        filterTabs.forEach(t => t.classList.remove('active'));
-        // Add active class to clicked tab
-        tab.classList.add('active');
-
-        const filterValue = tab.getAttribute('data-filter');
-
-        projectCards.forEach(card => {
-          if (filterValue === 'all') {
-            card.style.display = 'block';
-            setTimeout(() => {
-              card.style.opacity = '1';
-              card.style.transform = 'translateY(0)';
-            }, 100);
-          } else {
-            const cardCategory = card.getAttribute('data-category');
-            if (cardCategory.includes(filterValue)) {
-              card.style.display = 'block';
-              setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-              }, 100);
-            } else {
-              card.style.opacity = '0';
-              card.style.transform = 'translateY(20px)';
-              setTimeout(() => {
-                card.style.display = 'none';
-              }, 300);
-            }
-          }
-        });
-      });
-    });
-
-    // Header scroll effect
-    const header = document.getElementById('header-nav');
-    let lastScrollTop = 0;
-
-    window.addEventListener('scroll', () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      if (scrollTop > lastScrollTop && scrollTop > 100) {
-        header.style.transform = 'translateY(-100%)';
-      } else {
-        header.style.transform = 'translateY(0)';
-      }
-      
-      if (scrollTop > 50) {
-        header.classList.add('bg-slate-50/95');
-        header.classList.remove('bg-slate-50/80');
-      } else {
-        header.classList.add('bg-slate-50/80');
-        header.classList.remove('bg-slate-50/95');
-      }
-      
-      lastScrollTop = scrollTop;
-    });
-  </script>
 
 </body>
 </html>

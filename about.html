@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="assets/css/common.css">
-  <script src="assets/Javascript/common.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
 
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -42,11 +42,28 @@
         <a href="about.html" class="nav-link text-blue-600 font-bold transition-colors">About</a>
         <a href="contact.html" class="nav-link hover:text-slate-900 transition-colors">Contact</a>
       </div>
+      <!-- Mobile menu button -->
+      <div class="md:hidden flex items-center">
+          <button id="mobile-menu-button" class="text-slate-800 hover:text-blue-600 focus:outline-none">
+              <svg id="menu-open-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+              <svg id="menu-close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+          </button>
+      </div>
     </nav>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200">
+        <div class="px-6 py-4 space-y-1">
+            <a href="index.html?nosplash=true" class="block py-2 px-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-blue-600">Home</a>
+            <a href="work.html" class="block py-2 px-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-blue-600">Work</a>
+            <a href="services.html" class="block py-2 px-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-blue-600">Services</a>
+            <a href="about.html" class="block py-2 px-3 rounded-md text-base font-medium bg-blue-50 text-blue-700">About</a>
+            <a href="contact.html" class="block py-2 px-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-blue-600">Contact</a>
+        </div>
+    </div>
   </header>
 
   <!-- Main Content -->
-  <main id="main-content">
+  <main id="main-content" class="pt-24">
     <!-- ABOUT HERO -->
     <section class="py-20 sm:py-32 text-center container mx-auto px-6">
       <h1 class="text-4xl md:text-6xl font-bold gradient-text mb-4">Driven by Innovation, Defined by Excellence.</h1>

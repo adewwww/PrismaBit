@@ -1,11 +1,17 @@
-/* Base styles */
+/* ==========================================================================
+   Base & Global Styles
+   ========================================================================== */
 :root { color-scheme: light; }
 body {
   font-family: 'Inter', sans-serif;
   background-color: #f8fafc;
 }
 
-/* Main content animations */
+/* ==========================================================================
+   Animations & Transitions
+   ========================================================================== */
+
+/* Keyframes for fading in content */
 @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fadeInUp { 
   from { opacity: 0; transform: translateY(20px); } 
@@ -16,7 +22,7 @@ body {
   animation: fadeIn 0.8s 0.2s both;
 }
 
-/* Reveal on scroll */
+/* Class-based animation for elements that fade in as you scroll to them */
 .reveal-on-scroll {
   opacity: 0;
   transform: translateY(30px);
@@ -28,7 +34,7 @@ body {
   transform: translateY(0);
 }
 
-/* Gradient text */
+/* Helper class to create gradient text */
 .gradient-text {
   background-image: linear-gradient(to right, #1e3a8a, #3b82f6);
   -webkit-background-clip: text;
@@ -36,12 +42,16 @@ body {
   color: transparent;
 }
 
-/* Header styles */
+/* ==========================================================================
+   Header & Navigation Styles
+   ========================================================================== */
+
 #header-nav {
   transition: transform 0.5s ease-in-out;
 }
 
-/* Interactive logo styles */
+/* --- Interactive Logo --- */
+/* 3D effect on hover */
 #header-logo { perspective: 1000px; }
 #header-logo svg { 
   transition: transform 0.8s ease-in-out; 
@@ -65,7 +75,8 @@ body {
   transform: translateX(1px) rotateY(5deg); 
 }
 
-/* Rainbow text animation for Prismabit */
+/* --- Rainbow Wordmark Animation --- */
+/* Keyframes for the shifting rainbow gradient and the glowing pulse effect */
 @keyframes rainbow-shift {
   0% { background-position: 0% 50%; }
   100% { background-position: 200% 50%; }
@@ -91,6 +102,7 @@ body {
   line-height: 1; 
 }
 
+/* Individual letters of the wordmark */
 .rainbow-letter {
   position: relative;
   display: inline-block;
@@ -100,6 +112,7 @@ body {
   will-change: transform, filter;
 }
 
+/* The hover state that triggers the rainbow animation */
 .rainbow-letter:hover {
   color: transparent;
   background-image: linear-gradient(
@@ -114,12 +127,14 @@ body {
   cursor: default;
 }
 
+/* --- Navigation Links --- */
 .nav-link {
   position: relative;
   padding-bottom: 6px; /* Add some space for the line */
   transition: color 0.3s ease;
 }
 
+/* The underline that appears on hover */
 .nav-link::after {
   content: '';
   position: absolute;
