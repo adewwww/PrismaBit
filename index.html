@@ -3,8 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Prismabit | Digital Solutions</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <title>Prismabit | Crafting Digital Futures</title>
+  <meta name="description" content="Prismabit transforms complex ideas into elegant digital solutions. We specialize in web development, UI/UX design, cloud solutions, and AI integration to build the future of digital experiences." />
+  <meta name="keywords" content="web development, UI/UX design, digital solutions, AI integration, cloud services, mobile apps, Prismabit" />
+  <link rel="canonical" href="https://www.prismabit.com/" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon"> <meta property="og:title" content="Prismabit | Crafting Digital Futures" />
+  <meta property="og:description" content="We transform complex ideas into elegant digital solutions, revealing the full spectrum of possibility." />
+  <meta property="og:image" content="https://www.prismabit.com/assets/images/og-image.jpg" /> <meta property="og:url" content="https://www.prismabit.com/" />
+  <meta property="og:type" content="website" />
+  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Prismabit | Crafting Digital Futures" />
+  <meta name="twitter:description" content="We transform complex ideas into elegant digital solutions, revealing the full spectrum of possibility." />
+  <meta name="twitter:image" content="https://www.prismabit.com/assets/images/twitter-image.jpg" /> <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -12,13 +24,32 @@
   <link rel="stylesheet" href="assets/css/common.css">
   <script src="assets/Javascript/common.js" defer></script>
   
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Prismabit",
+    "url": "https://www.prismabit.com/",
+    "logo": "https://www.prismabit.com/assets/images/logo.png",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+91 709927696",
+      "contactType": "customer service"
+    },
+    "sameAs": [
+      "https://twitter.com/prismabit",
+      "https://www.linkedin.com/company/prismabit"
+    ]
+  }
+  </script>
+  
   <style>
     /* Base */
     :root { color-scheme: light; }
     body {
       font-family: 'Inter', sans-serif;
       overflow: hidden;          /* Hide scrollbars during splash */
-      background-color: #f8fafc;   /* Entire page bg - Neutral White (Slate 50) */
+      background-color: #f8fafc;  /* Entire page bg - Neutral White (Slate 50) */
     }
 
     /* Subtle scanline texture on splash */
@@ -73,13 +104,6 @@
       animation: fadeIn 1s 0.5s both;
     }
 
-    /* Grid bg helper */
-    .bg-grid-pattern {
-      background-image:
-        linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
-      background-size: 2rem 2rem;
-    }
 
     /* Reveal on scroll */
     .reveal-on-scroll { opacity: 0; transform: translateY(30px);
@@ -149,6 +173,9 @@
       50% { text-shadow: 0 0 10px rgba(255,255,255,1), 0 0 22px rgba(255,120,0,0.6), 0 0 40px rgba(120,0,255,0.55); }
     }
     
+    #threejs-container {
+        will-change: transform; /* Parallax optimization */
+    }
     #threejs-container canvas {
         cursor: grab;
     }
@@ -156,13 +183,12 @@
         cursor: grabbing;
     }
 
+    
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
 
-  <!-- Splash Screen -->
   <div id="splash-container" class="fixed inset-0 z-50 overflow-hidden">
-    <!-- Top Half -->
     <div id="splash-top" class="absolute top-0 left-0 w-full h-1/2 bg-black overflow-hidden">
       <div class="w-full h-full relative flex flex-col items-center justify-end scanline-overlay">
         <div id="logo-group-top" class="flex items-center justify-center translate-y-1/2">
@@ -181,11 +207,10 @@
               <svg viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" class="w-full h-full"><path d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z" fill="#f0f9ff"/></svg>
             </div>
           </div>
-          <h1 id="logo-text" class="font-bold text-4xl md:text-5xl text-slate-100 ml-4 tracking-wider flex" style="white-space: nowrap; overflow: hidden;"></h1>
+          <div id="logo-text" class="font-bold text-4xl md:text-5xl text-slate-100 ml-4 tracking-wider flex" style="white-space: nowrap; overflow: hidden;"></div>
         </div>
       </div>
     </div>
-    <!-- Bottom Half -->
     <div id="splash-bottom" class="absolute bottom-0 left-0 w-full h-1/2 bg-black overflow-hidden">
        <div class="w-full h-full relative flex flex-col items-center justify-start scanline-overlay">
         <div id="logo-group-bottom" class="flex items-center justify-center -translate-y-1/2">
@@ -204,13 +229,12 @@
               <svg viewBox="-2.4 -2.4 28.80 28.80" xmlns="http://www.w3.org/2000/svg" class="w-full h-full"><path d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z" fill="#f0f9ff"/></svg>
             </div>
           </div>
-          <h1 id="logo-text-bottom" class="font-bold text-4xl md:text-5xl text-slate-100 ml-4 tracking-wider flex" style="white-space: nowrap; overflow: hidden;"></h1>
+          <div id="logo-text-bottom" class="font-bold text-4xl md:text-5xl text-slate-100 ml-4 tracking-wider flex" style="white-space: nowrap; overflow: hidden;"></div>
         </div>
        </div>
     </div>
   </div>
 
-  <!-- Header Navigation -->
   <header id="header-nav" class="fixed top-0 left-0 right-0 z-40 bg-slate-50/80 backdrop-blur-sm border-b border-slate-200 transition-transform duration-300 ease-in-out">
     <nav class="container mx-auto flex justify-between items-center p-6">
       <a href="index.html?nosplash=true" id="header-logo" class="flex items-center space-x-2 group">
@@ -241,37 +265,27 @@
     </nav>
   </header>
 
-  <!-- Main Content -->
   <main id="main-content" class="hidden opacity-0">
-    <!-- HERO -->
-    <section class="min-h-screen grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative overflow-hidden container mx-auto px-6">
-      <div class="absolute inset-0 bg-grid-pattern opacity-60 z-0"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-slate-50 to-transparent z-0"></div>
-      
-      <!-- Left Column: Text Content -->
-      <div class="text-left z-10 animate-fade-in-up">
+    <section class="min-h-screen grid grid-cols-1 lg:grid-cols-2 gap-8 items-center relative overflow-hidden container mx-auto px-6 bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50/20">
+      <div class="text-left z-10 animate-fade-in-up drop-shadow-lg">
         <h1 class="text-4xl md:text-6xl lg:text-6xl font-bold mb-4 leading-tight text-slate-900">
-          Crafting Digital Futures
+          Crafting Digital <span class="gradient-text">Futures</span>
         </h1>
         <p class="text-lg md:text-xl text-slate-600 max-w-xl">
           We transform complex ideas into elegant digital solutions. From stunning websites to powerful applications, our prism reveals the full spectrum of possibility.
         </p>
       </div>
 
-      <!-- Right Column: 3D Model -->
       <div id="threejs-container" class="z-10 w-full h-full min-h-[400px] lg:min-h-[500px] animate-fade-in-up" style="animation-delay: 0.2s;">
-        <!-- Canvas will be inserted here by three.js -->
-      </div>
+        </div>
     </section>
 
-    <!-- SERVICES -->
     <section class="py-20 sm:py-32 container mx-auto px-6">
       <div class="text-center mb-16 reveal-on-scroll">
         <h2 class="text-3xl md:text-4xl font-bold gradient-text">Our Spectrum of Services</h2>
         <p class="text-slate-500 mt-4 max-w-2xl mx-auto">We offer a complete suite of services to bring your vision from concept to reality.</p>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <!-- Card 1: Web Development -->
         <div class="bg-white border border-slate-200 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow relative overflow-hidden">
           <div class="absolute top-0 left-0 h-1.5 w-full bg-blue-500"></div>
           <div class="mb-4">
@@ -282,7 +296,6 @@
           <h3 class="font-bold text-xl text-slate-900 mb-2">Web Development</h3>
           <p class="text-slate-600">Building responsive, high-performance websites and web applications with modern technologies.</p>
         </div>
-        <!-- Card 2: UI/UX Design -->
         <div class="bg-white border border-slate-200 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow relative overflow-hidden" style="animation-delay:150ms;">
            <div class="absolute top-0 left-0 h-1.5 w-full bg-indigo-500"></div>
           <div class="mb-4">
@@ -293,7 +306,6 @@
           <h3 class="font-bold text-xl text-slate-900 mb-2">UI/UX Design</h3>
           <p class="text-slate-600">Creating intuitive and beautiful user interfaces that provide a seamless user experience.</p>
         </div>
-        <!-- Card 3: Cloud Solutions -->
         <div class="bg-white border border-slate-200 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow relative overflow-hidden" style="animation-delay:300ms;">
            <div class="absolute top-0 left-0 h-1.5 w-full bg-emerald-500"></div>
           <div class="mb-4">
@@ -304,7 +316,6 @@
           <h3 class="font-bold text-xl text-slate-900 mb-2">Cloud Solutions</h3>
           <p class="text-slate-600">Leveraging cloud infrastructure for scalable, secure, and reliable application deployment.</p>
         </div>
-        <!-- Card 4: AI Integration -->
         <div class="bg-white border border-slate-200 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow relative overflow-hidden" style="animation-delay:450ms;">
            <div class="absolute top-0 left-0 h-1.5 w-full bg-amber-500"></div>
           <div class="mb-4">
@@ -318,7 +329,6 @@
       </div>
     </section>
 
-    <!-- WORK -->
     <section class="py-20 sm:py-32 bg-white">
       <div class="container mx-auto px-6">
         <div class="text-center mb-16 reveal-on-scroll">
@@ -327,16 +337,15 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div class="rounded-2xl overflow-hidden group reveal-on-scroll border border-slate-200">
-            <img src="https://placehold.co/800x600/e2e8f0/334155?text=Project+Alpha" alt="Project Alpha" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"/>
+            <img src="https://placehold.co/800x600/e2e8f0/334155?text=Project+Alpha" alt="A screenshot of the Project Alpha data analytics dashboard." class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"/>
           </div>
           <div class="rounded-2xl overflow-hidden group reveal-on-scroll border border-slate-200" style="transition-delay:150ms;">
-            <img src="https://placehold.co/800x600/e2e8f0/334155?text=Project+Beta" alt="Project Beta" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"/>
+            <img src="https://placehold.co/800x600/e2e8f0/334155?text=Project+Beta" alt="The user interface for the Project Beta mobile application." class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"/>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA -->
     <section class="py-20 sm:py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white">
       <div class="container mx-auto px-6 text-center reveal-on-scroll">
         <h2 class="text-3xl md:text-5xl font-bold mb-6">Have a project in mind?</h2>
@@ -345,7 +354,6 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="bg-slate-900 text-white py-16">
     <div class="container mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -362,17 +370,17 @@
             We specialize in creating innovative digital solutions that transform businesses and enhance user experiences.
           </p>
           <div class="flex space-x-4">
-            <a href="#" class="text-slate-400 hover:text-white transition-colors">
+            <a href="#" aria-label="Twitter" class="text-slate-400 hover:text-white transition-colors">
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
               </svg>
             </a>
-            <a href="#" class="text-slate-400 hover:text-white transition-colors">
+            <a href="#" aria-label="LinkedIn" class="text-slate-400 hover:text-white transition-colors">
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
               </svg>
             </a>
-            <a href="#" class="text-slate-400 hover:text-white transition-colors">
+            <a href="#" aria-label="Pinterest" class="text-slate-400 hover:text-white transition-colors">
               <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.097.118.112.222.083.343-.09.378-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.750-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24c6.624 0 11.99-5.367 11.99-12C24.007 5.367 18.641.001 12.017.001z"/>
               </svg>
@@ -404,8 +412,7 @@
       </div>
       
       <div class="border-t border-slate-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
-        <p class="text-slate-400 text-sm">© 2024 Prismabit. All rights reserved.</p>
-        <div class="flex space-x-6 mt-4 md:mt-0">
+        <p class="text-slate-400 text-sm">© 2024 Prismabit. All rights reserved.</p> <div class="flex space-x-6 mt-4 md:mt-0">
           <a href="#" class="text-slate-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
           <a href="#" class="text-slate-400 hover:text-white text-sm transition-colors">Terms of Service</a>
           <a href="#" class="text-slate-400 hover:text-white text-sm transition-colors">Cookie Policy</a>
@@ -436,14 +443,14 @@
         // Run the full splash animation
         const logoGroupTop = document.getElementById('logo-group-top');
         const logoGroupBottom = document.getElementById('logo-group-bottom');
-        const logoText      = document.getElementById('logo-text');
-        const logoTextBottom = document.getElementById('logo-text-bottom');
-        const prismOutline  = document.getElementById('prism-outline');
-        const prismFilled   = document.getElementById('prism-filled');
-        const prismLeft     = document.getElementById('prism-left');
-        const prismRight    = document.getElementById('prism-right');
-        const lightRay      = document.getElementById('light-ray');
-        const dispersion    = document.getElementById('dispersion');
+        const logoText        = document.getElementById('logo-text');
+        const logoTextBottom  = document.getElementById('logo-text-bottom');
+        const prismOutline    = document.getElementById('prism-outline');
+        const prismFilled     = document.getElementById('prism-filled');
+        const prismLeft       = document.getElementById('prism-left');
+        const prismRight      = document.getElementById('prism-right');
+        const lightRay        = document.getElementById('light-ray');
+        const dispersion      = document.getElementById('dispersion');
         const prismOutlineBottom  = document.getElementById('prism-outline-bottom');
         const prismFilledBottom   = document.getElementById('prism-filled-bottom');
         const prismLeftBottom     = document.getElementById('prism-left-bottom');
@@ -470,8 +477,8 @@
             prismLeftBottom.classList.add('split'); prismRightBottom.classList.add('split');
 
             setTimeout(() => {
-              prismOutline.style.opacity = '0'; prismFilled.style.opacity  = '1';
-              prismOutlineBottom.style.opacity = '0'; prismFilledBottom.style.opacity  = '1';
+              prismOutline.style.opacity = '0'; prismFilled.style.opacity   = '1';
+              prismOutlineBottom.style.opacity = '0'; prismFilledBottom.style.opacity   = '1';
               dispersion.style.opacity   = '0'; dispersionBottom.style.opacity   = '0';
               prismOutline.classList.remove('glowing-intensely'); prismOutlineBottom.classList.remove('glowing-intensely');
               
@@ -528,128 +535,198 @@
         }, 3500);
       }
 
-      // On-Scroll reveal
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
-      
-      const wordmark = document.getElementById('header-wordmark');
-      if (wordmark) {
-        const text = wordmark.textContent.trim();
-        wordmark.textContent = '';
-        [...text].forEach((ch, idx) => {
-          const span = document.createElement('span');
-          span.className = 'rainbow-letter';
-          span.textContent = ch;
-          span.setAttribute('aria-label', ch);
-          span.style.transitionDelay = `${(idx * 8)}ms`;
-          wordmark.appendChild(span);
-        });
-      }
+      // --- Parallax Effect Added ---
+      const heroGlow = document.getElementById('hero-glow');
+      const threeContainer = document.getElementById('threejs-container');
+      let currentScrollY = window.scrollY;
+      let ticking = false;
 
-      const headerLogo = document.getElementById('header-logo');
-      if (headerLogo && wordmark) {
-        headerLogo.addEventListener('mouseenter', () => {
-          wordmark.style.transform = 'translateY(-0.5px)';
-        });
-        headerLogo.addEventListener('mouseleave', () => {
-          wordmark.style.transform = '';
-        });
-      }
-
-      let lastScrollTop = 0;
-      window.addEventListener('scroll', () => {
-        const headerNav = document.getElementById('header-nav');
-        if (!headerNav) return;
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        if (scrollTop > lastScrollTop && scrollTop > headerNav.offsetHeight) {
-          headerNav.style.transform = 'translateY(-100%)';
-        } else {
-          headerNav.style.transform = 'translateY(0)';
+      function updateParallax() {
+        if (heroGlow) {
+          heroGlow.style.transform = `translate(-50%, -50%) translateY(${currentScrollY * 0.3}px)`;
         }
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        if (threeContainer) {
+          const zoomScale = 1 + (currentScrollY / window.innerHeight) * 0.3;
+          threeContainer.style.transform = `translateY(${currentScrollY * 0.15}px) scale(${zoomScale})`;
+        }
+        ticking = false;
+      }
+
+      window.addEventListener('scroll', () => {
+        currentScrollY = window.scrollY;
+        if (!ticking) {
+          window.requestAnimationFrame(updateParallax);
+          ticking = true;
+        }
       });
+
 
       // --- 3D MODEL SCRIPT ---
       function initThreeJS() {
         const container = document.getElementById('threejs-container');
         if (!container) return;
-
-        let scene, camera, renderer, icosahedron;
+      
+        let scene, camera, renderer, icosahedron, particles;
         let isMouseDown = false;
         let previousMousePosition = { x: 0, y: 0 };
+        let mouse = new THREE.Vector2();
+        let mouseTarget = new THREE.Vector3();
+        let particlePositions = [];
+        let currentScrollY = 0;
+        let ticking = false;
+        let zoomLevel = 5; // Initial camera z
         
         // Scene setup
         scene = new THREE.Scene();
         
         // Camera setup
         camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, 0.1, 1000);
-        camera.position.z = 5;
-
+        camera.position.z = zoomLevel;
+      
         // Renderer setup
         renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(container.clientWidth, container.clientHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
         container.appendChild(renderer.domElement);
         
-        // Geometry and Material
+        // Geometry and Material for Icosahedron
         const geometry = new THREE.IcosahedronGeometry(1.8, 1);
         const material = new THREE.MeshStandardMaterial({
-            color: 0x3b82f6, 
-            roughness: 0.2, 
+            color: 0x3b82f6,
+            roughness: 0.2,
             metalness: 0.6,
             wireframe: true
         });
         icosahedron = new THREE.Mesh(geometry, material);
         scene.add(icosahedron);
-
+      
+        // Particles setup
+        const particleCount = 1000;
+        const particleGeometry = new THREE.BufferGeometry();
+        const positions = new Float32Array(particleCount * 3);
+        const velocities = new Float32Array(particleCount * 3);
+      
+        for (let i = 0; i < particleCount; i++) {
+          // Random positions around icosahedron
+          const theta = Math.random() * Math.PI * 2;
+          const phi = Math.random() * Math.PI;
+          const radius = 3 + Math.random() * 2;
+          positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+          positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+          positions[i * 3 + 2] = radius * Math.cos(phi);
+      
+          // Initial velocities for orbiting
+          velocities[i * 3] = (Math.random() - 0.5) * 0.02;
+          velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.02;
+          velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.02;
+      
+          particlePositions.push(new THREE.Vector3(
+            positions[i * 3],
+            positions[i * 3 + 1],
+            positions[i * 3 + 2]
+          ));
+        }
+      
+        particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        const particleMaterial = new THREE.PointsMaterial({
+          color: 0x3b82f6,
+          size: 0.02,
+          transparent: true,
+          opacity: 0.8
+        });
+        particles = new THREE.Points(particleGeometry, particleMaterial);
+        scene.add(particles);
+      
         // Lighting
         const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
         scene.add(ambientLight);
         const pointLight = new THREE.PointLight(0xffffff, 1.2);
         pointLight.position.set(5, 5, 5);
         scene.add(pointLight);
-
+      
         // Animation loop
         const animate = () => {
           requestAnimationFrame(animate);
-          if (!isMouseDown) { // Only auto-rotate if not being dragged
-             icosahedron.rotation.x += 0.001;
-             icosahedron.rotation.y += 0.001;
+          
+          // Scroll-based effects
+          const scrollFactor = Math.min(currentScrollY / (window.innerHeight * 1.5), 1);
+          icosahedron.scale.setScalar(1 + scrollFactor * 0.5); // Zoom-in from 1 to 1.5
+          
+          // Rotate icosahedron and particles
+          if (!isMouseDown) {
+            icosahedron.rotation.x += 0.001;
+            icosahedron.rotation.y += 0.001;
+            particles.rotation.x += 0.0005;
+            particles.rotation.y += 0.0005;
           }
+      
+          // Update particles towards mouse target
+          const positionsArray = particles.geometry.attributes.position.array;
+          mouseTarget.lerp(new THREE.Vector3(
+            (mouse.x * 10),
+            (mouse.y * -10),
+            0
+          ), 0.01); // Lerp to mouse projected position
+      
+          for (let i = 0; i < particleCount; i++) {
+            const i3 = i * 3;
+            particlePositions[i].x += velocities[i3] + (mouseTarget.x - particlePositions[i].x) * 0.005;
+            particlePositions[i].y += velocities[i3 + 1] + (mouseTarget.y - particlePositions[i].y) * 0.005;
+            particlePositions[i].z += velocities[i3 + 2] + (mouseTarget.z - particlePositions[i].z) * 0.005;
+      
+            // Gradual dispersion based on scroll
+            const dispersion = scrollFactor * 0.002;
+            particlePositions[i].x *= (1 + dispersion);
+            particlePositions[i].y *= (1 + dispersion);
+            particlePositions[i].z *= (1 + dispersion);
+      
+            // Boundary check with expanded radius for dispersion
+            const dist = particlePositions[i].length();
+            if (dist > (5 + scrollFactor * 5)) {
+              particlePositions[i].normalize().multiplyScalar(3 + scrollFactor * 2);
+            }
+      
+            positionsArray[i3] = particlePositions[i].x;
+            positionsArray[i3 + 1] = particlePositions[i].y;
+            positionsArray[i3 + 2] = particlePositions[i].z;
+          }
+          particles.geometry.attributes.position.needsUpdate = true;
+      
           renderer.render(scene, camera);
         };
         animate();
-
+      
         // Handle window resizing
         window.addEventListener('resize', () => {
           camera.aspect = container.clientWidth / container.clientHeight;
           camera.updateProjectionMatrix();
           renderer.setSize(container.clientWidth, container.clientHeight);
         });
-
-        // Mouse interactivity
+      
+        // Mouse interactivity for drag
         renderer.domElement.addEventListener('mousedown', (e) => {
           isMouseDown = true;
           previousMousePosition = { x: e.clientX, y: e.clientY };
         });
-
+      
         document.addEventListener('mouseup', () => {
           isMouseDown = false;
         });
-
+      
         document.addEventListener('mousemove', (e) => {
+          mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+          mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      
           if (!isMouseDown) return;
           const deltaMove = {
             x: e.clientX - previousMousePosition.x,
             y: e.clientY - previousMousePosition.y
           };
-
+      
           icosahedron.rotation.y += deltaMove.x * 0.005;
           icosahedron.rotation.x += deltaMove.y * 0.005;
+          particles.rotation.y += deltaMove.x * 0.003;
+          particles.rotation.x += deltaMove.y * 0.003;
           
           previousMousePosition = { x: e.clientX, y: e.clientY };
         });
