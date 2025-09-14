@@ -1480,7 +1480,7 @@
           for (let i = 0; i < particleCount; i++) {
             const theta = Math.random() * Math.PI * 2;
             const phi = Math.acos(Math.random() * 2 - 1);
-            const radius = 2.5 + Math.random() * 3; // Orbit outside the icosahedron
+            const radius = 1.5 + Math.random() * 1; // Orbit outside the icosahedron
 
             positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
             positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
