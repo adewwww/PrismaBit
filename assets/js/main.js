@@ -40,6 +40,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
+      // Special handling for the services section on the homepage
+      const servicesStickyParent = document.getElementById('services-sticky-parent');
+      if (servicesStickyParent) {
+        const rect = servicesStickyParent.getBoundingClientRect();
+        // Check if we are scrolling within the sticky services section
+        if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+          // If inside the services section, force the navbar to be hidden
+          headerNav.style.transform = 'translateY(-100%)';
+          lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+          ticking = false;
+          return; // Exit to prevent default show/hide logic
+        }
+      }
+
       // Hide navbar when scrolling down, show when scrolling up.
       if (scrollTop > lastScrollTop && scrollTop > headerNav.offsetHeight) {
         headerNav.style.transform = 'translateY(-100%)';

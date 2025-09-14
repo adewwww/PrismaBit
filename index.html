@@ -394,6 +394,28 @@
         will-change: opacity, transform;
       }
 
+      /* --- Sophisticated Services Section Styles --- */
+      #services-sticky-parent {
+        height: 400vh; /* A smaller value makes the scroll animation faster */
+      }
+      #services-sticky-container {
+        will-change: transform;
+      }
+      .service-card-animated {
+        will-change: transform, opacity;
+        transform-origin: center;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+      #service-text-content h3, #service-text-content p {
+        transition: opacity 0.4s ease-in-out;
+        will-change: opacity;
+      }
+
+
     </style>
   </head>
   <body class="bg-slate-50 text-slate-800">
@@ -794,134 +816,61 @@
       </section>
 
       <!-- SERVICES SECTION: A summary of the services offered. -->
-      <section class="py-20 sm:py-32 container mx-auto px-6">
-        <div class="text-center mb-16 reveal-on-scroll">
-          <h2 class="text-3xl md:text-4xl font-bold gradient-text">
-            Our Spectrum of Services
-          </h2>
-          <p class="text-slate-500 mt-4 max-w-2xl mx-auto">
-            We offer a complete suite of services to bring your vision from
-            concept to reality.
-          </p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div
-            class="bg-white border border-slate-200 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow relative overflow-hidden"
-          >
-            <div class="absolute top-0 left-0 h-1.5 w-full bg-blue-500"></div>
-            <div class="mb-4">
-              <svg
-                class="w-8 h-8 text-blue-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5"
-                />
-              </svg>
+      <div id="services-sticky-parent" class="relative">
+        <div id="services-sticky-container" class="sticky top-0 h-screen w-full overflow-hidden bg-slate-900">
+          <div class="container mx-auto px-6 h-full grid grid-cols-1 lg:grid-cols-2 items-center gap-16">
+            <!-- Left: Text Content -->
+            <div id="service-text-content" class="relative z-10">
+              <div class="mb-8">
+                <h2 class="text-base font-semibold uppercase tracking-wider text-blue-400">Our Services</h2>
+                <p class="mt-2 text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Our Spectrum of Services</p>
+              </div>
+              <div class="min-h-[160px]">
+                <h3 id="animated-service-title" class="text-2xl font-bold text-slate-50 mb-3"></h3>
+                <p id="animated-service-description" class="text-slate-400 leading-relaxed"></p>
+              </div>
             </div>
-            <h3 class="font-bold text-xl text-slate-900 mb-2">
-              Web Development
-            </h3>
-            <p class="text-slate-600">
-              Building responsive, high-performance websites and web
-              applications with modern technologies.
-            </p>
-          </div>
-          <div
-            class="bg-white border border-slate-200 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow relative overflow-hidden"
-            style="animation-delay: 150ms"
-          >
-            <div class="absolute top-0 left-0 h-1.5 w-full bg-indigo-500"></div>
-            <div class="mb-4">
-              <svg
-                class="w-8 h-8 text-indigo-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z"
-                />
-              </svg>
+
+            <!-- Right: Animated Cards -->
+            <div class="relative h-full w-full flex items-center justify-center">
+              <!-- Background Glow -->
+              <div id="service-glow" class="absolute w-[600px] h-[600px] rounded-full opacity-30 blur-3xl transition-all duration-1000" style="background-color: #3b82f6;"></div>
+              
+              <div id="service-cards-wrapper" class="w-full h-full relative perspective-[1000px]">
+                <!-- Card 1: Web Development -->
+                <div class="service-card-animated" data-title="Web Development" data-description="Building responsive, high-performance websites and web applications with modern technologies." data-color="#3b82f6">
+                  <div class="bg-slate-800/60 backdrop-blur-xl border border-slate-700 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                    <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-4"><svg class="w-8 h-8 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg></div>
+                    <h4 class="font-bold text-xl text-slate-100">Web Development</h4>
+                  </div>
+                </div>
+                <!-- Card 2: UI/UX Design -->
+                <div class="service-card-animated" data-title="UI/UX Design" data-description="Creating intuitive and beautiful user interfaces that provide a seamless user experience." data-color="#6366f1">
+                  <div class="bg-slate-800/60 backdrop-blur-xl border border-slate-700 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                    <div class="w-16 h-16 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-4"><svg class="w-8 h-8 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg></div>
+                    <h4 class="font-bold text-xl text-slate-100">UI/UX Design</h4>
+                  </div>
+                </div>
+                <!-- Card 3: Cloud Solutions -->
+                <div class="service-card-animated" data-title="Cloud Solutions" data-description="Leveraging cloud infrastructure for scalable, secure, and reliable application deployment." data-color="#10b981">
+                  <div class="bg-slate-800/60 backdrop-blur-xl border border-slate-700 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                    <div class="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-4"><svg class="w-8 h-8 text-emerald-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.5 4.5 0 0 0 2.25 15Z" /></svg></div>
+                    <h4 class="font-bold text-xl text-slate-100">Cloud Solutions</h4>
+                  </div>
+                </div>
+                <!-- Card 4: AI Integration -->
+                <div class="service-card-animated" data-title="AI Integration" data-description="Embedding intelligent features and automation into your products with cutting-edge AI." data-color="#f59e0b">
+                  <div class="bg-slate-800/60 backdrop-blur-xl border border-slate-700 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                    <div class="w-16 h-16 bg-amber-500/10 rounded-2xl flex items-center justify-center mb-4"><svg class="w-8 h-8 text-amber-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" /></svg></div>
+                    <h4 class="font-bold text-xl text-slate-100">AI Integration</h4>
+                  </div>
+                </div>
+              </div>
             </div>
-            <h3 class="font-bold text-xl text-slate-900 mb-2">UI/UX Design</h3>
-            <p class="text-slate-600">
-              Creating intuitive and beautiful user interfaces that provide a
-              seamless user experience.
-            </p>
-          </div>
-          <div
-            class="bg-white border border-slate-200 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow relative overflow-hidden"
-            style="animation-delay: 300ms"
-          >
-            <div
-              class="absolute top-0 left-0 h-1.5 w-full bg-emerald-500"
-            ></div>
-            <div class="mb-4">
-              <svg
-                class="w-8 h-8 text-emerald-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.5 4.5 0 0 0 2.25 15Z"
-                />
-              </svg>
-            </div>
-            <h3 class="font-bold text-xl text-slate-900 mb-2">
-              Cloud Solutions
-            </h3>
-            <p class="text-slate-600">
-              Leveraging cloud infrastructure for scalable, secure, and reliable
-              application deployment.
-            </p>
-          </div>
-          <div
-            class="bg-white border border-slate-200 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow relative overflow-hidden"
-            style="animation-delay: 450ms"
-          >
-            <div class="absolute top-0 left-0 h-1.5 w-full bg-amber-500"></div>
-            <div class="mb-4">
-              <svg
-                class="w-8 h-8 text-amber-500"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z"
-                />
-              </svg>
-            </div>
-            <h3 class="font-bold text-xl text-slate-900 mb-2">
-              AI Integration
-            </h3>
-            <p class="text-slate-600">
-              Embedding intelligent features and automation into your products
-              with cutting-edge AI.
-            </p>
+
           </div>
         </div>
-      </section>
+      </div>
 
       <!-- FEATURED WORK SECTION: A preview of key projects. -->
       <section class="py-20 sm:py-32 bg-white">
@@ -1393,11 +1342,78 @@
           ticking = false;
         }
 
+        // =================================================================
+        // --- SOPHISTICATED SERVICES SCROLL ANIMATION ---
+        // =================================================================
+        const servicesStickyParent = document.getElementById('services-sticky-parent');
+        let lastActiveServiceIndex = -1;
+
+        function updateServicesAnimation() {
+          if (!servicesStickyParent) return;
+
+          const stickyContainer = document.getElementById('services-sticky-container');
+          const textTitle = document.getElementById('animated-service-title');
+          const textDesc = document.getElementById('animated-service-description');
+          const cards = Array.from(document.querySelectorAll('.service-card-animated'));
+          const glow = document.getElementById('service-glow');
+
+          const rect = servicesStickyParent.getBoundingClientRect();
+          const scrollableHeight = servicesStickyParent.offsetHeight - window.innerHeight;
+          
+          // Calculate scroll progress within the sticky container (0 to 1)
+          let progress = -rect.top / scrollableHeight;
+          progress = Math.max(0, Math.min(1, progress));
+
+          const numCards = cards.length;
+          const activeIndex = Math.min(numCards - 1, Math.floor(progress * numCards));
+
+          // Animate each card based on its position relative to the active index
+          cards.forEach((card, i) => {
+            const innerCard = card.firstElementChild;
+            const distance = i - (progress * numCards);
+            const scale = Math.max(0, 1 - Math.abs(distance) * 0.2);
+            const opacity = Math.max(0, 1 - Math.abs(distance) * 0.5);
+            const rotationY = distance * -30;
+            const zIndex = numCards - Math.abs(Math.round(distance));
+
+            // When a card is centered (distance is close to 0), make its background opaque.
+            // It smoothly transitions back to semi-transparent as it moves away.
+            // The alpha goes from 1 (opaque) down to 0.6 (the original transparency).
+            const bgAlpha = 1 - Math.min(1, Math.abs(distance) * 2) * 0.4;
+            innerCard.style.backgroundColor = `rgba(30, 41, 59, ${bgAlpha})`;
+
+            card.style.transform = `translateZ(${distance * -100}px) rotateY(${rotationY}deg) scale(${scale})`;
+            card.style.opacity = opacity;
+            card.style.zIndex = zIndex;
+          });
+
+          // Update text content and glow with a fade effect if the active card has changed
+          if (activeIndex !== lastActiveServiceIndex) {
+            const activeCard = cards[activeIndex];
+            textTitle.style.opacity = 0;
+            textDesc.style.opacity = 0;
+            
+            setTimeout(() => {
+              textTitle.textContent = activeCard.dataset.title;
+              textDesc.textContent = activeCard.dataset.description;
+              glow.style.backgroundColor = activeCard.dataset.color;
+              textTitle.style.opacity = 1;
+              textDesc.style.opacity = 1;
+            }, 400); // Match transition duration
+
+            lastActiveServiceIndex = activeIndex;
+          }
+        }
+
         // Use requestAnimationFrame to avoid performance issues on scroll
         window.addEventListener("scroll", () => {
           currentScrollY = window.scrollY;
           if (!ticking) {
-            window.requestAnimationFrame(updateParallax);
+            window.requestAnimationFrame(() => {
+              updateParallax();
+              updateServicesAnimation();
+              ticking = false;
+            });
             ticking = true;
           }
         });
