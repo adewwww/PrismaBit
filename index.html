@@ -396,7 +396,7 @@
 
       /* --- Sophisticated Services Section Styles --- */
       #services-sticky-parent {
-        height: 400vh; /* A smaller value makes the scroll animation faster */
+        height: 500vh; /* A smaller value makes the scroll animation faster */
       }
       #services-sticky-container {
         will-change: transform;
@@ -836,7 +836,7 @@
               <!-- Background Glow -->
               <div id="service-glow" class="absolute w-[600px] h-[600px] rounded-full opacity-30 blur-3xl transition-all duration-1000" style="background-color: #3b82f6;"></div>
               
-              <div id="service-cards-wrapper" class="w-full h-full relative perspective-[1000px]">
+              <div id="service-cards-wrapper" class="w-full max-w-md h-[32rem] relative perspective-[1000px]">
                 <!-- Card 1: Web Development -->
                 <div class="service-card-animated" data-title="Web Development" data-description="Building responsive, high-performance websites and web applications with modern technologies." data-color="#3b82f6">
                   <div class="bg-slate-800/60 backdrop-blur-xl border border-slate-700 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
@@ -1347,6 +1347,9 @@
         // =================================================================
         const servicesStickyParent = document.getElementById('services-sticky-parent');
         let lastActiveServiceIndex = -1;
+        let targetServicesProgress = 0;
+        let currentServicesProgress = 0;
+        const servicesLerpFactor = 0.08; // Controls smoothness. Smaller = smoother.
 
         function updateServicesAnimation() {
           if (!servicesStickyParent) return;
@@ -1361,16 +1364,20 @@
           const scrollableHeight = servicesStickyParent.offsetHeight - window.innerHeight;
           
           // Calculate scroll progress within the sticky container (0 to 1)
-          let progress = -rect.top / scrollableHeight;
-          progress = Math.max(0, Math.min(1, progress));
+          // Instead of directly using it, we set it as a target for our smooth progress.
+          targetServicesProgress = -rect.top / scrollableHeight;
+          targetServicesProgress = Math.max(0, Math.min(1, targetServicesProgress));
+
+          // Smooth the progress using linear interpolation (lerp)
+          currentServicesProgress += (targetServicesProgress - currentServicesProgress) * servicesLerpFactor;
 
           const numCards = cards.length;
-          const activeIndex = Math.min(numCards - 1, Math.floor(progress * numCards));
+          const activeIndex = Math.min(numCards - 1, Math.floor(currentServicesProgress * numCards));
 
           // Animate each card based on its position relative to the active index
           cards.forEach((card, i) => {
             const innerCard = card.firstElementChild;
-            const distance = i - (progress * numCards);
+            const distance = i - (currentServicesProgress * numCards);
             const scale = Math.max(0, 1 - Math.abs(distance) * 0.2);
             const opacity = Math.max(0, 1 - Math.abs(distance) * 0.5);
             const rotationY = distance * -30;
@@ -1496,7 +1503,7 @@
           for (let i = 0; i < particleCount; i++) {
             const theta = Math.random() * Math.PI * 2;
             const phi = Math.acos(Math.random() * 2 - 1);
-            const radius = 1.5 + Math.random() * 1; // Orbit outside the icosahedron
+            const radius = 2.2 + Math.random() * 1.5; // Tighter orbit just outside the 1.8 radius model
 
             positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
             positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
