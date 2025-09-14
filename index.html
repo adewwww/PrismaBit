@@ -74,8 +74,7 @@
       }
       body {
         font-family: "Inter", sans-serif;
-        overflow: hidden; /* Hide scrollbars during splash */
-        background-color: #f8fafc; /* Entire page bg - Neutral White (Slate 50) */
+        overflow: hidden; /* Hide scrollbars during splash */ /* Background color is set on the body tag */
       }
 
       /* Subtle scanline texture on splash */
@@ -132,13 +131,13 @@
           transform: translateY(100%);
           opacity: 0;
           filter: blur(5px);
-          text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+          text-shadow: 0 0 10px rgba(204, 208, 207, 0.2);
         }
         100% {
           transform: translateY(0);
           opacity: 1;
           filter: blur(0);
-          text-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+          text-shadow: 0 0 8px rgba(204, 208, 207, 0.6);
         }
       }
       .word-part {
@@ -193,7 +192,7 @@
 
       /* Gradient text helper */
       .gradient-text {
-        background-image: linear-gradient(to right, #1e3a8a, #3b82f6);
+        background-image: linear-gradient(to right, #4A5C6A, #CCD0CF);
         -webkit-background-clip: text;
         background-clip: text;
         color: transparent;
@@ -209,11 +208,11 @@
         height: 4px;
         background: linear-gradient(
           90deg,
-          rgba(255, 255, 255, 0) 0%,
-          rgba(255, 255, 255, 0.7) 40%,
-          #ffffff 50%,
-          rgba(255, 255, 255, 0.7) 60%,
-          rgba(255, 255, 255, 0) 100%
+          rgba(204, 208, 207, 0) 0%,
+          rgba(204, 208, 207, 0.7) 40%,
+          #CCD0CF 50%,
+          rgba(204, 208, 207, 0.7) 60%,
+          rgba(204, 208, 207, 0) 100%
         );
         filter: blur(2.5px);
         opacity: 0;
@@ -259,15 +258,15 @@
         inset: -8px;
         background: radial-gradient(
             closest-side,
-            rgba(255, 255, 255, 0.25),
-            rgba(255, 255, 255, 0) 70%
+            rgba(204, 208, 207, 0.25),
+            rgba(204, 208, 207, 0) 70%
           ),
           conic-gradient(
             from 0deg,
-            rgba(66, 133, 244, 0.18),
-            rgba(244, 180, 0, 0.18),
-            rgba(52, 168, 83, 0.18),
-            rgba(66, 133, 244, 0.18)
+            rgba(74, 92, 106, 0.18),
+            rgba(155, 168, 171, 0.18),
+            rgba(204, 208, 207, 0.18),
+            rgba(74, 92, 106, 0.18)
           );
         filter: blur(10px);
         opacity: 0;
@@ -280,13 +279,13 @@
       #prism-filled svg,
       #prism-outline-bottom svg,
       #prism-filled-bottom svg {
-        filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
+        filter: drop-shadow(0 0 5px rgba(204, 208, 207, 0.6));
         transition: filter 400ms ease-in-out;
       }
       #prism-outline.glowing-intensely svg,
       #prism-outline-bottom.glowing-intensely svg {
-        filter: drop-shadow(0 0 12px #ffffff)
-          drop-shadow(0 0 25px rgba(255, 255, 255, 0.7));
+        filter: drop-shadow(0 0 12px #CCD0CF)
+          drop-shadow(0 0 25px rgba(204, 208, 207, 0.7));
       }
 
       /* --- From logo.css --- */
@@ -330,7 +329,7 @@
         position: relative;
         display: inline-block;
         font-weight: 700;
-        color: #0f172a;
+        color: #CCD0CF;
         transition: transform 0.18s ease, filter 0.18s ease, color 0.18s ease;
         will-change: transform, filter;
       }
@@ -368,11 +367,11 @@
         0%,
         100% {
           text-shadow: 0 0 6px rgba(255, 255, 255, 0.8),
-            0 0 12px rgba(255, 0, 200, 0.5), 0 0 24px rgba(0, 200, 255, 0.45);
+            0 0 12px rgba(155, 168, 171, 0.5), 0 0 24px rgba(74, 92, 106, 0.45);
         }
         50% {
           text-shadow: 0 0 10px rgba(255, 255, 255, 1),
-            0 0 22px rgba(255, 120, 0, 0.6), 0 0 40px rgba(120, 0, 255, 0.55);
+            0 0 22px rgba(155, 168, 171, 0.6), 0 0 40px rgba(37, 55, 69, 0.55);
         }
       }
 
@@ -396,7 +395,7 @@
 
       /* --- Sophisticated Services Section Styles --- */
       #services-sticky-parent {
-        height: 500vh; /* A smaller value makes the scroll animation faster */
+        height: 300vh; /* A smaller value makes the scroll animation faster */
       }
       #services-sticky-container {
         will-change: transform;
@@ -448,12 +447,12 @@
 
     </style>
   </head>
-  <body class="bg-slate-50 text-slate-800">
+  <body class="bg-[#06141B] text-[#9BA8AB]">
     <!-- SPLASH SCREEN: This is the initial loading animation container. It's hidden via JS when done. -->
     <div id="splash-container" class="fixed inset-0 z-50 overflow-hidden">
       <div
         id="splash-top"
-        class="absolute top-0 left-0 w-full h-1/2 bg-black overflow-hidden"
+        class="absolute top-0 left-0 w-full h-1/2 bg-[#06141B] overflow-hidden"
       >
         <div
           class="w-full h-full relative flex flex-col items-center justify-end scanline-overlay"
@@ -480,7 +479,7 @@
                     x2="256"
                     y2="480"
                     fill="none"
-                    stroke="#ffffff"
+                    stroke="#CCD0CF"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="10"
@@ -501,7 +500,7 @@
                     <path
                       d="M229.73,45.88,37.53,327.79a31.79,31.79,0,0,0,11.31,46L241,476.26a31.77,31.77,0,0,0,29.92,0l192.2-102.51a31.79,31.79,0,0,0,11.31-46L282.27,45.88A31.8,31.8,0,0,0,229.73,45.88Z"
                       fill="none"
-                      stroke="#ffffff"
+                      stroke="#CCD0CF"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="18"
@@ -515,7 +514,7 @@
                     <path
                       d="M229.73,45.88,37.53,327.79a31.79,31.79,0,0,0,11.31,46L241,476.26a31.77,31.77,0,0,0,29.92,0l192.2-102.51a31.79,31.79,0,0,0,11.31-46L282.27,45.88A31.8,31.8,0,0,0,229.73,45.88Z"
                       fill="none"
-                      stroke="#ffffff"
+                      stroke="#CCD0CF"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="18"
@@ -534,14 +533,14 @@
                 >
                   <path
                     d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z"
-                    fill="#f0f9ff"
+                    fill="#CCD0CF"
                   />
                 </svg>
               </div>
             </div>
             <div
               id="logo-text"
-              class="font-bold text-4xl md:text-5xl text-slate-100 ml-4 tracking-wider flex"
+              class="font-bold text-4xl md:text-5xl text-[#CCD0CF] ml-4 tracking-wider flex"
               style="white-space: nowrap; overflow: hidden"
             ></div>
           </div>
@@ -549,7 +548,7 @@
       </div>
       <div
         id="splash-bottom"
-        class="absolute bottom-0 left-0 w-full h-1/2 bg-black overflow-hidden"
+        class="absolute bottom-0 left-0 w-full h-1/2 bg-[#06141B] overflow-hidden"
       >
         <div
           class="w-full h-full relative flex flex-col items-center justify-start scanline-overlay"
@@ -576,7 +575,7 @@
                     x2="256"
                     y2="480"
                     fill="none"
-                    stroke="#ffffff"
+                    stroke="#CCD0CF"
                     stroke-linecap="round"
                     stroke-linejoin="round"
                     stroke-width="10"
@@ -597,7 +596,7 @@
                     <path
                       d="M229.73,45.88,37.53,327.79a31.79,31.79,0,0,0,11.31,46L241,476.26a31.77,31.77,0,0,0,29.92,0l192.2-102.51a31.79,31.79,0,0,0,11.31-46L282.27,45.88A31.8,31.8,0,0,0,229.73,45.88Z"
                       fill="none"
-                      stroke="#ffffff"
+                      stroke="#CCD0CF"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="18"
@@ -611,7 +610,7 @@
                     <path
                       d="M229.73,45.88,37.53,327.79a31.79,31.79,0,0,0,11.31,46L241,476.26a31.77,31.77,0,0,0,29.92,0l192.2-102.51a31.79,31.79,0,0,0,11.31-46L282.27,45.88A31.8,31.8,0,0,0,229.73,45.88Z"
                       fill="none"
-                      stroke="#ffffff"
+                      stroke="#CCD0CF"
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="18"
@@ -630,14 +629,14 @@
                 >
                   <path
                     d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z"
-                    fill="#f0f9ff"
+                    fill="#CCD0CF"
                   />
                 </svg>
               </div>
             </div>
             <div
               id="logo-text-bottom"
-              class="font-bold text-4xl md:text-5xl text-slate-100 ml-4 tracking-wider flex"
+              class="font-bold text-4xl md:text-5xl text-[#CCD0CF] ml-4 tracking-wider flex"
               style="white-space: nowrap; overflow: hidden"
             ></div>
           </div>
@@ -647,7 +646,7 @@
 
     <header
       id="header-nav"
-      class="fixed top-0 left-0 right-0 z-40 bg-slate-50/80 backdrop-blur-sm border-b border-slate-200 transition-all duration-500 ease-in-out"
+      class="fixed top-0 left-0 right-0 z-40 bg-[#06141B]/80 backdrop-blur-sm border-b border-[#253745] transition-all duration-500 ease-in-out"
     >
       <nav class="container mx-auto flex justify-between items-center p-6">
         <a
@@ -680,7 +679,7 @@
               >
                 <path
                   d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z"
-                  fill="#1e293b"
+                  fill="#CCD0CF"
                 />
               </g>
               <g
@@ -690,41 +689,41 @@
               >
                 <path
                   d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z"
-                  fill="#1e293b"
+                  fill="#CCD0CF"
                 />
               </g>
             </svg>
           </div>
           <span
             id="header-wordmark"
-            class="font-bold text-xl text-slate-900 cursor-pointer"
+            class="font-bold text-xl text-[#CCD0CF] cursor-pointer"
             >Prismabit</span
           >
         </a>
-        <div class="hidden md:flex space-x-8 text-slate-600">
+        <div class="hidden md:flex space-x-8 text-[#9BA8AB]">
           <a
             href="index.html?nosplash=true"
-            class="nav-link text-blue-600 font-bold transition-colors"
+            class="nav-link text-[#CCD0CF] font-bold transition-colors"
             >Home</a
           >
           <a
             href="work.html"
-            class="nav-link hover:text-slate-900 transition-colors"
+            class="nav-link hover:text-[#CCD0CF] transition-colors"
             >Work</a
           >
           <a
             href="services.html"
-            class="nav-link hover:text-slate-900 transition-colors"
+            class="nav-link hover:text-[#CCD0CF] transition-colors"
             >Services</a
           >
           <a
             href="about.html"
-            class="nav-link hover:text-slate-900 transition-colors"
+            class="nav-link hover:text-[#CCD0CF] transition-colors"
             >About</a
           >
           <a
             href="contact.html"
-            class="nav-link hover:text-slate-900 transition-colors"
+            class="nav-link hover:text-[#CCD0CF] transition-colors"
             >Contact</a
           >
         </div>
@@ -732,7 +731,7 @@
         <div class="md:hidden flex items-center">
           <button
             id="mobile-menu-button"
-            class="text-slate-800 hover:text-blue-600 focus:outline-none"
+            class="text-[#CCD0CF] hover:text-white focus:outline-none"
           >
             <svg
               id="menu-open-icon"
@@ -770,32 +769,32 @@
       <!-- Mobile Menu -->
       <div
         id="mobile-menu"
-        class="hidden md:hidden bg-white border-t border-slate-200"
+        class="hidden md:hidden bg-[#11212D] border-t border-[#253745]"
       >
         <div class="px-6 py-4 space-y-1">
           <a
             href="index.html?nosplash=true"
-            class="block py-2 px-3 rounded-md text-base font-medium bg-blue-50 text-blue-700"
+            class="block py-2 px-3 rounded-md text-base font-medium bg-[#253745] text-[#CCD0CF]"
             >Home</a
           >
           <a
             href="work.html"
-            class="block py-2 px-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-blue-600"
+            class="block py-2 px-3 rounded-md text-base font-medium text-[#9BA8AB] hover:bg-[#253745] hover:text-[#CCD0CF]"
             >Work</a
           >
           <a
             href="services.html"
-            class="block py-2 px-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-blue-600"
+            class="block py-2 px-3 rounded-md text-base font-medium text-[#9BA8AB] hover:bg-[#253745] hover:text-[#CCD0CF]"
             >Services</a
           >
           <a
             href="about.html"
-            class="block py-2 px-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-blue-600"
+            class="block py-2 px-3 rounded-md text-base font-medium text-[#9BA8AB] hover:bg-[#253745] hover:text-[#CCD0CF]"
             >About</a
           >
           <a
             href="contact.html"
-            class="block py-2 px-3 rounded-md text-base font-medium text-slate-700 hover:bg-slate-100 hover:text-blue-600"
+            class="block py-2 px-3 rounded-md text-base font-medium text-[#9BA8AB] hover:bg-[#253745] hover:text-[#CCD0CF]"
             >Contact</a
           >
         </div>
@@ -806,7 +805,7 @@
     <main id="main-content" class="hidden opacity-0">
       <!-- HERO SECTION: The main introductory section with the 3D animation. -->
       <section
-        class="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50/20"
+        class="relative overflow-hidden bg-gradient-to-br from-[#06141B] via-[#11212D] to-[#06141B]"
       >
         <div
           class="min-h-screen flex items-center container mx-auto px-6"
@@ -815,13 +814,13 @@
             class="w-full lg:w-1/2 text-center lg:text-left z-10 animate-fade-in-up drop-shadow-lg pt-32 pb-12 lg:pt-0 lg:pb-0"
           >
             <h1
-              class="text-4xl md:text-6xl lg:text-6xl font-bold mb-4 leading-tight text-slate-900"
+              class="text-4xl md:text-6xl lg:text-6xl font-bold mb-4 leading-tight text-[#CCD0CF]"
             >
               <span class="gradient-text">Crafting Digital Futures</span>
             </h1>
             <p
               id="dynamic-text-container"
-              class="text-lg md:text-xl text-slate-700 mt-6 mb-6 flex items-baseline justify-center lg:justify-start min-h-[6rem] md:min-h-[7rem] lg:min-h-fit"
+              class="text-lg md:text-xl text-[#9BA8AB] mt-6 mb-6 flex items-baseline justify-center lg:justify-start min-h-[6rem] md:min-h-[7rem] lg:min-h-fit"
             >
               <span>
                 We help your business and ideas
@@ -829,7 +828,7 @@
               </span>
             </p>
             <p
-              class="text-lg md:text-xl text-slate-600 max-w-xl mx-auto lg:mx-0"
+              class="text-lg md:text-xl text-[#9BA8AB] max-w-xl mx-auto lg:mx-0"
             >
               We transform complex ideas into elegant digital solutions. From
               stunning websites to powerful applications, our prism reveals the
@@ -846,88 +845,155 @@
 
       <!-- SERVICES SECTION: A summary of the services offered. -->
       <div id="services-sticky-parent" class="relative reveal-on-scroll">
-        <div id="services-sticky-container" class="sticky top-0 h-screen w-full overflow-hidden bg-slate-900">
-          <div class="container mx-auto px-6 h-full grid grid-cols-1 lg:grid-cols-2 items-center gap-16">
-            <!-- Left: Text Content -->
-            <div id="service-text-content" class="relative z-10">
-              <div class="mb-8">
-                <h2 class="text-base font-semibold uppercase tracking-wider text-blue-400">Our Services</h2>
-                <p class="mt-2 text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">Our Spectrum of Services</p>
+        <div id="services-sticky-container" class="sticky top-0 h-screen w-full overflow-hidden p-4 sm:p-8">
+          <div class="bg-[#11212D] rounded-3xl shadow-2xl h-full w-full relative overflow-hidden">
+            <div class="container mx-auto px-6 h-full grid grid-cols-1 lg:grid-cols-2 items-center gap-16">
+              <!-- Left: Text Content -->
+              <div id="service-text-content" class="relative z-10">
+                <div class="mb-8">
+                  <h2 class="text-base font-semibold uppercase tracking-wider text-[#9BA8AB]">Our Services</h2>
+                  <p class="mt-2 text-3xl md:text-4xl font-bold gradient-text">Our Spectrum of Services</p>
+                </div>
+                <div class="min-h-[160px]">
+                  <h3 id="animated-service-title" class="text-2xl font-bold text-[#CCD0CF] mb-3"></h3>
+                  <p id="animated-service-description" class="text-[#9BA8AB] leading-relaxed"></p>
+                </div>
               </div>
-              <div class="min-h-[160px]">
-                <h3 id="animated-service-title" class="text-2xl font-bold text-slate-50 mb-3"></h3>
-                <p id="animated-service-description" class="text-slate-400 leading-relaxed"></p>
+
+              <!-- Right: Animated Cards -->
+              <div class="relative h-full w-full flex items-center justify-center overflow-hidden">
+                <!-- Background Glow -->
+                <div id="service-glow" class="absolute w-[600px] h-[600px] rounded-full opacity-30 blur-3xl transition-all duration-1000" style="background-color: #9BA8AB;"></div>
+                
+                <div id="service-cards-wrapper" class="w-full max-w-md h-[32rem] relative">
+                  <!-- Card 1: Web Development -->
+                  <div class="service-card-animated" data-title="Web Development" data-description="Building responsive, high-performance websites and web applications with modern technologies." data-color="#9BA8AB">
+                    <div class="bg-[#253745]/60 backdrop-blur-xl border border-[#4A5C6A] p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                      <div class="w-16 h-16 bg-[#9BA8AB]/10 rounded-2xl flex items-center justify-center mb-4"><svg class="w-8 h-8 text-[#9BA8AB]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg></div>
+                      <h4 class="font-bold text-xl text-[#CCD0CF]">Web Development</h4>
+                    </div>
+                  </div>
+                  <!-- Card 2: UI/UX Design -->
+                  <div class="service-card-animated" data-title="UI/UX Design" data-description="Creating intuitive and beautiful user interfaces that provide a seamless user experience." data-color="#9BA8AB">
+                    <div class="bg-[#253745]/60 backdrop-blur-xl border border-[#4A5C6A] p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                      <div class="w-16 h-16 bg-[#9BA8AB]/10 rounded-2xl flex items-center justify-center mb-4"><svg class="w-8 h-8 text-[#9BA8AB]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg></div>
+                      <h4 class="font-bold text-xl text-[#CCD0CF]">UI/UX Design</h4>
+                    </div>
+                  </div>
+                  <!-- Card 3: Cloud Solutions -->
+                  <div class="service-card-animated" data-title="Cloud Solutions" data-description="Leveraging cloud infrastructure for scalable, secure, and reliable application deployment." data-color="#9BA8AB">
+                    <div class="bg-[#253745]/60 backdrop-blur-xl border border-[#4A5C6A] p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                      <div class="w-16 h-16 bg-[#9BA8AB]/10 rounded-2xl flex items-center justify-center mb-4"><svg class="w-8 h-8 text-[#9BA8AB]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.5 4.5 0 0 0 2.25 15Z" /></svg></div>
+                      <h4 class="font-bold text-xl text-[#CCD0CF]">Cloud Solutions</h4>
+                    </div>
+                  </div>
+                  <!-- Card 4: AI Integration -->
+                  <div class="service-card-animated" data-title="AI Integration" data-description="Embedding intelligent features and automation into your products with cutting-edge AI." data-color="#9BA8AB">
+                    <div class="bg-[#253745]/60 backdrop-blur-xl border border-[#4A5C6A] p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                      <div class="w-16 h-16 bg-[#9BA8AB]/10 rounded-2xl flex items-center justify-center mb-4"><svg class="w-8 h-8 text-[#9BA8AB]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" /></svg></div>
+                      <h4 class="font-bold text-xl text-[#CCD0CF]">AI Integration</h4>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-
-            <!-- Right: Animated Cards -->
-            <div class="relative h-full w-full flex items-center justify-center overflow-hidden">
-              <!-- Background Glow -->
-              <div id="service-glow" class="absolute w-[600px] h-[600px] rounded-full opacity-30 blur-3xl transition-all duration-1000" style="background-color: #3b82f6;"></div>
-              
-              <div id="service-cards-wrapper" class="w-full max-w-md h-[32rem] relative">
-                <!-- Card 1: Web Development -->
-                <div class="service-card-animated" data-title="Web Development" data-description="Building responsive, high-performance websites and web applications with modern technologies." data-color="#3b82f6">
-                  <div class="bg-slate-800/60 backdrop-blur-xl border border-slate-700 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
-                    <div class="w-16 h-16 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-4"><svg class="w-8 h-8 text-blue-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg></div>
-                    <h4 class="font-bold text-xl text-slate-100">Web Development</h4>
-                  </div>
-                </div>
-                <!-- Card 2: UI/UX Design -->
-                <div class="service-card-animated" data-title="UI/UX Design" data-description="Creating intuitive and beautiful user interfaces that provide a seamless user experience." data-color="#6366f1">
-                  <div class="bg-slate-800/60 backdrop-blur-xl border border-slate-700 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
-                    <div class="w-16 h-16 bg-indigo-500/10 rounded-2xl flex items-center justify-center mb-4"><svg class="w-8 h-8 text-indigo-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg></div>
-                    <h4 class="font-bold text-xl text-slate-100">UI/UX Design</h4>
-                  </div>
-                </div>
-                <!-- Card 3: Cloud Solutions -->
-                <div class="service-card-animated" data-title="Cloud Solutions" data-description="Leveraging cloud infrastructure for scalable, secure, and reliable application deployment." data-color="#10b981">
-                  <div class="bg-slate-800/60 backdrop-blur-xl border border-slate-700 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
-                    <div class="w-16 h-16 bg-emerald-500/10 rounded-2xl flex items-center justify-center mb-4"><svg class="w-8 h-8 text-emerald-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.5 4.5 0 0 0 2.25 15Z" /></svg></div>
-                    <h4 class="font-bold text-xl text-slate-100">Cloud Solutions</h4>
-                  </div>
-                </div>
-                <!-- Card 4: AI Integration -->
-                <div class="service-card-animated" data-title="AI Integration" data-description="Embedding intelligent features and automation into your products with cutting-edge AI." data-color="#f59e0b">
-                  <div class="bg-slate-800/60 backdrop-blur-xl border border-slate-700 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
-                    <div class="w-16 h-16 bg-amber-500/10 rounded-2xl flex items-center justify-center mb-4"><svg class="w-8 h-8 text-amber-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" /></svg></div>
-                    <h4 class="font-bold text-xl text-slate-100">AI Integration</h4>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
 
+      <!-- CLIENT LOGOS SECTION -->
+      <section class="py-20 sm:py-24 bg-[#06141B]">
+        <div class="container mx-auto px-6">
+          <div class="text-center mb-16 reveal-on-scroll">
+            <h2 class="text-base font-semibold uppercase tracking-wider text-[#4A5C6A]">
+              Powering the world's best teams
+            </h2>
+          </div>
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-8 gap-y-12 items-center">
+            <!-- Logo 1: Placeholder "Quantum" -->
+            <div class="flex justify-center reveal-on-scroll" style="transition-delay: 0ms;">
+              <svg class="h-8 text-[#4A5C6A] transition-colors duration-300 hover:text-[#9BA8AB]" viewBox="0 0 130 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 32C7.16344 32 0 24.8366 0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32ZM16 27.2C22.1827 27.2 27.2 22.1827 27.2 16C27.2 9.81731 22.1827 4.8 16 4.8C9.81731 4.8 4.8 9.81731 4.8 16C4.8 22.1827 9.81731 27.2 16 27.2Z M24.8889 24.8889L32 32L24.8889 24.8889Z"/>
+                <path d="M41.6 0V32H47.2V18.8H56.8V32H62.4V0H56.8V13.2H47.2V0H41.6Z"/>
+                <path d="M78.9333 0L71.2 32H77.4667L79.0667 25.2H89.4667L91.0667 32H97.3333L89.6 0H78.9333ZM84.2667 5.46667L87.6 20H80.9333L84.2667 5.46667Z"/>
+                <path d="M104.533 0V32H128V26.4H110.133V18.8H126.933V13.2H110.133V5.6H128V0H104.533Z"/>
+              </svg>
+            </div>
+            <!-- Logo 2: Placeholder "Apex" -->
+            <div class="flex justify-center reveal-on-scroll" style="transition-delay: 100ms;">
+              <svg class="h-8 text-[#4A5C6A] transition-colors duration-300 hover:text-[#9BA8AB]" viewBox="0 0 98 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 0L0 32H10.6667L16 18.6667L21.3333 32H32L16 0Z"/>
+                <path d="M48.5333 0L40.8 32H47.0667L48.6667 25.2H59.0667L60.6667 32H66.9333L59.2 0H48.5333ZM53.8667 5.46667L57.2 20H50.5333L53.8667 5.46667Z"/>
+                <path d="M74.4 0V32H98V26.4H80V0H74.4Z"/>
+              </svg>
+            </div>
+            <!-- Logo 3: Placeholder "Vertex" -->
+            <div class="flex justify-center reveal-on-scroll" style="transition-delay: 200ms;">
+              <svg class="h-8 text-[#4A5C6A] transition-colors duration-300 hover:text-[#9BA8AB]" viewBox="0 0 110 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 0L0 32H8L16 16L24 32H32L16 0Z"/>
+                <path d="M39.4667 0V32H63.4667V26.4H45.0667V18.8H62.3333V13.2H45.0667V5.6H63.4667V0H39.4667Z"/>
+                <path d="M70.9333 0V32H76.5333V5.6H86.9333V0H70.9333Z"/>
+                <path d="M92.8 0V32H98.4V18.8H108V32H113.6V0H108V13.2H98.4V0H92.8Z"/>
+              </svg>
+            </div>
+            <!-- Logo 4: Placeholder "Orbit" -->
+            <div class="flex justify-center reveal-on-scroll" style="transition-delay: 300ms;">
+              <svg class="h-9 text-[#4A5C6A] transition-colors duration-300 hover:text-[#9BA8AB]" viewBox="0 0 104 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 36C8.05887 36 0 27.9411 0 18C0 8.05887 8.05887 0 18 0C27.9411 0 36 8.05887 36 18C36 27.9411 27.9411 36 18 36ZM18 30C24.6274 30 30 24.6274 30 18C30 11.3726 24.6274 6 18 6C11.3726 6 6 11.3726 6 18C6 24.6274 11.3726 30 18 30Z"/>
+                <path d="M44.8 0V32H50.4V18.8H60V32H65.6V0H60V13.2H50.4V0H44.8Z"/>
+                <path d="M72.5333 0V32H96V26.4H78.1333V0H72.5333Z"/>
+                <path d="M104 0V32H109.6V5.6H120V0H104Z"/>
+              </svg>
+            </div>
+            <!-- Logo 5: Placeholder "Nexus" -->
+            <div class="flex justify-center reveal-on-scroll" style="transition-delay: 400ms;">
+              <svg class="h-7 text-[#4A5C6A] transition-colors duration-300 hover:text-[#9BA8AB]" viewBox="0 0 108 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0V28H5.33333V15.4L16 28H22.4L11.2 14L22.4 0H16L5.33333 12.6V0H0Z"/>
+                <path d="M30.4 0V28H54.4V23.1H35.7333V16.8H52.8V11.2H35.7333V4.9H54.4V0H30.4Z"/>
+                <path d="M62.4 0V28H67.7333V4.9H78.4V0H62.4Z"/>
+                <path d="M86.4 0V28H91.7333V15.4L102.4 28H108.8L97.6 14L108.8 0H102.4L91.7333 12.6V0H86.4Z"/>
+              </svg>
+            </div>
+            <!-- Logo 6: Placeholder "Strata" -->
+            <div class="flex justify-center reveal-on-scroll" style="transition-delay: 500ms;">
+              <svg class="h-8 text-[#4A5C6A] transition-colors duration-300 hover:text-[#9BA8AB]" viewBox="0 0 108 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 5.6V0H26.6667V5.6H16V32H10.6667V5.6H0Z"/>
+                <path d="M43.2 0L35.4667 32H41.7333L43.3333 25.2H53.7333L55.3333 32H61.6L53.8667 0H43.2ZM48.5333 5.46667L51.8667 20H45.2L48.5333 5.46667Z"/>
+                <path d="M68.8 0V32H74.4V5.6H84.8V0H68.8Z"/>
+                <path d="M90.1333 0V32H114V26.4H95.7333V0H90.1333Z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- FEATURED WORK SECTION: A preview of key projects. -->
-      <section class="py-20 sm:py-32 bg-white">
+      <section class="py-20 sm:py-32 bg-[#11212D]">
         <div class="container mx-auto px-6">
           <div class="text-center mb-16 reveal-on-scroll">
             <h2 class="text-3xl md:text-4xl font-bold gradient-text">
               Featured Work
             </h2>
-            <p class="text-slate-500 mt-4 max-w-2xl mx-auto">
+            <p class="text-[#9BA8AB] mt-4 max-w-2xl mx-auto">
               A glimpse into the innovative solutions we've delivered.
             </p>
           </div>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div
-              class="rounded-2xl overflow-hidden group reveal-on-scroll border border-slate-200"
+              class="rounded-2xl overflow-hidden group reveal-on-scroll border border-[#253745]"
             >
               <img
-                src="https://placehold.co/800x600/e2e8f0/334155?text=Project+Alpha"
+                src="https://placehold.co/800x600/11212D/4A5C6A?text=Project+Alpha"
                 alt="A screenshot of the Project Alpha data analytics dashboard."
                 class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
             <div
-              class="rounded-2xl overflow-hidden group reveal-on-scroll border border-slate-200"
+              class="rounded-2xl overflow-hidden group reveal-on-scroll border border-[#253745]"
               style="transition-delay: 150ms"
             >
               <img
-                src="https://placehold.co/800x600/e2e8f0/334155?text=Project+Beta"
+                src="https://placehold.co/800x600/11212D/4A5C6A?text=Project+Beta"
                 alt="The user interface for the Project Beta mobile application."
                 class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
               />
@@ -937,24 +1003,24 @@
       </section>
 
       <!-- TESTIMONIALS SECTION: Shows what clients are saying. -->
-      <section class="py-20 sm:py-32">
+      <section class="py-20 sm:py-32 bg-[#06141B]">
         <div class="container mx-auto px-6">
           <div class="text-center mb-16 reveal-on-scroll">
             <h2 class="text-3xl md:text-4xl font-bold gradient-text">
               What Our Clients Say
             </h2>
-            <p class="text-slate-500 mt-4 max-w-2xl mx-auto">
+            <p class="text-[#9BA8AB] mt-4 max-w-2xl mx-auto">
               We're proud to have partnered with amazing companies.
             </p>
           </div>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <!-- Testimonial 1 -->
             <div
-              class="bg-white border border-slate-200 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow flex flex-col"
+              class="bg-[#11212D] border border-[#253745] p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow flex flex-col"
             >
-              <div class="text-7xl font-serif text-blue-200 leading-none">“</div>
+              <div class="text-7xl font-serif text-[#253745] leading-none">“</div>
               <blockquote
-                class="text-slate-600 italic mb-6 -mt-4 flex-grow"
+                class="text-[#9BA8AB] italic mb-6 -mt-4 flex-grow"
               >
                 Prismabit didn't just build us a website; they crafted a digital
                 experience that has fundamentally changed how we interact with
@@ -963,25 +1029,25 @@
               </blockquote>
               <div class="flex items-center mt-auto">
                 <img
-                  src="https://placehold.co/100x100/e0e7ff/334155?text=JD"
+                  src="https://placehold.co/100x100/11212D/4A5C6A?text=JD"
                   alt="Jane Doe"
                   class="w-12 h-12 rounded-full mr-4 object-cover"
                 />
                 <div>
-                  <p class="font-bold text-slate-900">Jane Doe</p>
-                  <p class="text-sm text-slate-500">CEO, Innovate Inc.</p>
+                  <p class="font-bold text-[#CCD0CF]">Jane Doe</p>
+                  <p class="text-sm text-[#4A5C6A]">CEO, Innovate Inc.</p>
                 </div>
               </div>
             </div>
 
             <!-- Testimonial 2 -->
             <div
-              class="bg-white border border-slate-200 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow flex flex-col"
+              class="bg-[#11212D] border border-[#253745] p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow flex flex-col"
               style="transition-delay: 150ms"
             >
-              <div class="text-7xl font-serif text-blue-200 leading-none">“</div>
+              <div class="text-7xl font-serif text-[#253745] leading-none">“</div>
               <blockquote
-                class="text-slate-600 italic mb-6 -mt-4 flex-grow"
+                class="text-[#9BA8AB] italic mb-6 -mt-4 flex-grow"
               >
                 The cloud infrastructure they designed for us is robust,
                 scalable, and has significantly reduced our operational costs.
@@ -989,13 +1055,13 @@
               </blockquote>
               <div class="flex items-center mt-auto">
                 <img
-                  src="https://placehold.co/100x100/e0e7ff/334155?text=JS"
+                  src="https://placehold.co/100x100/11212D/4A5C6A?text=JS"
                   alt="John Smith"
                   class="w-12 h-12 rounded-full mr-4 object-cover"
                 />
                 <div>
-                  <p class="font-bold text-slate-900">John Smith</p>
-                  <p class="text-sm text-slate-500">CTO, Tech Solutions</p>
+                  <p class="font-bold text-[#CCD0CF]">John Smith</p>
+                  <p class="text-sm text-[#4A5C6A]">CTO, Tech Solutions</p>
                 </div>
               </div>
             </div>
@@ -1005,26 +1071,26 @@
 
       <!-- CALL TO ACTION (CTA) SECTION: Encourages users to get in touch. -->
       <section
-        class="py-20 sm:py-32 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 text-white"
+        class="py-20 sm:py-32 bg-gradient-to-br from-[#11212D] via-[#253745] to-[#11212D] text-[#CCD0CF]"
       >
         <div class="container mx-auto px-6 text-center reveal-on-scroll">
           <h2 class="text-3xl md:text-5xl font-bold mb-6">
             Have a project in mind?
           </h2>
-          <p class="text-xl text-slate-300 mb-10 max-w-2xl mx-auto">
+          <p class="text-xl text-[#9BA8AB] mb-10 max-w-2xl mx-auto">
             Let's build something extraordinary together. We're ready to listen
             to your ideas and turn them into a digital masterpiece.
           </p>
           <a
             href="contact.html"
-            class="inline-block bg-blue-600 text-white font-bold py-4 px-10 rounded-lg hover:bg-blue-700 transition-transform hover:scale-105 mt-10 text-lg"
+            class="inline-block bg-[#4A5C6A] text-[#06141B] font-bold py-4 px-10 rounded-lg hover:bg-[#9BA8AB] transition-transform hover:scale-105 mt-10 text-lg"
             >Contact Us</a
           >
         </div>
       </section>
 
       <!-- FOOTER SECTION: Contains navigation, social links, and copyright info. -->
-      <footer class="bg-slate-900 text-white py-16">
+      <footer class="bg-[#06141B] text-[#CCD0CF] py-16">
         <div class="container mx-auto px-6">
           <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div class="md:col-span-2">
@@ -1037,13 +1103,13 @@
                   >
                     <path
                       d="M13,2l9,13.6L13,22ZM11,2,2,15.6,11,22Z"
-                      fill="#3b82f6"
+                      fill="#9BA8AB"
                     />
                   </svg>
                 </div>
                 <span class="font-bold text-xl">Prismabit</span>
               </div>
-              <p class="text-slate-400 mb-6 max-w-md">
+              <p class="text-[#4A5C6A] mb-6 max-w-md">
                 We specialize in creating innovative digital solutions that
                 transform businesses and enhance user experiences.
               </p>
@@ -1051,7 +1117,7 @@
                 <a
                   href="#"
                   aria-label="Twitter"
-                  class="text-slate-400 hover:text-white transition-colors"
+                  class="text-[#4A5C6A] hover:text-[#CCD0CF] transition-colors"
                 >
                   <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                     <path
@@ -1062,7 +1128,7 @@
                 <a
                   href="#"
                   aria-label="LinkedIn"
-                  class="text-slate-400 hover:text-white transition-colors"
+                  class="text-[#4A5C6A] hover:text-[#CCD0CF] transition-colors"
                 >
                   <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                     <path
@@ -1073,7 +1139,7 @@
                 <a
                   href="#"
                   aria-label="Pinterest"
-                  class="text-slate-400 hover:text-white transition-colors"
+                  class="text-[#4A5C6A] hover:text-[#CCD0CF] transition-colors"
                 >
                   <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
                     <path
@@ -1378,7 +1444,7 @@
         let lastActiveServiceIndex = -1;
         let targetServicesProgress = 0;
         let currentServicesProgress = 0;
-        const servicesLerpFactor = 0.08; // Controls smoothness. Smaller = smoother.
+        const servicesLerpFactor = 0.08; // Controls smoothness. Smaller = smoother
 
         function updateServicesAnimation() {
           if (!servicesStickyParent) return;
@@ -1393,14 +1459,20 @@
           const scrollableHeight = servicesStickyParent.offsetHeight - window.innerHeight;
           
           // Calculate scroll progress within the sticky container (0 to 1)
-          // Instead of directly using it, we set it as a target for our smooth progress.
           targetServicesProgress = -rect.top / scrollableHeight;
           targetServicesProgress = Math.max(0, Math.min(1, targetServicesProgress));
 
-          // Smooth the progress using linear interpolation (lerp)
-          currentServicesProgress += (targetServicesProgress - currentServicesProgress) * servicesLerpFactor;
-
           const numCards = cards.length;
+          // Define the progress point where the animation should end (when the last card is centered)
+          const endAnimationProgress = (numCards - 1) / numCards;
+
+          // Remap the user's scroll progress (0 to 1) to the desired animation progress (0 to endAnimationProgress).
+          // This makes the animation conclude when the last card is centered, just as the section unsticks.
+          const animationTargetProgress = targetServicesProgress * endAnimationProgress;
+
+          // Smooth the progress using linear interpolation (lerp)
+          currentServicesProgress += (animationTargetProgress - currentServicesProgress) * servicesLerpFactor;
+
           const activeIndex = Math.min(numCards - 1, Math.floor(currentServicesProgress * numCards));
 
           // Animate each card based on its position relative to the active index
@@ -1414,8 +1486,8 @@
             // When a card is centered (distance is close to 0), make its background opaque.
             // It smoothly transitions back to semi-transparent as it moves away.
             // The alpha goes from 1 (opaque) down to 0.6 (the original transparency).
-            const bgAlpha = 1 - Math.min(1, Math.abs(distance) * 2) * 0.4;
-            innerCard.style.backgroundColor = `rgba(30, 41, 59, ${bgAlpha})`;
+            const bgAlpha = 1 - Math.min(1, Math.abs(distance) * 2) * 0.4; // 1 down to 0.6
+            innerCard.style.backgroundColor = `rgba(37, 55, 69, ${bgAlpha})`; // #253745
 
             const translateX = distance * 80; // Move cards by 80% of their width
             card.style.transform = `translateX(${translateX}%) scale(${scale})`;
@@ -1496,7 +1568,7 @@
           // --- Object 1: Central Icosahedron (the main shape) ---
           const geometry = new THREE.IcosahedronGeometry(1.8, 1);
           const material = new THREE.MeshStandardMaterial({
-            color: 0x3b82f6,
+            color: 0xCCD0CF,
             roughness: 0.2,
             metalness: 0.6,
             wireframe: true,
@@ -1542,7 +1614,7 @@
             new THREE.BufferAttribute(positions, 3)
           );
           const particleMaterial = new THREE.PointsMaterial({
-            color: 0x3b82f6,
+            color: 0x4A5C6A,
             size: 0.02,
             transparent: true,
             opacity: 0.8,
@@ -1551,9 +1623,9 @@
           scene.add(particles);
 
           // Lighting
-          const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
+          const ambientLight = new THREE.AmbientLight(0xCCD0CF, 0.7);
           scene.add(ambientLight);
-          const pointLight = new THREE.PointLight(0xffffff, 1.2);
+          const pointLight = new THREE.PointLight(0xCCD0CF, 1.2);
           pointLight.position.set(5, 5, 5);
           scene.add(pointLight);
 

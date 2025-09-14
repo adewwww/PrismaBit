@@ -1,10 +1,10 @@
 /* ==========================================================================
    Base & Global Styles
    ========================================================================== */
-:root { color-scheme: light; }
+:root { color-scheme: dark; }
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #f8fafc;
+  background-color: #06141B;
 }
 
 /* ==========================================================================
@@ -36,7 +36,7 @@ body {
 
 /* Helper class to create gradient text */
 .gradient-text {
-  background-image: linear-gradient(to right, #1e3a8a, #3b82f6);
+  background-image: linear-gradient(to right, #4A5C6A, #CCD0CF);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -84,15 +84,15 @@ body {
 @keyframes glow-pulse {
   0%,100% { 
     text-shadow: 
-      0 0 6px rgba(255,255,255,0.8),
-      0 0 12px rgba(255,0,200,0.5),
-      0 0 24px rgba(0,200,255,0.45); 
+      0 0 6px rgba(204, 208, 207, 0.8),
+      0 0 12px rgba(155, 168, 171, 0.5),
+      0 0 24px rgba(74, 92, 106, 0.45); 
   }
   50% { 
     text-shadow:
-      0 0 10px rgba(255,255,255,1),
-      0 0 22px rgba(255,120,0,0.6),
-      0 0 40px rgba(120,0,255,0.55); 
+      0 0 10px rgba(204, 208, 207, 1),
+      0 0 22px rgba(155, 168, 171, 0.6),
+      0 0 40px rgba(37, 55, 69, 0.55); 
   }
 }
 
@@ -107,7 +107,7 @@ body {
   position: relative;
   display: inline-block;
   font-weight: 700;
-  color: #0f172a;
+  color: #CCD0CF;
   transition: transform .18s ease, filter .18s ease, color .18s ease;
   will-change: transform, filter;
 }
@@ -142,7 +142,7 @@ body {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: #2563eb; /* Tailwind's blue-600 */
+  background-color: #9BA8AB;
   transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1);
 }
 
