@@ -415,6 +415,36 @@
         will-change: opacity;
       }
 
+      /* Custom reveal for the sticky services section */
+      #services-sticky-parent.reveal-on-scroll {
+        transform: translateY(0);
+        opacity: 1;
+        transition: none;
+      }
+      #services-sticky-parent.reveal-on-scroll #services-sticky-container {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+        filter: blur(4px);
+        transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), 
+                    transform 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+                    filter 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      }
+      #services-sticky-parent.reveal-on-scroll.visible #services-sticky-container {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+      }
+      #services-sticky-parent.reveal-on-scroll #service-text-content > div {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      #services-sticky-parent.reveal-on-scroll.visible #service-text-content > div:nth-child(1) {
+        opacity: 1; transform: translateY(0); transition-delay: 0.6s;
+      }
+      #services-sticky-parent.reveal-on-scroll.visible #service-text-content > div:nth-child(2) {
+        opacity: 1; transform: translateY(0); transition-delay: 0.7s;
+      }
 
     </style>
   </head>
@@ -815,7 +845,7 @@
       </section>
 
       <!-- SERVICES SECTION: A summary of the services offered. -->
-      <div id="services-sticky-parent" class="relative">
+      <div id="services-sticky-parent" class="relative reveal-on-scroll">
         <div id="services-sticky-container" class="sticky top-0 h-screen w-full overflow-hidden bg-slate-900">
           <div class="container mx-auto px-6 h-full grid grid-cols-1 lg:grid-cols-2 items-center gap-16">
             <!-- Left: Text Content -->
@@ -831,11 +861,11 @@
             </div>
 
             <!-- Right: Animated Cards -->
-            <div class="relative h-full w-full flex items-center justify-center">
+            <div class="relative h-full w-full flex items-center justify-center overflow-hidden">
               <!-- Background Glow -->
               <div id="service-glow" class="absolute w-[600px] h-[600px] rounded-full opacity-30 blur-3xl transition-all duration-1000" style="background-color: #3b82f6;"></div>
               
-              <div id="service-cards-wrapper" class="w-full max-w-md h-[32rem] relative perspective-[1000px]">
+              <div id="service-cards-wrapper" class="w-full max-w-md h-[32rem] relative">
                 <!-- Card 1: Web Development -->
                 <div class="service-card-animated" data-title="Web Development" data-description="Building responsive, high-performance websites and web applications with modern technologies." data-color="#3b82f6">
                   <div class="bg-slate-800/60 backdrop-blur-xl border border-slate-700 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
@@ -1379,7 +1409,6 @@
             const distance = i - (currentServicesProgress * numCards);
             const scale = Math.max(0, 1 - Math.abs(distance) * 0.2);
             const opacity = Math.max(0, 1 - Math.abs(distance) * 0.5);
-            const rotationY = distance * -30;
             const zIndex = numCards - Math.abs(Math.round(distance));
 
             // When a card is centered (distance is close to 0), make its background opaque.
@@ -1388,7 +1417,8 @@
             const bgAlpha = 1 - Math.min(1, Math.abs(distance) * 2) * 0.4;
             innerCard.style.backgroundColor = `rgba(30, 41, 59, ${bgAlpha})`;
 
-            card.style.transform = `translateZ(${distance * -100}px) rotateY(${rotationY}deg) scale(${scale})`;
+            const translateX = distance * 80; // Move cards by 80% of their width
+            card.style.transform = `translateX(${translateX}%) scale(${scale})`;
             card.style.opacity = opacity;
             card.style.zIndex = zIndex;
           });
