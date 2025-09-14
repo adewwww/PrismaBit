@@ -775,17 +775,19 @@
     <!-- MAIN CONTENT: This is the main wrapper for all page content below the header. It's hidden until the splash screen finishes. -->
     <main id="main-content" class="hidden opacity-0">
       <!-- HERO SECTION: The main introductory section with the 3D animation. -->
-      <section class="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50/20">
+      <section
+        class="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50/50 to-indigo-50/20"
+      >
         <div
-          class="min-h-screen grid grid-cols-1 lg:grid-cols-2 gap-8 items-start lg:items-center pt-32 pb-12 lg:py-0 container mx-auto px-6"
+          class="min-h-screen flex items-center container mx-auto px-6"
         >
           <div
-            class="text-center lg:text-left z-10 animate-fade-in-up drop-shadow-lg"
+            class="w-full lg:w-1/2 text-center lg:text-left z-10 animate-fade-in-up drop-shadow-lg pt-32 pb-12 lg:pt-0 lg:pb-0"
           >
             <h1
               class="text-4xl md:text-6xl lg:text-6xl font-bold mb-4 leading-tight text-slate-900"
             >
-            <span class="gradient-text">Crafting Digital Futures</span>
+              <span class="gradient-text">Crafting Digital Futures</span>
             </h1>
             <p
               id="dynamic-text-container"
@@ -793,26 +795,23 @@
             >
               <span>
                 We help your business and ideas
-                <span
-                  id="dynamic-text"
-                  class="gradient-text font-bold text-2xl md:text-4xl"
-                  >Grow.</span
-                >
+                <span id="dynamic-text" class="gradient-text font-bold text-2xl md:text-4xl">Grow.</span>
               </span>
             </p>
-            <p class="text-lg md:text-xl text-slate-600 max-w-xl mx-auto lg:mx-0">
+            <p
+              class="text-lg md:text-xl text-slate-600 max-w-xl mx-auto lg:mx-0"
+            >
               We transform complex ideas into elegant digital solutions. From
               stunning websites to powerful applications, our prism reveals the
               full spectrum of possibility.
             </p>
           </div>
-
-          <div
-            id="threejs-container"
-            class="hidden lg:block z-10 w-full h-full min-h-[400px] lg:min-h-[500px] animate-fade-in-up"
-            style="animation-delay: 0.2s"
-          ></div>
         </div>
+        <div
+          id="threejs-container"
+          class="hidden lg:block absolute top-0 right-0 w-full lg:w-3/5 h-full z-0 animate-fade-in-up"
+          style="animation-delay: 0.2s"
+        ></div>
       </section>
 
       <!-- SERVICES SECTION: A summary of the services offered. -->
@@ -1439,9 +1438,9 @@
             canvas.height = 64;
             const context = canvas.getContext("2d");
             const gradient = context.createRadialGradient(32, 32, 0, 32, 32, 32);
-            gradient.addColorStop(0, "rgba(255,255,255,1)");
-            gradient.addColorStop(0.2, "rgba(255,255,255,0.8)");
-            gradient.addColorStop(1, "rgba(255,255,255,0)");
+            gradient.addColorStop(0, "rgba(96, 165, 250, 1)"); // Bright blue core
+            gradient.addColorStop(0.4, "rgba(59, 130, 246, 0.8)"); // Main brand blue
+            gradient.addColorStop(1, "rgba(30, 64, 175, 0)"); // Fading to dark blue
 
             context.fillStyle = gradient;
             context.fillRect(0, 0, 64, 64);
@@ -1527,7 +1526,7 @@
 
           const particleMaterial = new THREE.PointsMaterial({
             map: createGlowTexture(),
-            color: 0x3b82f6, // Brand blue for the glow
+            color: 0xffffff, // Use the texture's inherent blue color
             size: 0.15, // Larger size for a visible glow
             transparent: true,
             blending: THREE.AdditiveBlending,
