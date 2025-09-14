@@ -1245,6 +1245,9 @@
       </footer>
     </main>
 
+    <!-- Tooltip for 3D interactive points -->
+    <div id="three-tooltip" class="absolute z-20 hidden rounded-md bg-black/50 backdrop-blur-sm px-3 py-1 text-sm font-semibold text-white shadow-lg pointer-events-none transition-opacity duration-200"></div>
+
     <!-- WhatsApp Floating Action Button -->
     <a
       href="https://wa.me/917099277696"
@@ -1526,7 +1529,6 @@
           }
         });
 
-        // =================================================================
         // --- 3D HERO ANIMATION (THREE.JS) ---
         // =================================================================
         function initThreeJS() {
@@ -1534,23 +1536,133 @@
           if (!container) return;
 
           // --- Core Three.js Components & State Variables ---
-          let scene, camera, renderer, icosahedron, particles;
+          let scene,
+            camera,
+            renderer,
+            icosahedron,
+            modelGroup,
+            interactiveSquares,
+            raycaster,
+            tooltipElement;
           let isMouseDown = false;
           let previousMousePosition = { x: 0, y: 0 };
           let mouse = new THREE.Vector2();
-          let mouseTarget = new THREE.Vector3();
-          let particlePositions = [];
           let zoomLevel = 5; // Initial camera z
+          let hoveredObject = null;
+          let rotationSpeedMultiplier = 1.0;
+          let targetRotationSpeed = 1.0;
 
           // --- Physics & Animation Variables ---
           const clock = new THREE.Clock();
           let rotationVelocity = new THREE.Vector2(0, 0); // Speed of rotation for inertia
-          const dampingFactor = 0.95; // Friction effect. Higher = less friction, Lower = more friction.
+          const dampingFactor = 0.95; // Friction effect.
+
+          // --- Helper Functions ---
+          function createGlowTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 128;
+            canvas.height = 128;
+            const context = canvas.getContext('2d');
+            const gradient = context.createRadialGradient(
+                canvas.width / 2, 
+                canvas.height / 2, 
+                0, 
+                canvas.width / 2, 
+                canvas.height / 2, 
+                canvas.width / 2
+            );
+            gradient.addColorStop(0, 'rgba(255,255,255,1)');
+            gradient.addColorStop(0.4, 'rgba(255,255,255,0.8)');
+            gradient.addColorStop(1, 'rgba(255,255,255,0)');
+
+            context.fillStyle = gradient;
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            return new THREE.CanvasTexture(canvas);
+          }
+
+          function getFibonacciSpherePoints(samples, radius) {
+            const points = [];
+            const phi = Math.PI * (3 - Math.sqrt(5)); // golden angle in radians
+            for (let i = 0; i < samples; i++) {
+              const y = 1 - (i / (samples - 1)) * 2; // y goes from 1 to -1
+              const r = Math.sqrt(1 - y * y); // radius at y
+              const theta = phi * i; // golden angle increment
+              const x = Math.cos(theta) * r;
+              const z = Math.sin(theta) * r;
+              points.push(
+                new THREE.Vector3(x * radius, y * radius, z * radius)
+              );
+            }
+            return points;
+          }
+
+          function updateTooltipPosition(object) {
+            const vector = new THREE.Vector3();
+            object.getWorldPosition(vector);
+            vector.project(camera);
+
+            // Get the bounding rectangle of the canvas to account for its position on the page
+            const rect = renderer.domElement.getBoundingClientRect();
+
+            // Calculate the absolute screen coordinates by adding the canvas's offset
+            const x = rect.left + (vector.x * 0.5 + 0.5) * rect.width;
+            const y = rect.top + (vector.y * -0.5 + 0.5) * rect.height;
+
+            tooltipElement.style.left = `${x}px`;
+            tooltipElement.style.top = `${y}px`;
+            // This transform places the tooltip to the right of the square and vertically centers it.
+            tooltipElement.style.transform = "translate(20px, -50%)";
+          }
+
+          function handleIntersections() {
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(interactiveSquares);
+
+            if (intersects.length > 0) {
+              const intersected = intersects[0].object;
+
+              if (hoveredObject !== intersected) {
+                if (hoveredObject) {
+                  hoveredObject.material.color.set(
+                    hoveredObject.userData.originalColor
+                  );
+                  hoveredObject.scale.set(1, 1, 1);
+                  hoveredObject.userData.glow.visible = false; // Hide old glow
+                }
+
+                hoveredObject = intersected;
+                hoveredObject.material.color.set(
+                  hoveredObject.userData.hoverColor
+                );
+                hoveredObject.scale.set(1.5, 1.5, 1.5);
+                hoveredObject.userData.glow.visible = true; // Show new glow
+
+                tooltipElement.textContent = hoveredObject.userData.label;
+                tooltipElement.classList.remove("hidden");
+              }
+
+              targetRotationSpeed = 0.1; // Slow down
+              updateTooltipPosition(hoveredObject);
+            } else {
+              if (hoveredObject) {
+                hoveredObject.material.color.set(
+                  hoveredObject.userData.originalColor
+                );
+                hoveredObject.scale.set(1, 1, 1);
+                hoveredObject.userData.glow.visible = false; // Hide glow
+                tooltipElement.classList.add("hidden");
+              }
+              hoveredObject = null;
+              targetRotationSpeed = 1.0; // Speed up
+            }
+          }
 
           // --- Setup: Scene, Camera, Renderer ---
           scene = new THREE.Scene();
+          modelGroup = new THREE.Group();
+          scene.add(modelGroup);
 
-          // Camera setup
           camera = new THREE.PerspectiveCamera(
             75,
             container.clientWidth / container.clientHeight,
@@ -1559,13 +1671,15 @@
           );
           camera.position.z = zoomLevel;
 
-          // Renderer setup
           renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
           renderer.setSize(container.clientWidth, container.clientHeight);
           renderer.setPixelRatio(window.devicePixelRatio);
           container.appendChild(renderer.domElement);
 
-          // --- Object 1: Central Icosahedron (the main shape) ---
+          raycaster = new THREE.Raycaster();
+          tooltipElement = document.getElementById("three-tooltip");
+
+          // --- Object 1: Central Icosahedron ---
           const geometry = new THREE.IcosahedronGeometry(1.8, 1);
           const material = new THREE.MeshStandardMaterial({
             color: 0xCCD0CF,
@@ -1574,143 +1688,126 @@
             wireframe: true,
           });
           icosahedron = new THREE.Mesh(geometry, material);
-          scene.add(icosahedron);
+          modelGroup.add(icosahedron);
 
-          // --- Object 2: Surrounding Particles ---
-          const particleCount = 600;
-          const particleGeometry = new THREE.BufferGeometry();
-          const positions = new Float32Array(particleCount * 3);
-          const velocities = new Float32Array(particleCount * 3);
+          // --- Object 2: Interactive Square Particles ---
+          interactiveSquares = [];
+          const squareLabels = [
+            "Web Development",
+            "UI/UX Design",
+            "Cloud Solutions",
+            "AI Integration",
+            "Mobile Apps",
+            "Enterprise ERP",
+            "DevOps",
+            "Data Analytics",
+            "Cybersecurity",
+            "Branding",
+            "E-commerce",
+            "Network Setup",
+            "IT Consulting",
+            "Graphic Design",
+            "SEO",
+          ];
+          const squareSize = 0.08;
+          const squareGeometry = new THREE.PlaneGeometry(squareSize, squareSize);
 
-          for (let i = 0; i < particleCount; i++) {
-            // Random positions around icosahedron
-            const theta = Math.random() * Math.PI * 2;
-            const phi = Math.acos(Math.random() * 2 - 1);
-            const radius = 3 + Math.random() * 2;
-            positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
-            positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-            positions[i * 3 + 2] = radius * Math.cos(phi);
-
-            // Initial velocities for orbiting
-            velocities[i * 3] = (Math.random() - 0.5) * 0.01;
-            velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.01;
-            velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.01;
-
-            const x = radius * Math.sin(phi) * Math.cos(theta);
-            const y = radius * Math.sin(phi) * Math.sin(theta);
-            const z = radius * Math.cos(phi);
-
-            particlePositions.push(
-              new THREE.Vector3(
-                positions[i * 3],
-                positions[i * 3 + 1],
-                positions[i * 3 + 2]
-              )
-            );
-          }
-
-          particleGeometry.setAttribute(
-            "position",
-            new THREE.BufferAttribute(positions, 3)
-          );
-          const particleMaterial = new THREE.PointsMaterial({
-            color: 0x4A5C6A,
-            size: 0.02,
-            transparent: true,
-            opacity: 0.8,
+          // Create glow material once
+          const glowTexture = createGlowTexture();
+          const glowMaterial = new THREE.SpriteMaterial({
+              map: glowTexture,
+              color: 0xffffff,
+              transparent: true,
+              blending: THREE.AdditiveBlending,
           });
-          particles = new THREE.Points(particleGeometry, particleMaterial);
-          scene.add(particles);
 
-          // Lighting
+          const fibonacciPoints = getFibonacciSpherePoints(
+            squareLabels.length,
+            2.4
+          );
+
+          fibonacciPoints.forEach((point, i) => {
+            const squareMaterial = new THREE.MeshBasicMaterial({
+              color: 0x9BA8AB,
+              side: THREE.DoubleSide,
+            });
+            const square = new THREE.Mesh(squareGeometry, squareMaterial);
+            square.position.copy(point);
+            square.lookAt(new THREE.Vector3(0, 0, 0));
+
+            // Create glow sprite for each square
+            const glowSprite = new THREE.Sprite(glowMaterial.clone());
+            glowSprite.scale.set(squareSize * 4, squareSize * 4, 1);
+            glowSprite.position.copy(point);
+            glowSprite.visible = false; // Initially hidden
+
+            square.userData = {
+              label: squareLabels[i],
+              originalColor: new THREE.Color(0x9BA8AB),
+              hoverColor: new THREE.Color(0xFFFFFF),
+              glow: glowSprite, // Link glow to square
+            };
+            modelGroup.add(square);
+            modelGroup.add(glowSprite); // Add glow to the group so it rotates with everything
+            interactiveSquares.push(square);
+          });
+
+          // --- Lighting ---
           const ambientLight = new THREE.AmbientLight(0xCCD0CF, 0.7);
           scene.add(ambientLight);
           const pointLight = new THREE.PointLight(0xCCD0CF, 1.2);
           pointLight.position.set(5, 5, 5);
           scene.add(pointLight);
 
-          // Animation loop
+          // --- Animation Loop ---
           const animate = () => {
             requestAnimationFrame(animate);
             const deltaTime = clock.getDelta();
+            const elapsedTime = clock.getElapsedTime(); // Get total time for pulsing
 
-            // Scroll-based effects
-            const scrollFactor = Math.min(
-              window.scrollY / (window.innerHeight * 1.5),
-              1
-            );
-            const scale = 1 + scrollFactor * 0.5;
-            icosahedron.scale.setScalar(scale); // Zoom-in from 1 to 1.5
+            // Smoothly adjust the rotation speed
+            rotationSpeedMultiplier +=
+              (targetRotationSpeed - rotationSpeedMultiplier) * 0.08;
 
             // Handle rotation with inertia and damping
             if (!isMouseDown) {
-              // Apply inertial rotation from drag
-              icosahedron.rotation.x += rotationVelocity.x;
-              icosahedron.rotation.y += rotationVelocity.y;
-              particles.rotation.x += rotationVelocity.x * 0.6;
-              particles.rotation.y += rotationVelocity.y * 0.6;
+              modelGroup.rotation.x += rotationVelocity.x * rotationSpeedMultiplier;
+              modelGroup.rotation.y += rotationVelocity.y * rotationSpeedMultiplier;
 
               // Apply damping (friction) to gradually slow down the spin
-              const effectiveDamping = Math.pow(dampingFactor, deltaTime * 60); // Frame-rate independent
+              const effectiveDamping = Math.pow(dampingFactor, deltaTime * 60);
               rotationVelocity.multiplyScalar(effectiveDamping);
 
               // If it has stopped spinning, apply a slow, constant rotation
               if (rotationVelocity.lengthSq() < 0.000001) {
                 rotationVelocity.set(0, 0);
-                icosahedron.rotation.x += 0.1 * deltaTime;
-                icosahedron.rotation.y += 0.1 * deltaTime;
-                particles.rotation.x += 0.05 * deltaTime;
-                particles.rotation.y += 0.05 * deltaTime;
+                modelGroup.rotation.x +=
+                  0.1 * deltaTime * rotationSpeedMultiplier;
+                modelGroup.rotation.y +=
+                  0.1 * deltaTime * rotationSpeedMultiplier;
               }
             }
 
-            // --- 2. Particle Physics ---
-            const positionsArray =
-              particles.geometry.attributes.position.array;
-            mouseTarget.lerp(
-              new THREE.Vector3(mouse.x * 10, mouse.y * -10, 0),
-              0.01
-            ); // Lerp to mouse projected position
+            // Handle intersections for tooltips and hover effects
+            handleIntersections();
 
-            for (let i = 0; i < particleCount; i++) {
-              // Move particle based on its velocity and attraction to the mouse
-              const i3 = i * 3;
-              particlePositions[i].x +=
-                velocities[i3] +
-                (mouseTarget.x - particlePositions[i].x) * 0.002;
-              particlePositions[i].y +=
-                velocities[i3 + 1] +
-                (mouseTarget.y - particlePositions[i].y) * 0.002;
-              particlePositions[i].z +=
-                velocities[i3 + 2] +
-                (mouseTarget.z - particlePositions[i].z) * 0.002;
-
-              // Make particles spread out as user scrolls down
-              const dispersion = scrollFactor * 0.002;
-              particlePositions[i].x *= 1 + dispersion;
-              particlePositions[i].y *= 1 + dispersion;
-              particlePositions[i].z *= 1 + dispersion;
-
-              // If a particle goes too far, gently pull it back towards the center
-              const dist = particlePositions[i].length();
-              if (dist > 6 + scrollFactor * 4) {
-                particlePositions[i].multiplyScalar(0.99); // Gently pull back
-              }
-
-              positionsArray[i3] = particlePositions[i].x;
-              positionsArray[i3 + 1] = particlePositions[i].y;
-              positionsArray[i3 + 2] = particlePositions[i].z;
+            // Handle pulsing glow effect
+            if (hoveredObject) {
+                // Use a sine wave to create a smooth pulse
+                const pulse = (Math.sin(elapsedTime * 5) + 1) / 2; // Oscillates between 0 and 1
+                // Pulse opacity between 0.6 and 1.0
+                hoveredObject.userData.glow.material.opacity = 0.6 + pulse * 0.4;
+                // Pulse scale slightly around a base size
+                const baseScale = squareSize * 4;
+                const scalePulse = 1.0 + pulse * 0.15; // Pulse scale by 15%
+                hoveredObject.userData.glow.scale.set(baseScale * scalePulse, baseScale * scalePulse, 1);
             }
-            particles.geometry.attributes.position.needsUpdate = true; // Tell Three.js to update particle positions
 
-            // --- 3. Render the Scene ---
             renderer.render(scene, camera);
           };
           animate();
 
-          // =================================================================
-          // --- EVENT LISTENERS ---
-          // =================================================================
+          // --- Event Listeners ---
           window.addEventListener("resize", () => {
             camera.aspect = container.clientWidth / container.clientHeight;
             camera.updateProjectionMatrix();
@@ -1719,10 +1816,9 @@
 
           // Mouse interactivity for drag
           renderer.domElement.addEventListener("mousedown", (e) => {
-            // When mouse is pressed down
             isMouseDown = true;
             previousMousePosition = { x: e.clientX, y: e.clientY };
-            rotationVelocity.set(0, 0); // Stop any existing inertia on new click
+            rotationVelocity.set(0, 0);
           });
 
           document.addEventListener("mouseup", () => {
@@ -1730,13 +1826,12 @@
           });
 
           document.addEventListener("mousemove", (e) => {
-            // When mouse moves
-            // Update normalized mouse coordinates (-1 to +1)
-            mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
-            mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+            // Correctly calculate mouse coordinates relative to the canvas
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+            mouse.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
 
             if (!isMouseDown) return;
-            // If dragging, calculate the change in mouse position
             const deltaMove = {
               x: e.clientX - previousMousePosition.x,
               y: e.clientY - previousMousePosition.y,
@@ -1746,13 +1841,9 @@
             const moveX = deltaMove.y * rotationAmount;
             const moveY = deltaMove.x * rotationAmount;
 
-            // Apply rotation to the shapes
-            icosahedron.rotation.x += moveX;
-            icosahedron.rotation.y += moveY;
-            particles.rotation.x += moveX * 0.6;
-            particles.rotation.y += moveY * 0.6;
+            modelGroup.rotation.x += moveX;
+            modelGroup.rotation.y += moveY;
 
-            // Store the last movement speed to use for the inertial spin on mouseup
             rotationVelocity.x = moveX;
             rotationVelocity.y = moveY;
 
