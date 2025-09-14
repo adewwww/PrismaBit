@@ -64,12 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
       // Apply a "glassmorphism" effect when scrolled past a certain point (50px).
       // You can adjust the `bg-white/10` (10% opacity) and `backdrop-blur-xl` (extra large blur) classes here.
       if (scrollTop > 50) {
-        headerNav.classList.add('bg-[#11212D]/10', 'backdrop-blur-xl', 'shadow-md', 'border-[#4A5C6A]/20');
-        headerNav.classList.remove('bg-[#06141B]/80', 'backdrop-blur-sm', 'border-[#253745]');
+        headerNav.classList.add('bg-[#06141B]/10', 'backdrop-blur-xl', 'shadow-md', 'border-[#4A5C6A]/20');
+        headerNav.classList.remove('bg-[#11212D]/80', 'backdrop-blur-sm', 'border-[#253745]');
       } else {
         // Revert to the default, less transparent style when at the top of the page.
-        headerNav.classList.add('bg-[#06141B]/80', 'backdrop-blur-sm', 'border-[#253745]');
-        headerNav.classList.remove('bg-[#11212D]/10', 'backdrop-blur-xl', 'shadow-md', 'border-[#4A5C6A]/20');
+        headerNav.classList.add('bg-[#11212D]/80', 'backdrop-blur-sm', 'border-[#253745]');
+        headerNav.classList.remove('bg-[#06141B]/10', 'backdrop-blur-xl', 'shadow-md', 'border-[#4A5C6A]/20');
       }
 
       lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Update last scroll position.

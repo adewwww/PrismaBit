@@ -11,12 +11,42 @@
   <link rel="stylesheet" href="assets/css/common.css">
   <script src="assets/js/main.js" defer></script>
 
+  <style>
+    .service-block {
+      position: relative;
+      border: 1px solid #253745;
+      background-color: #06141B;
+      transition: border-color 0.4s ease, transform 0.4s ease;
+      overflow: hidden; /* To contain the pseudo-element */
+    }
+    .service-block:hover {
+      border-color: var(--glow-color, #4A5C6A);
+      transform: translateY(-6px);
+    }
+    .service-block::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(350px circle at var(--x) var(--y), var(--glow-color), transparent 80%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: 0; /* Behind the content */
+      will-change: opacity;
+    }
+    .service-block:hover::before {
+      opacity: 0.1;
+    }
+  </style>
+
 </head>
-<body class="bg-[#06141B] text-[#9BA8AB]">
+<body class="bg-[#11212D] text-[#9BA8AB]">
 
   <!-- Header Navigation -->
   <!-- NOTE: This header is duplicated across all pages. For easier maintenance, consider using a template engine or server-side includes. -->
-  <header id="header-nav" class="fixed top-0 left-0 right-0 z-40 bg-[#06141B]/80 backdrop-blur-sm border-b border-[#253745] transition-all duration-500 ease-in-out">
+  <header id="header-nav" class="fixed top-0 left-0 right-0 z-40 bg-[#11212D]/80 backdrop-blur-sm border-b border-[#253745] transition-all duration-500 ease-in-out">
     <nav class="container mx-auto flex justify-between items-center p-6">
       <a href="index.html?nosplash=true" id="header-logo" class="flex items-center space-x-2 group">
         <div class="w-8 h-8 relative">
@@ -52,7 +82,7 @@
       </div>
     </nav>
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-[#11212D] border-t border-[#253745]">
+    <div id="mobile-menu" class="hidden md-hidden bg-[#06141B] border-t border-[#253745]">
         <div class="px-6 py-4 space-y-1">
             <a href="index.html?nosplash=true" class="block py-2 px-3 rounded-md text-base font-medium text-[#9BA8AB] hover:bg-[#253745] hover:text-[#CCD0CF]">Home</a>
             <a href="work.html" class="block py-2 px-3 rounded-md text-base font-medium text-[#9BA8AB] hover:bg-[#253745] hover:text-[#CCD0CF]">Work</a>
@@ -77,120 +107,120 @@
     <section class="container mx-auto px-6 pb-20 sm:pb-32 space-y-16">
 
       <!-- Service 1: Web Development -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center reveal-on-scroll">
-        <div class="lg:col-span-1">
-          <div class="w-16 h-16 bg-[#253745] rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-[#9BA8AB]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <div class="service-block grid grid-cols-1 lg:grid-cols-3 gap-8 reveal-on-scroll p-8 rounded-2xl" style="--glow-color: #60A5FA;">
+        <div class="lg:col-span-1 relative z-10">
+          <div class="w-16 h-16 bg-[#60A5FA]/10 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-[#60A5FA]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
             </svg>
           </div>
           <h2 class="text-3xl font-bold text-[#CCD0CF] mb-2">Web Development</h2>
           <p class="text-[#9BA8AB]">We build fast, scalable, and secure web applications tailored to your specific needs, from marketing sites to complex enterprise platforms.</p>
         </div>
-        <div class="lg:col-span-2 bg-[#11212D] border border-[#253745] p-8 rounded-2xl shadow-sm">
+        <div class="lg:col-span-2 relative z-10">
           <h3 class="font-semibold text-[#CCD0CF] mb-4">Key Offerings:</h3>
           <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[#9BA8AB]">
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Front-end Development (React, Vue)</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Back-end Development (Node.js, Python)</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> E-commerce Solutions</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Content Management Systems (CMS)</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#60A5FA] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Front-end Development (React, Vue)</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#60A5FA] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Back-end Development (Node.js, Python)</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#60A5FA] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> E-commerce Solutions</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#60A5FA] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Content Management Systems (CMS)</li>
           </ul>
         </div>
       </div>
 
       <!-- Service 2: UI/UX Design -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center reveal-on-scroll">
-        <div class="lg:col-span-1">
-          <div class="w-16 h-16 bg-[#253745] rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-[#9BA8AB]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <div class="service-block grid grid-cols-1 lg:grid-cols-3 gap-8 reveal-on-scroll p-8 rounded-2xl" style="--glow-color: #C084FC;">
+        <div class="lg:col-span-1 relative z-10">
+          <div class="w-16 h-16 bg-[#C084FC]/10 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-[#C084FC]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" />
             </svg>
           </div>
           <h2 class="text-3xl font-bold text-[#CCD0CF] mb-2">UI/UX Design</h2>
           <p class="text-[#9BA8AB]">Our design process is centered on creating intuitive, engaging, and aesthetically pleasing interfaces that your users will love.</p>
         </div>
-        <div class="lg:col-span-2 bg-[#11212D] border border-[#253745] p-8 rounded-2xl shadow-sm">
+        <div class="lg:col-span-2 relative z-10">
           <h3 class="font-semibold text-[#CCD0CF] mb-4">Our Process:</h3>
           <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[#9BA8AB]">
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> User Research & Strategy</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Wireframing & Prototyping</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Visual Design & Branding</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Usability Testing</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#C084FC] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> User Research & Strategy</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#C084FC] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Wireframing & Prototyping</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#C084FC] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Visual Design & Branding</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#C084FC] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Usability Testing</li>
           </ul>
         </div>
       </div>
 
        <!-- Service 3: Cloud Solutions -->
-       <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center reveal-on-scroll">
-        <div class="lg:col-span-1">
-          <div class="w-16 h-16 bg-[#253745] rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-[#9BA8AB]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+       <div class="service-block grid grid-cols-1 lg:grid-cols-3 gap-8 reveal-on-scroll p-8 rounded-2xl" style="--glow-color: #22D3EE;">
+        <div class="lg:col-span-1 relative z-10">
+          <div class="w-16 h-16 bg-[#22D3EE]/10 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-[#22D3EE]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.5 4.5 0 0 0 2.25 15Z" />
             </svg>
           </div>
           <h2 class="text-3xl font-bold text-[#CCD0CF] mb-2">Cloud Solutions</h2>
           <p class="text-[#9BA8AB]">We architect and manage robust cloud infrastructures that provide the foundation for scalable and resilient applications.</p>
         </div>
-        <div class="lg:col-span-2 bg-[#11212D] border border-[#253745] p-8 rounded-2xl shadow-sm">
+        <div class="lg:col-span-2 relative z-10">
           <h3 class="font-semibold text-[#CCD0CF] mb-4">Platforms & Services:</h3>
           <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[#9BA8AB]">
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> AWS, Google Cloud & Azure</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> DevOps & CI/CD Pipelines</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Serverless Architecture</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Database Management</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#22D3EE] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> AWS, Google Cloud & Azure</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#22D3EE] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> DevOps & CI/CD Pipelines</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#22D3EE] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Serverless Architecture</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#22D3EE] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Database Management</li>
           </ul>
         </div>
       </div>
 
       <!-- Service 4: AI Integration -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center reveal-on-scroll">
-        <div class="lg:col-span-1">
-          <div class="w-16 h-16 bg-[#253745] rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-[#9BA8AB]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <div class="service-block grid grid-cols-1 lg:grid-cols-3 gap-8 reveal-on-scroll p-8 rounded-2xl" style="--glow-color: #34D399;">
+        <div class="lg:col-span-1 relative z-10">
+          <div class="w-16 h-16 bg-[#34D399]/10 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-[#34D399]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" />
             </svg>
           </div>
           <h2 class="text-3xl font-bold text-[#CCD0CF] mb-2">AI Integration</h2>
           <p class="text-[#9BA8AB]">Unlock new capabilities by embedding artificial intelligence into your products for automation, insights, and enhanced user experiences.</p>
         </div>
-        <div class="lg:col-span-2 bg-[#11212D] border border-[#253745] p-8 rounded-2xl shadow-sm">
+        <div class="lg:col-span-2 relative z-10">
           <h3 class="font-semibold text-[#CCD0CF] mb-4">Example Applications:</h3>
           <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[#9BA8AB]">
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> LLM-Powered Chatbots & Assistants</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Data Analysis & Prediction</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Computer Vision</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Process Automation</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#34D399] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> LLM-Powered Chatbots & Assistants</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#34D399] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Data Analysis & Prediction</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#34D399] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Computer Vision</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#34D399] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Process Automation</li>
           </ul>
         </div>
       </div>
 
       <!-- Service 5: Mobile App Development -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center reveal-on-scroll">
-        <div class="lg:col-span-1">
-          <div class="w-16 h-16 bg-[#253745] rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-[#9BA8AB]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <div class="service-block grid grid-cols-1 lg:grid-cols-3 gap-8 reveal-on-scroll p-8 rounded-2xl" style="--glow-color: #FBBF24;">
+        <div class="lg:col-span-1 relative z-10">
+          <div class="w-16 h-16 bg-[#FBBF24]/10 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-[#FBBF24]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 1.5H8.25A2.25 2.25 0 0 0 6 3.75v16.5a2.25 2.25 0 0 0 2.25 2.25h7.5A2.25 2.25 0 0 0 18 20.25V3.75a2.25 2.25 0 0 0-2.25-2.25H13.5m-3 0V3h3V1.5m-3 0h3m-3 18.75h3" />
             </svg>
           </div>
           <h2 class="text-3xl font-bold text-[#CCD0CF] mb-2">Mobile App Development</h2>
           <p class="text-[#9BA8AB]">We design and develop high-performance native and cross-platform mobile applications for iOS and Android that captivate users.</p>
         </div>
-        <div class="lg:col-span-2 bg-[#11212D] border border-[#253745] p-8 rounded-2xl shadow-sm">
+        <div class="lg:col-span-2 relative z-10">
           <h3 class="font-semibold text-[#CCD0CF] mb-4">Key Offerings:</h3>
           <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[#9BA8AB]">
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> iOS & Android Native Apps</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Cross-Platform (React Native, Flutter)</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> App Prototyping & UI/UX</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Backend & API Integration</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#FBBF24] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> iOS & Android Native Apps</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#FBBF24] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Cross-Platform (React Native, Flutter)</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#FBBF24] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> App Prototyping & UI/UX</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#FBBF24] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Backend & API Integration</li>
           </ul>
         </div>
       </div>
 
       <!-- Service 6: Digital Marketing & Branding -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center reveal-on-scroll">
-        <div class="lg:col-span-1">
-          <div class="w-16 h-16 bg-[#253745] rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-[#9BA8AB]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <div class="service-block grid grid-cols-1 lg:grid-cols-3 gap-8 reveal-on-scroll p-8 rounded-2xl" style="--glow-color: #F472B6;">
+        <div class="lg:col-span-1 relative z-10">
+          <div class="w-16 h-16 bg-[#F472B6]/10 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-[#F472B6]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z" />
               <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z" />
             </svg>
@@ -198,79 +228,79 @@
           <h2 class="text-3xl font-bold text-[#CCD0CF] mb-2">Digital Marketing & Branding</h2>
           <p class="text-[#9BA8AB]">We craft compelling brand identities and execute data-driven digital marketing strategies to grow your audience and increase conversions.</p>
         </div>
-        <div class="lg:col-span-2 bg-[#11212D] border border-[#253745] p-8 rounded-2xl shadow-sm">
+        <div class="lg:col-span-2 relative z-10">
           <h3 class="font-semibold text-[#CCD0CF] mb-4">Our Strategies:</h3>
           <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[#9BA8AB]">
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Brand Strategy & Identity Design</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Search Engine Optimization (SEO)</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Social Media Management</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Content Marketing & PPC Campaigns</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#F472B6] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Brand Strategy & Identity Design</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#F472B6] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Search Engine Optimization (SEO)</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#F472B6] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Social Media Management</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#F472B6] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Content Marketing & PPC Campaigns</li>
           </ul>
         </div>
       </div>
 
       <!-- Service 7: Graphic Design -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center reveal-on-scroll">
-        <div class="lg:col-span-1">
-          <div class="w-16 h-16 bg-[#253745] rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-[#9BA8AB]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <div class="service-block grid grid-cols-1 lg:grid-cols-3 gap-8 reveal-on-scroll p-8 rounded-2xl" style="--glow-color: #818CF8;">
+        <div class="lg:col-span-1 relative z-10">
+          <div class="w-16 h-16 bg-[#818CF8]/10 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-[#818CF8]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
             </svg>
           </div>
           <h2 class="text-3xl font-bold text-[#CCD0CF] mb-2">Graphic Design</h2>
           <p class="text-[#9BA8AB]">From logos to marketing materials, our creative design services ensure your brand stands out with a visually stunning and cohesive identity.</p>
         </div>
-        <div class="lg:col-span-2 bg-[#11212D] border border-[#253745] p-8 rounded-2xl shadow-sm">
+        <div class="lg:col-span-2 relative z-10">
           <h3 class="font-semibold text-[#CCD0CF] mb-4">Creative Services:</h3>
           <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[#9BA8AB]">
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Logo Design & Brand Guidelines</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Marketing & Advertising Collateral</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Web & Social Media Graphics</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Packaging Design</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#818CF8] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Logo Design & Brand Guidelines</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#818CF8] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Marketing & Advertising Collateral</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#818CF8] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Web & Social Media Graphics</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#818CF8] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Packaging Design</li>
           </ul>
         </div>
       </div>
 
       <!-- Service 8: Network Planning & Setup -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center reveal-on-scroll">
-        <div class="lg:col-span-1">
-          <div class="w-16 h-16 bg-[#253745] rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-[#9BA8AB]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <div class="service-block grid grid-cols-1 lg:grid-cols-3 gap-8 reveal-on-scroll p-8 rounded-2xl" style="--glow-color: #A78BFA;">
+        <div class="lg:col-span-1 relative z-10">
+          <div class="w-16 h-16 bg-[#A78BFA]/10 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-[#A78BFA]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0 0 21 18V6a2.25 2.25 0 0 0-2.25-2.25H5.25A2.25 2.25 0 0 0 3 6v12a2.25 2.25 0 0 0 2.25 2.25Z" />
             </svg>
           </div>
           <h2 class="text-3xl font-bold text-[#CCD0CF] mb-2">Network Planning & Setup</h2>
           <p class="text-[#9BA8AB]">We design and implement secure, scalable, and high-performance network infrastructures for businesses of all sizes.</p>
         </div>
-        <div class="lg:col-span-2 bg-[#11212D] border border-[#253745] p-8 rounded-2xl shadow-sm">
+        <div class="lg:col-span-2 relative z-10">
           <h3 class="font-semibold text-[#CCD0CF] mb-4">Our Expertise:</h3>
           <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[#9BA8AB]">
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> LAN/WAN Architecture Design</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Network Security & Firewall Configuration</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Wireless Network Solutions</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Performance Monitoring & Optimization</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#A78BFA] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> LAN/WAN Architecture Design</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#A78BFA] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Network Security & Firewall Configuration</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#A78BFA] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Wireless Network Solutions</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#A78BFA] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Performance Monitoring & Optimization</li>
           </ul>
         </div>
       </div>
 
       <!-- Service 9: IT Infrastructure & Hosting -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center reveal-on-scroll">
-        <div class="lg:col-span-1">
-          <div class="w-16 h-16 bg-[#253745] rounded-xl flex items-center justify-center mb-6">
-            <svg class="w-8 h-8 text-[#9BA8AB]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <div class="service-block grid grid-cols-1 lg:grid-cols-3 gap-8 reveal-on-scroll p-8 rounded-2xl" style="--glow-color: #F97316;">
+        <div class="lg:col-span-1 relative z-10">
+          <div class="w-16 h-16 bg-[#F97316]/10 rounded-xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8 text-[#F97316]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 17.25v-.228a4.5 4.5 0 0 0-.12-1.03l-2.268-9.64a3.375 3.375 0 0 0-3.285-2.602H7.923a3.375 3.375 0 0 0-3.285 2.602l-2.268 9.64a4.5 4.5 0 0 0-.12 1.03v.228m15.457 0v3.375a2.25 2.25 0 0 1-2.25 2.25h-10.5a2.25 2.25 0 0 1-2.25-2.25V17.25m15.457 0A2.25 2.25 0 0 0 18.75 15h-13.5a2.25 2.25 0 0 0-2.25 2.25m15.457 0V17.25" />
             </svg>
           </div>
           <h2 class="text-3xl font-bold text-[#CCD0CF] mb-2">IT Infrastructure & Hosting</h2>
           <p class="text-[#9BA8AB]">We provide comprehensive IT infrastructure solutions, from secure hosting to seamless system integration, ensuring your operations are efficient and reliable.</p>
         </div>
-        <div class="lg:col-span-2 bg-[#11212D] border border-[#253745] p-8 rounded-2xl shadow-sm">
+        <div class="lg:col-span-2 relative z-10">
           <h3 class="font-semibold text-[#CCD0CF] mb-4">Core Services:</h3>
           <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-[#9BA8AB]">
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Managed Web & Application Hosting</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Server Management & Maintenance</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> System Integration Services</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-[#9BA8AB] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Data Backup & Disaster Recovery</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#F97316] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Managed Web & Application Hosting</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#F97316] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Server Management & Maintenance</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#F97316] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> System Integration Services</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-[#F97316] mr-2 mt-1 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Data Backup & Disaster Recovery</li>
           </ul>
         </div>
       </div>
@@ -278,7 +308,7 @@
     </section>
 
     <!-- CTA -->
-    <section class="py-20 sm:py-32 bg-gradient-to-br from-[#11212D] via-[#253745] to-[#11212D] text-[#CCD0CF]">
+    <section class="py-20 sm:py-32 bg-gradient-to-br from-[#06141B] via-[#253745] to-[#06141B] text-[#CCD0CF]">
       <div class="container mx-auto px-6 text-center reveal-on-scroll">
         <h2 class="text-3xl md:text-5xl font-bold mb-6">Ready to start your project?</h2>
         <p class="text-xl text-[#9BA8AB] mb-10 max-w-2xl mx-auto">Let's discuss how our services can be tailored to meet your unique goals. We're excited to hear from you.</p>
@@ -289,7 +319,7 @@
   
   <!-- FOOTER -->
   <!-- NOTE: This footer is duplicated across all pages. For easier maintenance, consider using a template engine or server-side includes. -->
-  <footer class="bg-[#06141B] text-[#CCD0CF] py-16">
+  <footer class="bg-[#11212D] text-[#CCD0CF] py-16">
     <div class="container mx-auto px-6">
       <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
         <div class="md:col-span-2">
@@ -368,6 +398,21 @@
     <svg class="w-8 h-8 text-white transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413 0 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 6.269.001 11.37-5.101 11.37-11.371 0-6.27-5.101-11.37-11.37-11.37-6.27.001-11.371 5.101-11.371 11.371 0 2.136.59 4.125 1.674 5.83l-1.036 3.787 3.894-1.023zm11.37-8.232c-.267-.136-1.585-.78-1.83-.87-.245-.09-.423-.136-.6-.136-.177 0-.354.045-.531.227-.177.182-.693.693-.849.849-.156.156-.312.182-.589.045-.277-.136-11.172-.434-2.231-1.366-.825-.72-1.38-1.614-1.536-1.891-.156-.277-.015-.434.12-.561.12-.11.267-.277.4-.423.133-.136.177-.227.267-.382.09-.156.045-.292-.015-.404-.06-.112-.531-1.274-.728-1.744-.182-.455-.364-.393-.5-.393-.12 0-.267-.015-.404-.015-.136 0-.354.045-.531.227-.177.182-.693.693-.693 1.676 0 .984.71 1.941.81 2.077.09.136 1.397 2.136 3.38 2.991.47.205.84.329 1.12.422.48.156.91.136 1.24.09.37-.045 1.172-.477 1.338-.943.166-.466.166-.861.12-.943-.045-.082-.177-.136-.354-.227z"/></svg>
     <span class="whatsapp-pulse"></span>
   </a>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const serviceBlocks = document.querySelectorAll('.service-block');
+      serviceBlocks.forEach(block => {
+        block.addEventListener('mousemove', e => {
+          const rect = block.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          block.style.setProperty('--x', `${x}px`);
+          block.style.setProperty('--y', `${y}px`);
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>

@@ -4,7 +4,7 @@
 :root { color-scheme: dark; }
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #06141B;
+  background-color: #11212D;
 }
 
 /* ==========================================================================
@@ -36,10 +36,7 @@ body {
 
 /* Helper class to create gradient text */
 .gradient-text {
-  background-image: linear-gradient(to right, #4A5C6A, #CCD0CF);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #CCD0CF;
 }
 
 /* ==========================================================================
