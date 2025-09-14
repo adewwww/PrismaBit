@@ -1431,31 +1431,13 @@
           const container = document.getElementById("threejs-container");
           if (!container) return;
 
-          // --- Create a circular glow texture for the particles ---
-          const createGlowTexture = () => {
-            const canvas = document.createElement("canvas");
-            canvas.width = 64;
-            canvas.height = 64;
-            const context = canvas.getContext("2d");
-            const gradient = context.createRadialGradient(32, 32, 0, 32, 32, 32);
-            gradient.addColorStop(0, "rgba(96, 165, 250, 1)"); // Bright blue core
-            gradient.addColorStop(0.4, "rgba(59, 130, 246, 0.8)"); // Main brand blue
-            gradient.addColorStop(1, "rgba(30, 64, 175, 0)"); // Fading to dark blue
-
-            context.fillStyle = gradient;
-            context.fillRect(0, 0, 64, 64);
-
-            return new THREE.CanvasTexture(canvas);
-          };
-
           // --- Core Three.js Components & State Variables ---
           let scene, camera, renderer, icosahedron, particles;
           let isMouseDown = false;
           let previousMousePosition = { x: 0, y: 0 };
           let mouse = new THREE.Vector2();
-          let raycaster = new THREE.Raycaster();
-          let interactionPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
-          let mousePosition3D = new THREE.Vector3();
+          let mouseTarget = new THREE.Vector3();
+          let particlePositions = [];
           let zoomLevel = 5; // Initial camera z
 
           // --- Physics & Animation Variables ---
@@ -1493,44 +1475,47 @@
           scene.add(icosahedron);
 
           // --- Object 2: Surrounding Particles ---
-          const particleCount = 800;
+          const particleCount = 600;
           const particleGeometry = new THREE.BufferGeometry();
           const positions = new Float32Array(particleCount * 3);
-          const velocities = []; // For physics simulation
-          const originalPositions = []; // For the spring-back effect
+          const velocities = new Float32Array(particleCount * 3);
 
           for (let i = 0; i < particleCount; i++) {
+            // Random positions around icosahedron
             const theta = Math.random() * Math.PI * 2;
             const phi = Math.acos(Math.random() * 2 - 1);
-            const radius = 2.2 + Math.random() * 1.5; // Tighter orbit just outside the 1.8 radius model
-
+            const radius = 3 + Math.random() * 2;
             positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
             positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
             positions[i * 3 + 2] = radius * Math.cos(phi);
+
+            // Initial velocities for orbiting
+            velocities[i * 3] = (Math.random() - 0.5) * 0.01;
+            velocities[i * 3 + 1] = (Math.random() - 0.5) * 0.01;
+            velocities[i * 3 + 2] = (Math.random() - 0.5) * 0.01;
+
             const x = radius * Math.sin(phi) * Math.cos(theta);
             const y = radius * Math.sin(phi) * Math.sin(theta);
             const z = radius * Math.cos(phi);
 
-            positions[i * 3] = x;
-            positions[i * 3 + 1] = y;
-            positions[i * 3 + 2] = z;
-
-            originalPositions.push(new THREE.Vector3(x, y, z));
-            velocities.push(new THREE.Vector3());
+            particlePositions.push(
+              new THREE.Vector3(
+                positions[i * 3],
+                positions[i * 3 + 1],
+                positions[i * 3 + 2]
+              )
+            );
           }
 
           particleGeometry.setAttribute(
             "position",
             new THREE.BufferAttribute(positions, 3)
           );
-
           const particleMaterial = new THREE.PointsMaterial({
-            map: createGlowTexture(),
-            color: 0xffffff, // Use the texture's inherent blue color
-            size: 0.15, // Larger size for a visible glow
+            color: 0x3b82f6,
+            size: 0.02,
             transparent: true,
-            blending: THREE.AdditiveBlending,
-            depthWrite: false, // Important for transparent objects
+            opacity: 0.8,
           });
           particles = new THREE.Points(particleGeometry, particleMaterial);
           scene.add(particles);
@@ -1554,15 +1539,14 @@
             );
             const scale = 1 + scrollFactor * 0.5;
             icosahedron.scale.setScalar(scale); // Zoom-in from 1 to 1.5
-            particles.scale.setScalar(scale);
 
             // Handle rotation with inertia and damping
             if (!isMouseDown) {
               // Apply inertial rotation from drag
               icosahedron.rotation.x += rotationVelocity.x;
               icosahedron.rotation.y += rotationVelocity.y;
-              particles.rotation.x += rotationVelocity.x * 0.8; // Slower rotation for parallax
-              particles.rotation.y += rotationVelocity.y * 0.8;
+              particles.rotation.x += rotationVelocity.x * 0.6;
+              particles.rotation.y += rotationVelocity.y * 0.6;
 
               // Apply damping (friction) to gradually slow down the spin
               const effectiveDamping = Math.pow(dampingFactor, deltaTime * 60); // Frame-rate independent
@@ -1578,59 +1562,44 @@
               }
             }
 
-            // --- 2. Particle Physics & Interaction ---
-            // Get mouse position in 3D world space
-            raycaster.setFromCamera(mouse, camera);
-            raycaster.ray.intersectPlane(interactionPlane, mousePosition3D);
-
-            // Transform mouse position to the local space of the rotating particles object
-            const localMousePosition = mousePosition3D.clone();
-            const invertedMatrix = new THREE.Matrix4()
-              .copy(particles.matrixWorld)
-              .invert();
-            localMousePosition.applyMatrix4(invertedMatrix);
-
+            // --- 2. Particle Physics ---
             const positionsArray =
               particles.geometry.attributes.position.array;
+            mouseTarget.lerp(
+              new THREE.Vector3(mouse.x * 10, mouse.y * -10, 0),
+              0.01
+            ); // Lerp to mouse projected position
 
             for (let i = 0; i < particleCount; i++) {
+              // Move particle based on its velocity and attraction to the mouse
               const i3 = i * 3;
-              let p = new THREE.Vector3(
-                positionsArray[i3],
-                positionsArray[i3 + 1],
-                positionsArray[i3 + 2]
-              );
-              let v = velocities[i];
+              particlePositions[i].x +=
+                velocities[i3] +
+                (mouseTarget.x - particlePositions[i].x) * 0.002;
+              particlePositions[i].y +=
+                velocities[i3 + 1] +
+                (mouseTarget.y - particlePositions[i].y) * 0.002;
+              particlePositions[i].z +=
+                velocities[i3 + 2] +
+                (mouseTarget.z - particlePositions[i].z) * 0.002;
 
-              // a. Mouse Repulsion Force
-              const distToMouse = p.distanceTo(localMousePosition);
-              const interactionRadius = 2.5;
-              if (distToMouse < interactionRadius) {
-                const strength =
-                  Math.pow(1 - distToMouse / interactionRadius, 2) * 0.08;
-                let repulsionForce = new THREE.Vector3()
-                  .subVectors(p, localMousePosition)
-                  .normalize()
-                  .multiplyScalar(strength);
-                v.add(repulsionForce);
+              // Make particles spread out as user scrolls down
+              const dispersion = scrollFactor * 0.002;
+              particlePositions[i].x *= 1 + dispersion;
+              particlePositions[i].y *= 1 + dispersion;
+              particlePositions[i].z *= 1 + dispersion;
+
+              // If a particle goes too far, gently pull it back towards the center
+              const dist = particlePositions[i].length();
+              if (dist > 6 + scrollFactor * 4) {
+                particlePositions[i].multiplyScalar(0.99); // Gently pull back
               }
 
-              // b. Spring Force (pulls particle back to its original spot)
-              let springForce = new THREE.Vector3()
-                .subVectors(originalPositions[i], p)
-                .multiplyScalar(0.001); // Stiffness
-              v.add(springForce);
-
-              // c. Damping (friction)
-              v.multiplyScalar(0.96);
-
-              // d. Update position
-              p.add(v);
-              positionsArray[i3] = p.x;
-              positionsArray[i3 + 1] = p.y;
-              positionsArray[i3 + 2] = p.z;
+              positionsArray[i3] = particlePositions[i].x;
+              positionsArray[i3 + 1] = particlePositions[i].y;
+              positionsArray[i3 + 2] = particlePositions[i].z;
             }
-            particles.geometry.attributes.position.needsUpdate = true;
+            particles.geometry.attributes.position.needsUpdate = true; // Tell Three.js to update particle positions
 
             // --- 3. Render the Scene ---
             renderer.render(scene, camera);
@@ -1678,8 +1647,8 @@
             // Apply rotation to the shapes
             icosahedron.rotation.x += moveX;
             icosahedron.rotation.y += moveY;
-            particles.rotation.x += moveX * 0.8;
-            particles.rotation.y += moveY * 0.8;
+            particles.rotation.x += moveX * 0.6;
+            particles.rotation.y += moveY * 0.6;
 
             // Store the last movement speed to use for the inertial spin on mouseup
             rotationVelocity.x = moveX;
