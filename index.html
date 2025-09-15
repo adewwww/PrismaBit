@@ -1017,7 +1017,7 @@
       <!-- --------- 3.2) Services Section END -------- -->
 
       <!-- ------- 3.3) Client Logos Section START ----- -->
-      <section id="clients-section" class="py-20 sm:py-24 bg-primary">
+      <section class="py-20 sm:py-24 bg-primary">
         <div class="container mx-auto px-6">
           <div class="text-center mb-12 reveal-on-scroll">
             <h2 class="text-base font-semibold uppercase tracking-wider text-white/80">
@@ -1062,7 +1062,7 @@
       <!-- -------- 3.3) Client Logos Section END ------ -->
 
       <!-- ------- 3.4) Featured Work Section START ---- -->
-      <section id="featured-section" class="py-20 sm:py-32 bg-primary">
+      <section class="py-20 sm:py-32 bg-primary">
         <div class="container mx-auto px-6">
           <div class="text-center mb-16 reveal-on-scroll">
             <h2 class="text-3xl md:text-4xl font-bold gradient-text">
@@ -1095,7 +1095,7 @@
       <!-- -------- 3.4) Featured Work Section END ----- -->
 
       <!-- ------ 3.5) Testimonials Section START ------ -->
-      <section id="testimonials-section" class="py-20 sm:py-32 bg-primary">
+      <section class="py-20 sm:py-32 bg-primary">
         <div class="container mx-auto px-6">
           <div class="text-center mb-10 reveal-on-scroll">
             <h2 class="text-3xl md:text-4xl font-bold gradient-text">What Our Clients Say</h2>
@@ -1122,7 +1122,7 @@
           </div>
 
           <!-- Testimonial Card -->
-          <div id="testimonial-card" class="bg-white/10 backdrop-blur-lg border border-white/10 p-8 rounded-2xl shadow-lg transition-all max-w-3xl mx-auto testimonial-card">
+          <div id="testimonial-card" class="bg-white/20 backdrop-blur-sm border border-white/10 p-8 rounded-2xl shadow-lg transition-all max-w-3xl mx-auto testimonial-card">
             <div class="text-7xl font-serif text-white/20 leading-none">"</div>
             <blockquote id="testimonial-quote" class="text-white/80 italic mb-6 -mt-4"></blockquote>
             <div class="flex items-center mt-auto">
@@ -1535,7 +1535,6 @@
          let scrollDirection = 'down';
          let isScrolling = false;
          let threeJSCamera = null; // Will store reference to Three.js camera
-         let threeJSModelGroup = null; // Will store reference to model group to reposition
          let targetZoomLevel = 5; // Target zoom level for smooth interpolation
          let currentZoomLevel = 5; // Current zoom level
          let zoomSpeed = 0.08; // Speed of zoom interpolation
@@ -1574,55 +1573,6 @@
              }
              
              // Target zoom level is set above, smooth interpolation happens in animateZoom()
-           }
-
-           // Section-based placement for the Three.js container and model
-           if (threeContainer) {
-             const servicesRect = document.getElementById('services-sticky-parent')?.getBoundingClientRect();
-             const clientsRect = document.getElementById('clients-section')?.getBoundingClientRect();
-             const featuredRect = document.getElementById('featured-section')?.getBoundingClientRect();
-             const testimonialsEl = document.getElementById('testimonials-section');
-             const testimonialsRect = testimonialsEl?.getBoundingClientRect();
-
-             // Base defaults
-             let targetOpacity = 1;
-             let targetTransform = 'translateX(0) translateY(0) scale(1)';
-
-             // Helper to check if section is prominently in view
-             const isInView = (rect) => rect && rect.top < window.innerHeight * 0.6 && rect.bottom > window.innerHeight * 0.2;
-
-             if (servicesRect && isInView(servicesRect)) {
-               targetOpacity = 0.35;
-               targetTransform = 'translateX(20%) translateY(0) scale(0.85)';
-               if (threeJSModelGroup) threeJSModelGroup.position.set(0.2, 0.1, 0);
-             } else if (clientsRect && isInView(clientsRect)) {
-               targetOpacity = 0.28;
-               targetTransform = 'translateX(-10%) translateY(-3%) scale(0.78)';
-               if (threeJSModelGroup) threeJSModelGroup.position.set(-0.2, 0.15, 0);
-             } else if (featuredRect && isInView(featuredRect)) {
-               targetOpacity = 0.24;
-               targetTransform = 'translateX(12%) translateY(-5%) scale(0.72)';
-               if (threeJSModelGroup) threeJSModelGroup.position.set(0.25, -0.1, 0);
-             }
-
-             // Fade out before testimonials
-             if (testimonialsRect) {
-               const fadeStart = window.innerHeight * 0.9; // start fading when top is near bottom
-               const fadeEnd = window.innerHeight * 0.35; // fully faded before section is mid-view
-               const top = testimonialsRect.top;
-               const fadeProgress = Math.min(1, Math.max(0, (fadeStart - top) / (fadeStart - fadeEnd)));
-               if (fadeProgress > 0) {
-                 const fadeOpacity = 1 - fadeProgress; // 1 → 0
-                 targetOpacity = Math.min(targetOpacity, fadeOpacity);
-                 const scale = 0.72 - fadeProgress * 0.22; // 0.72 → 0.5
-                 const translateYvh = fadeProgress * 15; // slide down a bit
-                 targetTransform = `translateX(12%) translateY(${translateYvh}vh) scale(${Math.max(0.5, scale)})`;
-                 if (threeJSModelGroup) threeJSModelGroup.position.set(0, -0.4 - fadeProgress * 0.4, 0);
-               }
-             }
-
-             threeContainer.style.opacity = String(targetOpacity);
-             threeContainer.style.transform = targetTransform;
            }
            
            lastScrollY = currentScrollY;
@@ -1872,8 +1822,6 @@
           scene = new THREE.Scene();
           modelGroup = new THREE.Group();
           scene.add(modelGroup);
-          // expose for scroll placement logic
-          threeJSModelGroup = modelGroup;
 
           camera = new THREE.PerspectiveCamera(
             75,
