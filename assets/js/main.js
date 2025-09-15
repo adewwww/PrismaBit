@@ -31,56 +31,53 @@ document.addEventListener('DOMContentLoaded', () => {
   // =================================================================
   // --- NAVBAR SCROLL BEHAVIOR ---
   // =================================================================
-  // This handles hiding the navbar on scroll down and showing it on scroll up, plus the glassmorphism effect.
+  // Keep navbar fixed and visible. Match background to page at top, then apply glassmorphism on scroll.
   const headerNav = document.getElementById('header-nav');
   if (headerNav) {
-    let lastScrollTop = 0;
     let ticking = false;
+
+    // Ensure navbar is fixed and visible
+    headerNav.style.transform = 'translateY(0)';
+
+    // Helper: set solid background to match page primary color
+    const setSolidPrimaryBackground = () => {
+      const bodyBg = getComputedStyle(document.body).backgroundColor;
+      headerNav.style.backgroundColor = bodyBg;
+      headerNav.classList.add('backdrop-blur-sm', 'border-white/20');
+      headerNav.classList.remove('bg-[#06141B]/10', 'backdrop-blur-xl', 'shadow-md', 'border-[#4A5C6A]/20');
+    };
+
+    // Helper: set glassmorphism style
+    const setGlassBackground = () => {
+      headerNav.style.backgroundColor = '';
+      headerNav.classList.add('bg-[#06141B]/10', 'backdrop-blur-xl', 'shadow-md', 'border-[#4A5C6A]/20');
+      headerNav.classList.remove('backdrop-blur-sm', 'border-white/20');
+    };
+
+    // Initialize with solid background matching page
+    setSolidPrimaryBackground();
 
     const handleScroll = () => {
       const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-      // Special handling for the services section on the homepage
-      const servicesStickyParent = document.getElementById('services-sticky-parent');
-      if (servicesStickyParent) {
-        const rect = servicesStickyParent.getBoundingClientRect();
-        // Check if we are scrolling within the sticky services section
-        if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
-          // If inside the services section, force the navbar to be hidden
-          headerNav.style.transform = 'translateY(-100%)';
-          lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-          ticking = false;
-          return; // Exit to prevent default show/hide logic
-        }
-      }
-
-      // Hide navbar when scrolling down, show when scrolling up.
-      if (scrollTop > lastScrollTop && scrollTop > headerNav.offsetHeight) {
-        headerNav.style.transform = 'translateY(-100%)';
-      } else {
-        headerNav.style.transform = 'translateY(0)';
-      }
-
-      // Apply a "glassmorphism" effect when scrolled past a certain point (50px).
-      // You can adjust the `bg-white/10` (10% opacity) and `backdrop-blur-xl` (extra large blur) classes here.
       if (scrollTop > 50) {
-        headerNav.classList.add('bg-[#06141B]/10', 'backdrop-blur-xl', 'shadow-md', 'border-[#4A5C6A]/20');
-        headerNav.classList.remove('bg-[#101010]/80', 'backdrop-blur-sm', 'border-white/20');
+        setGlassBackground();
       } else {
-        // Revert to the default, less transparent style when at the top of the page.
-        headerNav.classList.add('bg-[#101010]/80', 'backdrop-blur-sm', 'border-white/20');
-        headerNav.classList.remove('bg-[#06141B]/10', 'backdrop-blur-xl', 'shadow-md', 'border-[#4A5C6A]/20');
+        setSolidPrimaryBackground();
       }
-
-      lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Update last scroll position.
       ticking = false;
     };
 
-    // Use requestAnimationFrame to ensure the scroll handler doesn't hurt performance.
     window.addEventListener('scroll', () => {
       if (!ticking) {
         window.requestAnimationFrame(handleScroll);
         ticking = true;
+      }
+    });
+
+    // Recompute on resize (in case themes/bg change)
+    window.addEventListener('resize', () => {
+      if ((window.pageYOffset || document.documentElement.scrollTop) <= 50) {
+        setSolidPrimaryBackground();
       }
     });
   }
