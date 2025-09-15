@@ -409,6 +409,20 @@
       #services-sticky-parent.reveal-on-scroll.visible #service-text-content > div:nth-child(2) {
         opacity: 1; transform: translateY(0); transition-delay: 0.7s;
       }
+
+      /* Hero Section Space/Nebula Effect */
+      #hero-section::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: 
+          radial-gradient(ellipse 50% 60% at 80% 40%, rgba(0, 123, 255, 0.12), transparent 70%),
+          radial-gradient(ellipse 40% 50% at 20% 60%, rgba(192, 132, 252, 0.1), transparent 70%);
+        opacity: 0;
+        animation: fadeIn 4s 2s forwards; /* Fade in after splash screen */
+        z-index: 0; /* Place it behind the content */
+        pointer-events: none;
+      }
     </style>
   </head>
   
