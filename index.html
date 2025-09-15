@@ -68,16 +68,14 @@
     </script>
 
     <style>
-      /* Base */
       :root {
         color-scheme: light;
       }
       body {
         font-family: "Inter", sans-serif;
-        overflow: hidden; /* Hide scrollbars during splash */ /* Background color is set on the body tag */
+        overflow: hidden;
       }
 
-      /* Subtle scanline texture on splash */
       @keyframes scanline {
         from {
           background-position: 0 0;
@@ -91,17 +89,12 @@
         position: absolute;
         inset: 0;
         pointer-events: none;
-        background-image: linear-gradient(
-          to bottom,
-          rgba(255, 255, 255, 0.02) 50%,
-          transparent 50%
-        );
+        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 50%, transparent 50%);
         background-size: 100% 4px;
         animation: scanline 0.4s linear infinite;
         opacity: 0.3;
       }
 
-      /* Splash slide-away */
       @keyframes splitUp {
         from {
           transform: translateY(0);
@@ -125,7 +118,6 @@
         animation: splitDown 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
       }
 
-      /* Apple-style word reveal */
       @keyframes apple-style-reveal {
         0% {
           transform: translateY(100%);
@@ -149,7 +141,6 @@
         animation: apple-style-reveal 1s cubic-bezier(0.65, 0, 0.35, 1) forwards;
       }
 
-      /* Main content fades */
       @keyframes fadeIn {
         from {
           opacity: 0;
@@ -178,7 +169,6 @@
         animation: fadeIn 1s 0.5s both;
       }
 
-      /* Reveal on scroll */
       .reveal-on-scroll {
         opacity: 0;
         transform: translateY(30px);
@@ -190,27 +180,18 @@
         transform: translateY(0);
       }
 
-      /* Gradient text helper */
       .gradient-text {
         color: #CCD0CF;
       }
 
-      /* --- Splash FX --- */
-      /* The white light ray that sweeps across the logo */
+      /* Splash FX */
       .light-ray {
         position: absolute;
         top: 50%;
         left: 50%;
         width: 150vw;
         height: 4px;
-        background: linear-gradient(
-          90deg,
-          rgba(255, 255, 255, 0) 0%,
-          rgba(255, 255, 255, 0.7) 40%,
-          #ffffff 50%,
-          rgba(255, 255, 255, 0.7) 60%,
-          rgba(255, 255, 255, 0) 100%
-        );
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.7) 40%, #ffffff 50%, rgba(255, 255, 255, 0.7) 60%, rgba(255, 255, 255, 0) 100%);
         filter: blur(2.5px);
         opacity: 0;
         pointer-events: none;
@@ -235,7 +216,6 @@
         }
       }
 
-      /* The prism logo splitting effect */
       .prism-half {
         transition: transform 700ms cubic-bezier(0.65, 0, 0.35, 1),
           opacity 500ms ease;
@@ -249,29 +229,16 @@
         transform: translateX(16px) rotate(1.5deg);
       }
 
-      /* The colorful glow behind the prism during the animation */
       .dispersion-glow {
         position: absolute;
         inset: -8px;
-        background: radial-gradient(
-            closest-side,
-            rgba(255, 255, 255, 0.25),
-            rgba(255, 255, 255, 0) 70%
-          ),
-          conic-gradient(
-            from 0deg,
-            rgba(0, 123, 255, 0.18),
-            rgba(255, 255, 255, 0.18),
-            rgba(0, 123, 255, 0.18),
-            rgba(0, 123, 255, 0.18)
-          );
+        background: radial-gradient(closest-side, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0) 70%), conic-gradient(from 0deg, rgba(0, 123, 255, 0.18), rgba(255, 255, 255, 0.18), rgba(0, 123, 255, 0.18), rgba(0, 123, 255, 0.18));
         filter: blur(10px);
         opacity: 0;
         transition: opacity 400ms ease;
         pointer-events: none;
       }
 
-      /* Drop shadow and glow effects for the prism SVG */
       #prism-outline svg,
       #prism-filled svg,
       #prism-outline-bottom svg,
@@ -285,8 +252,7 @@
           drop-shadow(0 0 25px rgba(255, 255, 255, 0.7));
       }
 
-      /* --- From logo.css --- */
-      /* 3D perspective effect for the header logo on hover */
+      /* Header logo effects */
       #header-logo {
         perspective: 1000px;
       }
@@ -299,7 +265,6 @@
         transform: rotateY(180deg) rotateX(15deg);
       }
 
-      /* Header logo dispersion glow on hover */
       #header-dispersion {
         opacity: 0;
         transition: opacity 0.4s ease;
@@ -314,14 +279,12 @@
         transform: translateX(1px) rotateY(5deg);
       }
 
-      /* Container for the "Prismabit" wordmark in the header */
       #header-wordmark {
         display: inline-flex;
         gap: 0;
         line-height: 1;
       }
 
-      /* Individual letters in the wordmark for the rainbow hover effect */
       .rainbow-letter {
         position: relative;
         display: inline-block;
@@ -332,23 +295,11 @@
       }
       .rainbow-letter:hover {
         color: transparent;
-        background-image: linear-gradient(
-          90deg,
-          #ff0033,
-          #ff7300,
-          #fffb00,
-          #48ff00,
-          #00ffd5,
-          #002bff,
-          #7a00ff,
-          #ff00ea,
-          #ff0033
-        );
+        background-image: linear-gradient(90deg, #ff0033, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00ea, #ff0033);
         background-size: 200% 100%;
         -webkit-background-clip: text;
         background-clip: text;
-        animation: rainbow-shift 1.2s linear infinite,
-          glow-pulse 1.2s ease-in-out infinite;
+        animation: rainbow-shift 1.2s linear infinite, glow-pulse 1.2s ease-in-out infinite;
         transform: translateY(-1px) scale(1.06);
         cursor: default;
       }
@@ -361,20 +312,17 @@
         }
       }
       @keyframes glow-pulse {
-        0%,
-        100% {
-          text-shadow: 0 0 6px rgba(255, 255, 255, 0.8),
-            0 0 12px rgba(0, 123, 255, 0.5), 0 0 24px rgba(0, 123, 255, 0.45);
+        0%, 100% {
+          text-shadow: 0 0 6px rgba(255, 255, 255, 0.8), 0 0 12px rgba(0, 123, 255, 0.5), 0 0 24px rgba(0, 123, 255, 0.45);
         }
         50% {
-          text-shadow: 0 0 10px rgba(255, 255, 255, 1),
-            0 0 22px rgba(0, 123, 255, 0.6), 0 0 40px rgba(0, 123, 255, 0.55);
+          text-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 22px rgba(0, 123, 255, 0.6), 0 0 40px rgba(0, 123, 255, 0.55);
         }
       }
 
-      /* --- 3D Hero Animation --- */
+      /* 3D Hero Animation */
       #threejs-container {
-        will-change: transform; /* Parallax optimization */
+        will-change: transform;
       }
       #threejs-container canvas {
         cursor: grab;
@@ -383,19 +331,18 @@
         cursor: grabbing;
       }
 
-      /* --- Dynamic Text Animation --- */
+      /* Dynamic Text Animation */
       #dynamic-text {
-        display: inline-block; /* Needed for transform */
+        display: inline-block;
         transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
         will-change: opacity, transform;
       }
 
-      /* --- Sophisticated Services Section Styles --- */
+      /* Services Section Styles */
       #services-sticky-parent {
-        height: 300vh; /* A smaller value makes the scroll animation faster */
+        height: 300vh;
       }
       
-      /* Service icon styling */
       .service-icon-bg {
         background-color: rgba(0, 123, 255, 0.2);
         transition: background-color 0.4s ease;
@@ -421,7 +368,6 @@
         will-change: opacity;
       }
 
-      /* Custom reveal for the sticky services section */
       #services-sticky-parent.reveal-on-scroll {
         transform: translateY(0);
         opacity: 1;
@@ -455,7 +401,7 @@
     </style>
   </head>
   <body class="bg-primary text-secondary">
-    <!-- SPLASH SCREEN: This is the initial loading animation container. It's hidden via JS when done. -->
+    <!-- Splash Screen -->
     <div id="splash-container" class="fixed inset-0 z-50 overflow-hidden">
       <div
         id="splash-top"
@@ -547,8 +493,7 @@
             </div>
             <div
               id="logo-text"
-              class="font-bold text-4xl md:text-5xl text-[#CCD0CF] ml-4 tracking-wider flex"
-              style="white-space: nowrap; overflow: hidden"
+              class="font-bold text-4xl md:text-5xl text-[#CCD0CF] ml-4 tracking-wider flex whitespace-nowrap overflow-hidden"
             ></div>
           </div>
         </div>
@@ -643,8 +588,7 @@
             </div>
             <div
               id="logo-text-bottom"
-              class="font-bold text-4xl md:text-5xl text-[#CCD0CF] ml-4 tracking-wider flex"
-              style="white-space: nowrap; overflow: hidden"
+              class="font-bold text-4xl md:text-5xl text-[#CCD0CF] ml-4 tracking-wider flex whitespace-nowrap overflow-hidden"
             ></div>
           </div>
         </div>
@@ -810,9 +754,9 @@
       </div>
     </header>
 
-    <!-- MAIN CONTENT: This is the main wrapper for all page content below the header. It's hidden until the splash screen finishes. -->
+    <!-- Main Content -->
     <main id="main-content" class="hidden opacity-0">
-      <!-- HERO SECTION: The main introductory section with the 3D animation. -->
+      <!-- Hero Section -->
       <section
         id="hero-section"
         class="relative overflow-hidden bg-primary"
@@ -826,10 +770,7 @@
             <h1
               class="text-4xl md:text-6xl lg:text-6xl font-bold mb-4 leading-tight text-white"
             >
-              <span 
-                class="gradient-text text-white neon-effect" 
-                style="text-shadow: 0 0 2px #ffffff; /* Adjust blur and color for intensity */"
-              >
+              <span class="gradient-text text-white">
                 Crafting Digital Futures
               </span>
             </h1>
@@ -854,18 +795,16 @@
         <div
           id="threejs-container"
           class="hidden lg:block fixed top-0 right-0 w-full lg:w-3/5 h-screen z-0 animate-fade-in-up transition-all duration-1000 ease-out"
-          style="animation-delay: 0.2s"
         ></div>
-        <!-- Background vibe for next page -->
         <div id="next-page-vibe" class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#1a1a1a] to-transparent opacity-0 transition-opacity duration-1000"></div>
       </section>
 
-      <!-- SERVICES SECTION: A summary of the services offered. -->
+      <!-- Services Section -->
       <div id="services-sticky-parent" class="relative reveal-on-scroll">
         <div id="services-sticky-container" class="sticky top-0 h-screen w-full overflow-hidden p-8 sm:p-12">
           <div class="bg-[#1a1a1a] border-2 border-[#333333] rounded-3xl shadow-2xl h-full w-full relative overflow-hidden max-w-6xl mx-auto">
             <div class="container mx-auto px-6 h-full grid grid-cols-1 lg:grid-cols-2 items-center gap-16">
-              <!-- Left: Text Content -->
+              <!-- Text Content -->
               <div id="service-text-content" class="relative z-10">
                 <div class="mb-8">
                   <h2 class="text-base font-semibold uppercase tracking-wider text-white/60">Our Services</h2>
@@ -877,34 +816,33 @@
                 </div>
               </div>
 
-              <!-- Right: Animated Cards -->
+              <!-- Animated Cards -->
               <div class="relative h-full w-full flex items-center justify-center overflow-hidden">
-                <!-- Background Glow -->
                 <div id="service-glow" class="absolute w-[600px] h-[600px] rounded-full opacity-30 blur-3xl transition-all duration-1000" style="background-color: #60A5FA;"></div>
                 
                 <div id="service-cards-wrapper" class="w-full max-w-md h-[32rem] relative">
-                  <!-- Card 1: Web Development -->
+                  <!-- Web Development -->
                   <div class="service-card-animated" data-title="Web Development" data-description="Building responsive, high-performance websites and web applications with modern technologies." data-color="#60A5FA">
                     <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
                       <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 service-icon-bg"><svg class="w-8 h-8 service-icon-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg></div>
                       <h4 class="font-bold text-xl text-white">Web Development</h4>
                     </div>
                   </div>
-                  <!-- Card 2: UI/UX Design -->
+                  <!-- UI/UX Design -->
                   <div class="service-card-animated" data-title="UI/UX Design" data-description="Creating intuitive and beautiful user interfaces that provide a seamless user experience." data-color="#C084FC">
                     <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
                       <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 service-icon-bg"><svg class="w-8 h-8 service-icon-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg></div>
                       <h4 class="font-bold text-xl text-white">UI/UX Design</h4>
                     </div>
                   </div>
-                  <!-- Card 3: Cloud Solutions -->
+                  <!-- Cloud Solutions -->
                   <div class="service-card-animated" data-title="Cloud Solutions" data-description="Leveraging cloud infrastructure for scalable, secure, and reliable application deployment." data-color="#22D3EE">
                     <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
                       <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 service-icon-bg"><svg class="w-8 h-8 service-icon-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.5 4.5 0 0 0 2.25 15Z" /></svg></div>
                       <h4 class="font-bold text-xl text-white">Cloud Solutions</h4>
                     </div>
                   </div>
-                  <!-- Card 4: AI Integration -->
+                  <!-- AI Integration -->
                   <div class="service-card-animated" data-title="AI Integration" data-description="Embedding intelligent features and automation into your products with cutting-edge AI." data-color="#34D399">
                     <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
                       <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 service-icon-bg"><svg class="w-8 h-8 service-icon-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" /></svg></div>
@@ -918,7 +856,7 @@
         </div>
       </div>
 
-      <!-- CLIENT LOGOS SECTION -->
+      <!-- Client Logos Section -->
       <section class="py-20 sm:py-24 bg-primary">
         <div class="container mx-auto px-6">
           <div class="text-center mb-16 reveal-on-scroll">
@@ -927,8 +865,7 @@
             </h2>
           </div>
           <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-8 gap-y-12 items-center">
-            <!-- Logo 1: Placeholder "Quantum" -->
-            <div class="flex justify-center reveal-on-scroll" style="transition-delay: 0ms;">
+            <div class="flex justify-center reveal-on-scroll">
               <svg class="h-8 text-white/60 transition-colors duration-300 hover:text-[#007BFF]" viewBox="0 0 130 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16 32C7.16344 32 0 24.8366 0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16C32 24.8366 24.8366 32 16 32ZM16 27.2C22.1827 27.2 27.2 22.1827 27.2 16C27.2 9.81731 22.1827 4.8 16 4.8C9.81731 4.8 4.8 9.81731 4.8 16C4.8 22.1827 9.81731 27.2 16 27.2Z M24.8889 24.8889L32 32L24.8889 24.8889Z"/>
                 <path d="M41.6 0V32H47.2V18.8H56.8V32H62.4V0H56.8V13.2H47.2V0H41.6Z"/>
@@ -936,16 +873,14 @@
                 <path d="M104.533 0V32H128V26.4H110.133V18.8H126.933V13.2H110.133V5.6H128V0H104.533Z"/>
               </svg>
             </div>
-            <!-- Logo 2: Placeholder "Apex" -->
-            <div class="flex justify-center reveal-on-scroll" style="transition-delay: 100ms;">
+            <div class="flex justify-center reveal-on-scroll">
               <svg class="h-8 text-white/60 transition-colors duration-300 hover:text-[#007BFF]" viewBox="0 0 98 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16 0L0 32H10.6667L16 18.6667L21.3333 32H32L16 0Z"/>
                 <path d="M48.5333 0L40.8 32H47.0667L48.6667 25.2H59.0667L60.6667 32H66.9333L59.2 0H48.5333ZM53.8667 5.46667L57.2 20H50.5333L53.8667 5.46667Z"/>
                 <path d="M74.4 0V32H98V26.4H80V0H74.4Z"/>
               </svg>
             </div>
-            <!-- Logo 3: Placeholder "Vertex" -->
-            <div class="flex justify-center reveal-on-scroll" style="transition-delay: 200ms;">
+            <div class="flex justify-center reveal-on-scroll">
               <svg class="h-8 text-white/60 transition-colors duration-300 hover:text-[#007BFF]" viewBox="0 0 110 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M16 0L0 32H8L16 16L24 32H32L16 0Z"/>
                 <path d="M39.4667 0V32H63.4667V26.4H45.0667V18.8H62.3333V13.2H45.0667V5.6H63.4667V0H39.4667Z"/>
@@ -953,8 +888,7 @@
                 <path d="M92.8 0V32H98.4V18.8H108V32H113.6V0H108V13.2H98.4V0H92.8Z"/>
               </svg>
             </div>
-            <!-- Logo 4: Placeholder "Orbit" -->
-            <div class="flex justify-center reveal-on-scroll" style="transition-delay: 300ms;">
+            <div class="flex justify-center reveal-on-scroll">
               <svg class="h-9 text-white/60 transition-colors duration-300 hover:text-[#007BFF]" viewBox="0 0 104 36" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M18 36C8.05887 36 0 27.9411 0 18C0 8.05887 8.05887 0 18 0C27.9411 0 36 8.05887 36 18C36 27.9411 27.9411 36 18 36ZM18 30C24.6274 30 30 24.6274 30 18C30 11.3726 24.6274 6 18 6C11.3726 6 6 11.3726 6 18C6 24.6274 11.3726 30 18 30Z"/>
                 <path d="M44.8 0V32H50.4V18.8H60V32H65.6V0H60V13.2H50.4V0H44.8Z"/>
@@ -962,8 +896,7 @@
                 <path d="M104 0V32H109.6V5.6H120V0H104Z"/>
               </svg>
             </div>
-            <!-- Logo 5: Placeholder "Nexus" -->
-            <div class="flex justify-center reveal-on-scroll" style="transition-delay: 400ms;">
+            <div class="flex justify-center reveal-on-scroll">
               <svg class="h-7 text-white/60 transition-colors duration-300 hover:text-[#007BFF]" viewBox="0 0 108 28" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0V28H5.33333V15.4L16 28H22.4L11.2 14L22.4 0H16L5.33333 12.6V0H0Z"/>
                 <path d="M30.4 0V28H54.4V23.1H35.7333V16.8H52.8V11.2H35.7333V4.9H54.4V0H30.4Z"/>
@@ -971,8 +904,7 @@
                 <path d="M86.4 0V28H91.7333V15.4L102.4 28H108.8L97.6 14L108.8 0H102.4L91.7333 12.6V0H86.4Z"/>
               </svg>
             </div>
-            <!-- Logo 6: Placeholder "Strata" -->
-            <div class="flex justify-center reveal-on-scroll" style="transition-delay: 500ms;">
+            <div class="flex justify-center reveal-on-scroll">
               <svg class="h-8 text-white/60 transition-colors duration-300 hover:text-[#007BFF]" viewBox="0 0 108 32" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 5.6V0H26.6667V5.6H16V32H10.6667V5.6H0Z"/>
                 <path d="M43.2 0L35.4667 32H41.7333L43.3333 25.2H53.7333L55.3333 32H61.6L53.8667 0H43.2ZM48.5333 5.46667L51.8667 20H45.2L48.5333 5.46667Z"/>
@@ -984,7 +916,7 @@
         </div>
       </section>
 
-      <!-- FEATURED WORK SECTION: A preview of key projects. -->
+      <!-- Featured Work Section -->
       <section class="py-20 sm:py-32 bg-primary">
         <div class="container mx-auto px-6">
           <div class="text-center mb-16 reveal-on-scroll">
@@ -1005,10 +937,7 @@
                 class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
               />
             </div>
-            <div
-              class="rounded-2xl overflow-hidden group reveal-on-scroll border border-white/20"
-              style="transition-delay: 150ms"
-            >
+            <div class="rounded-2xl overflow-hidden group reveal-on-scroll border border-white/20">
               <img
                 src="https://placehold.co/800x600/11212D/4A5C6A?text=Project+Beta"
                 alt="The user interface for the Project Beta mobile application."
@@ -1019,7 +948,7 @@
         </div>
       </section>
 
-      <!-- TESTIMONIALS SECTION: Shows what clients are saying. -->
+      <!-- Testimonials Section -->
       <section class="py-20 sm:py-32 bg-primary">
         <div class="container mx-auto px-6">
           <div class="text-center mb-16 reveal-on-scroll">
@@ -1031,7 +960,6 @@
             </p>
           </div>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Testimonial 1 -->
             <div
               class="bg-primary border border-white/20 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow flex flex-col"
             >
@@ -1057,11 +985,7 @@
               </div>
             </div>
 
-            <!-- Testimonial 2 -->
-            <div
-              class="bg-primary border border-white/20 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow flex flex-col"
-              style="transition-delay: 150ms"
-            >
+            <div class="bg-primary border border-white/20 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow flex flex-col">
               <div class="text-7xl font-serif text-white/20 leading-none">"</div>
               <blockquote
                 class="text-white/80 italic mb-6 -mt-4 flex-grow"
@@ -1086,7 +1010,7 @@
         </div>
       </section>
 
-      <!-- CALL TO ACTION (CTA) SECTION: Encourages users to get in touch. -->
+      <!-- Call to Action Section -->
       <section
         class="py-20 sm:py-32 bg-gradient-to-br from-[#101010] via-[#000000] to-[#101010] text-white"
       >
@@ -1106,7 +1030,7 @@
         </div>
       </section>
 
-      <!-- FOOTER SECTION: Contains navigation, social links, and copyright info. -->
+      <!-- Footer Section -->
       <footer class="bg-primary text-white py-16">
         <div class="container mx-auto px-6">
           <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -1262,10 +1186,10 @@
       </footer>
     </main>
 
-    <!-- Tooltip for 3D interactive points -->
+    <!-- 3D Tooltip -->
     <div id="three-tooltip" class="absolute z-20 hidden rounded-md bg-black/50 backdrop-blur-sm px-3 py-1 text-sm font-semibold text-white shadow-lg pointer-events-none transition-opacity duration-200"></div>
 
-    <!-- WhatsApp Floating Action Button -->
+    <!-- WhatsApp FAB -->
     <a
       href="https://wa.me/917099277696"
       target="_blank"
@@ -1287,9 +1211,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // =================================================================
-        // --- SPLASH SCREEN LOGIC ---
-        // =================================================================
+        // Splash Screen Logic
         const urlParams = new URLSearchParams(window.location.search);
         const skipSplash = urlParams.get("nosplash") === "true";
         const splashContainer = document.getElementById("splash-container");
@@ -1306,8 +1228,7 @@
           headerNav.style.opacity = "1";
           setTimeout(initThreeJS, 100); // Initialize 3D animation after a short delay
         } else {
-          // --- Run the full splash animation sequence ---
-          // This is a complex, timed sequence of animations.
+          // Run the full splash animation sequence
           const logoGroupTop = document.getElementById("logo-group-top");
           const logoGroupBottom = document.getElementById("logo-group-bottom");
           const logoText = document.getElementById("logo-text");
@@ -1340,7 +1261,7 @@
           logoText.style.maxWidth = "0";
           logoTextBottom.style.maxWidth = "0";
 
-          // Sequence Step 1: Start after a brief pause (800ms)
+          // Step 1: Start after a brief pause
           setTimeout(() => {
             lightRay.style.animation =
               "raySweep 900ms cubic-bezier(0.65,0,0.35,1) forwards";
@@ -1353,7 +1274,7 @@
             prismOutline.classList.add("glowing-intensely");
             prismOutlineBottom.classList.add("glowing-intensely");
 
-            // Sequence Step 2: Split the prism (200ms after step 1)
+            // Step 2: Split the prism
             setTimeout(() => {
               prismLeft.classList.add("split");
               prismRight.classList.add("split");
@@ -1361,7 +1282,7 @@
               prismRightBottom.classList.add("split");
 
               setTimeout(() => {
-                // Sequence Step 3: Swap outline prism for filled prism and reveal text (350ms after step 2)
+                // Step 3: Swap outline prism for filled prism and reveal text
                 prismOutline.style.opacity = "0";
                 prismFilled.style.opacity = "1";
                 prismOutlineBottom.style.opacity = "0";
@@ -1371,7 +1292,7 @@
                 prismOutline.classList.remove("glowing-intensely");
                 prismOutlineBottom.classList.remove("glowing-intensely");
 
-                // FLIP technique to animate the logo text without layout shifts
+                // FLIP technique to animate the logo text
                 const firstRectTop = logoGroupTop.getBoundingClientRect();
                 const firstRectBottom = logoGroupBottom.getBoundingClientRect();
                 logoText.style.maxWidth = "300px";
@@ -1405,7 +1326,7 @@
             }, 200);
           }, 800);
 
-          // Sequence Step 4: Hide the splash screen and show the main content (3500ms total)
+          // Step 4: Hide the splash screen and show the main content
           setTimeout(() => {
             const splashTop = document.getElementById("splash-top");
             const splashBottom = document.getElementById("splash-bottom");
@@ -1435,9 +1356,7 @@
           }, 3500);
         }
 
-         // =================================================================
-         // --- DYNAMIC SCROLL EFFECTS ---
-         // =================================================================
+         // Dynamic Scroll Effects
          const heroSection = document.getElementById("hero-section");
          const threeContainer = document.getElementById("threejs-container");
          const nextPageVibe = document.getElementById("next-page-vibe");
@@ -1491,9 +1410,7 @@
            ticking = false;
          }
 
-        // =================================================================
-        // --- SOPHISTICATED SERVICES SCROLL ANIMATION ---
-        // =================================================================
+        // Services Scroll Animation
         const servicesStickyParent = document.getElementById('services-sticky-parent');
         let lastActiveServiceIndex = -1;
         let currentAnimationValue = 0; // This will be our smoothed value, from 0 to (numCards - 1)
@@ -1579,7 +1496,6 @@
           // No need to change background color on scroll
         }
 
-         // Use requestAnimationFrame to avoid performance issues on scroll
          window.addEventListener("scroll", () => {
            currentScrollY = window.scrollY;
            if (!ticking) {
@@ -1593,7 +1509,6 @@
            }
          });
 
-         // Continuous smooth zoom animation
          function animateZoom() {
            if (threeJSCamera) {
              // Smooth interpolation to target zoom level
@@ -1603,17 +1518,15 @@
            requestAnimationFrame(animateZoom);
          }
          
-         // Start the continuous animation
          animateZoom();
 
 
-        // --- 3D HERO ANIMATION (THREE.JS) ---
-        // =================================================================
+        // 3D Hero Animation (Three.js)
         function initThreeJS() {
           const container = document.getElementById("threejs-container");
           if (!container) return;
 
-          // --- Core Three.js Components & State Variables ---
+          // Core Three.js Components & State Variables
           let scene,
             camera,
             renderer,
@@ -1630,12 +1543,12 @@
           let rotationSpeedMultiplier = 1.0;
           let targetRotationSpeed = 1.0;
 
-          // --- Physics & Animation Variables ---
+          // Physics & Animation Variables
           const clock = new THREE.Clock();
           let rotationVelocity = new THREE.Vector2(0, 0); // Speed of rotation for inertia
           const dampingFactor = 0.95; // Friction effect.
 
-          // --- Helper Functions ---
+          // Helper Functions
           function createGlowTexture() {
             const canvas = document.createElement('canvas');
             canvas.width = 128;
@@ -1736,7 +1649,7 @@
             }
           }
 
-          // --- Setup: Scene, Camera, Renderer ---
+          // Setup: Scene, Camera, Renderer
           scene = new THREE.Scene();
           modelGroup = new THREE.Group();
           scene.add(modelGroup);
@@ -1760,7 +1673,7 @@
           raycaster = new THREE.Raycaster();
           tooltipElement = document.getElementById("three-tooltip");
 
-          // --- Object 1: Central Icosahedron ---
+          // Object 1: Central Icosahedron
           const geometry = new THREE.IcosahedronGeometry(1.8, 1);
           const material = new THREE.MeshStandardMaterial({
             color: 0xffffff,
@@ -1771,7 +1684,7 @@
           icosahedron = new THREE.Mesh(geometry, material);
           modelGroup.add(icosahedron);
 
-          // --- Object 2: Interactive Square Particles ---
+          // Object 2: Interactive Square Particles
           interactiveSquares = [];
           const squareLabels = [
             "Web Development",
@@ -1833,14 +1746,14 @@
             interactiveSquares.push(square);
           });
 
-          // --- Lighting ---
+          // Lighting
           const ambientLight = new THREE.AmbientLight(0xffffff, 0.7);
           scene.add(ambientLight);
           const pointLight = new THREE.PointLight(0xffffff, 1.2);
           pointLight.position.set(5, 5, 5);
           scene.add(pointLight);
 
-          // --- Animation Loop ---
+          // Animation Loop
           const animate = () => {
             requestAnimationFrame(animate);
             const deltaTime = clock.getDelta();
@@ -1888,7 +1801,7 @@
           };
           animate();
 
-          // --- Event Listeners ---
+          // Event Listeners
           window.addEventListener("resize", () => {
             camera.aspect = container.clientWidth / container.clientHeight;
             camera.updateProjectionMatrix();
@@ -1932,10 +1845,7 @@
           });
         }
 
-        // =================================================================
-        // --- DYNAMIC TEXT CHANGER ---
-        // =================================================================
-        // This script cycles through a list of phrases for the hero section.
+        // Dynamic Text Changer
         const dynamicTextElement = document.getElementById("dynamic-text");
         if (dynamicTextElement) {
           const phrases = [
