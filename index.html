@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- ========================================================= -->
+    <!-- HEAD: Meta, SEO, assets, inline styles, and structured data -->
+    <!-- ========================================================= -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <!-- Meta & SEO -->
     <title>Prismabit | Crafting Digital Futures</title>
     <meta
       name="description"
@@ -37,17 +41,23 @@
       name="twitter:image"
       content="https://www.prismabit.com/assets/images/twitter-image.jpg"
     />
+    <!-- External Libraries -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
       rel="stylesheet"
     />
+
+    <!-- Site Assets -->
     <link rel="stylesheet" href="assets/css/common.css" />
     <script src="assets/js/main.js" defer></script>
 
+    <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -67,6 +77,7 @@
       }
     </script>
 
+    <!-- Inline Styles: keep lightweight, component-scoped where possible -->
     <style>
       :root {
         color-scheme: light;
@@ -402,7 +413,22 @@
   </head>
   
   <body class="bg-primary text-secondary">
-    <!-- Splash Screen -->
+    <!-- ========================================================= -->
+    <!-- PAGE STRUCTURE OVERVIEW (Table of Contents)                -->
+    <!-- 1) Splash Screen                                           -->
+    <!-- 2) Header Navigation                                       -->
+    <!-- 3) Main Content                                            -->
+    <!--    3.1) Hero Section                                       -->
+    <!--    3.2) Services Section (sticky, animated cards)          -->
+    <!--    3.3) Client Logos                                       -->
+    <!--    3.4) Featured Work                                      -->
+    <!--    3.5) Testimonials                                       -->
+    <!-- 4) Footer                                                  -->
+    <!-- 5) 3D Tooltip                                              -->
+    <!-- 6) WhatsApp Floating Action Button                         -->
+    <!-- 7) Inline Script: splash, scroll FX, Three.js, text cycle  -->
+    <!-- ========================================================= -->
+    <!-- =============== 1) Splash Screen START =================== -->
     <div id="splash-container" class="fixed inset-0 z-50 overflow-hidden">
       <div
         id="splash-top"
@@ -595,7 +621,9 @@
         </div>
       </div>
     </div>
+    <!-- ================ 1) Splash Screen END ==================== -->
 
+    <!-- ============= 2) Header Navigation START ================ -->
     <header
       id="header-nav"
       class="fixed top-0 left-0 right-0 z-40 bg-primary/80 backdrop-blur-sm border-b border-white/20 transition-all duration-500 ease-in-out hidden"
@@ -754,10 +782,11 @@
         </div>
       </div>
     </header>
+    <!-- ============== 2) Header Navigation END ================= -->
 
-    <!-- Main Content -->
+    <!-- ================ 3) Main Content START =================== -->
     <main id="main-content" class="hidden opacity-0">
-      <!-- Hero Section -->
+      <!-- --------- 3.1) Hero Section START --------- -->
       <section
         id="hero-section"
         class="relative overflow-hidden bg-primary"
@@ -799,8 +828,9 @@
         ></div>
         <div id="next-page-vibe" class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-primary to-transparent opacity-0 transition-opacity duration-1000"></div>
       </section>
+      <!-- ---------- 3.1) Hero Section END ---------- -->
 
-      <!-- Services Section -->
+      <!-- -------- 3.2) Services Section START ------- -->
       <div id="services-sticky-parent" class="relative reveal-on-scroll">
         <div id="services-sticky-container" class="w-full overflow-hidden p-8 sm:p-12">
           <div class="bg-[#1a1a1a] border-2 border-[#333333] rounded-3xl shadow-2xl h-full w-full relative overflow-hidden max-w-6xl mx-auto">
@@ -851,8 +881,9 @@
           </div>
         </div>
       </div>
+      <!-- --------- 3.2) Services Section END -------- -->
 
-      <!-- Client Logos Section -->
+      <!-- ------- 3.3) Client Logos Section START ----- -->
       <section class="py-20 sm:py-24 bg-primary">
         <div class="container mx-auto px-6">
           <div class="text-center mb-16 reveal-on-scroll">
@@ -911,8 +942,9 @@
           </div>
         </div>
       </section>
+      <!-- -------- 3.3) Client Logos Section END ------ -->
 
-      <!-- Featured Work Section -->
+      <!-- ------- 3.4) Featured Work Section START ---- -->
       <section class="py-20 sm:py-32 bg-primary">
         <div class="container mx-auto px-6">
           <div class="text-center mb-16 reveal-on-scroll">
@@ -943,8 +975,9 @@
           </div>
         </div>
       </section>
+      <!-- -------- 3.4) Featured Work Section END ----- -->
 
-      <!-- Testimonials Section -->
+      <!-- ------ 3.5) Testimonials Section START ------ -->
       <section class="py-20 sm:py-32 bg-primary">
         <div class="container mx-auto px-6">
           <div class="text-center mb-16 reveal-on-scroll">
@@ -1005,8 +1038,9 @@
           </div>
         </div>
       </section>
+      <!-- ------- 3.5) Testimonials Section END ------- -->
 
-      <!-- Footer Section -->
+      <!-- ---------------- 4) Footer START ---------------- -->
       <footer class="bg-[#0a0a0a] text-white relative overflow-hidden">
         <!-- Subtle Grain Effect -->
         <div class="absolute inset-0 pointer-events-none">
@@ -1211,12 +1245,14 @@
         </div>
         </div>
       </footer>
+      <!-- ----------------- 4) Footer END ----------------- -->
     </main>
 
-    <!-- 3D Tooltip -->
+    <!-- ================= 5) 3D Tooltip START ================== -->
     <div id="three-tooltip" class="absolute z-20 hidden rounded-md bg-black/50 backdrop-blur-sm px-3 py-1 text-sm font-semibold text-white shadow-lg pointer-events-none transition-opacity duration-200"></div>
+    <!-- ================== 5) 3D Tooltip END =================== -->
 
-    <!-- WhatsApp FAB -->
+    <!-- ========= 6) WhatsApp Floating Button START ========== -->
     <a
       href="https://wa.me/917099277696"
       target="_blank"
@@ -1234,10 +1270,19 @@
         />
       </svg>
     </a>
+    <!-- =========== 6) WhatsApp Floating Button END =========== -->
 
+    <!-- ============== 7) Inline Script START ================== -->
     <script>
+      // High-level responsibilities:
+      // - Splash sequence (with logo split/reveal)
+      // - Page initialization when nosplash=true
+      // - Scroll-driven effects (navbar, hero → services transitions)
+      // - Services sticky cards animation
+      // - Three.js hero background (interactive)
+      // - Dynamic headline text cycler
       document.addEventListener("DOMContentLoaded", () => {
-        // Splash Screen Logic
+        // ===== Splash Screen Logic =====
         const urlParams = new URLSearchParams(window.location.search);
         const skipSplash = urlParams.get("nosplash") === "true";
         const splashContainer = document.getElementById("splash-container");
@@ -1383,7 +1428,7 @@
           }, 3500);
         }
 
-         // Dynamic Scroll Effects
+         // ===== Dynamic Scroll Effects =====
          const heroSection = document.getElementById("hero-section");
          const threeContainer = document.getElementById("threejs-container");
          const nextPageVibe = document.getElementById("next-page-vibe");
@@ -1437,6 +1482,87 @@
            ticking = false;
          }
 
+        // Services Scroll Animation
+        const servicesStickyParent = document.getElementById('services-sticky-parent');
+        let lastActiveServiceIndex = -1;
+        let currentAnimationValue = 0; // This will be our smoothed value, from 0 to (numCards - 1)
+        const servicesLerpFactor = 0.08; // Controls smoothness. Smaller = smoother
+
+        function updateServicesAnimation() {
+          if (!servicesStickyParent) return;
+
+          const textTitle = document.getElementById('animated-service-title');
+          const textDesc = document.getElementById('animated-service-description');
+          const cards = Array.from(document.querySelectorAll('.service-card-animated'));
+          const glow = document.getElementById('service-glow');
+          const numCards = cards.length;
+
+          const rect = servicesStickyParent.getBoundingClientRect();
+          const scrollableHeight = servicesStickyParent.offsetHeight - window.innerHeight;
+          
+          // Calculate scroll progress within the sticky container (0 to 1)
+          let targetScrollProgress = -rect.top / scrollableHeight;
+          targetScrollProgress = Math.max(0, Math.min(1, targetScrollProgress));
+
+          // Map the scroll progress [0, 1] directly to an animation value [0, numCards - 1]
+          const targetAnimationValue = targetScrollProgress * (numCards - 1);
+
+          // Smooth the animation value using linear interpolation (lerp)
+          currentAnimationValue += (targetAnimationValue - currentAnimationValue) * servicesLerpFactor;
+
+          // Determine the active card by rounding the current animation value.
+          // Using Math.round() is more robust and ensures the last card becomes active.
+          const activeIndex = Math.min(numCards - 1, Math.round(currentAnimationValue));
+
+          // Animate each card based on its position relative to the active index
+          cards.forEach((card, i) => {
+            const innerCard = card.firstElementChild;
+            // The distance is the card's index minus the current animation value.
+            // This makes the card at the current animation value have a distance of 0 (centered).
+            const distance = i - currentAnimationValue;
+            const scale = Math.max(0, 1 - Math.abs(distance) * 0.2);
+            const opacity = Math.max(0, 1 - Math.abs(distance) * 0.5);
+            const zIndex = numCards - Math.abs(Math.round(distance));
+
+            // When a card is centered (distance is close to 0), make its background opaque.
+            // It smoothly transitions back to semi-transparent as it moves away.
+            // The alpha goes from 1 (opaque) down to 0.6 (the original transparency).
+            const bgAlpha = 1 - Math.min(1, Math.abs(distance) * 2) * 0.4; // 1 down to 0.6
+            innerCard.style.backgroundColor = `rgba(37, 55, 69, ${bgAlpha})`; // #253745
+
+            const translateX = distance * 80; // Move cards by 80% of their width
+            card.style.transform = `translateX(${translateX}%) scale(${scale})`;
+            card.style.opacity = opacity;
+            card.style.zIndex = zIndex;
+          });
+
+          // Update text content and glow with a fade effect if the active card has changed
+          if (activeIndex !== lastActiveServiceIndex) {
+            const activeCard = cards[activeIndex];
+            textTitle.style.opacity = 0;
+            textDesc.style.opacity = 0;
+            
+            setTimeout(() => {
+              textTitle.textContent = activeCard.dataset.title;
+              textDesc.textContent = activeCard.dataset.description;
+              glow.style.backgroundColor = activeCard.dataset.color;
+              textTitle.style.color = activeCard.dataset.color;
+              textTitle.style.opacity = 1;
+              textDesc.style.opacity = 1;
+              
+              // Update service icon colors
+              const iconBg = activeCard.querySelector('.service-icon-bg');
+              const iconColor = activeCard.querySelector('.service-icon-color');
+              if (iconBg && iconColor) {
+                iconBg.style.backgroundColor = `${activeCard.dataset.color}20`;
+                iconColor.style.color = activeCard.dataset.color;
+              }
+            }, 400); // Match transition duration
+
+            lastActiveServiceIndex = activeIndex;
+          }
+        }
+
         function updateNavbar() {
           // Navbar styling is now handled by CSS classes in main.js
           // No need to change background color on scroll
@@ -1466,7 +1592,7 @@
          animateZoom();
 
 
-        // 3D Hero Animation (Three.js)
+        // ===== 3D Hero Animation (Three.js) =====
         function initThreeJS() {
           const container = document.getElementById("threejs-container");
           if (!container) return;
@@ -1791,7 +1917,7 @@
           });
         }
 
-        // Dynamic Text Changer
+        // ===== Dynamic Text Changer =====
         const dynamicTextElement = document.getElementById("dynamic-text");
         if (dynamicTextElement) {
           const phrases = [
@@ -1843,5 +1969,6 @@
         });
       });
     </script>
+    <!-- =============== 7) Inline Script END =================== -->
   </body>
 </html>          
