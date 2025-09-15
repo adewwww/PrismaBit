@@ -1659,6 +1659,7 @@
                 );
                 hoveredObject.scale.set(1.5, 1.5, 1.5);
                 hoveredObject.userData.glow.visible = true; // Show new glow
+                hoveredObject.userData.glow.material.color.set(hoveredObject.userData.hoverColor); // Set new glow color
 
                 tooltipElement.textContent = hoveredObject.userData.label;
                 tooltipElement.classList.remove("hidden");
@@ -1743,7 +1744,7 @@
               map: glowTexture,
               color: 0xffffff,
               transparent: true,
-              blending: THREE.AdditiveBlending,
+              blending: THREE.NormalBlending,
           });
 
           const fibonacciPoints = getFibonacciSpherePoints(
