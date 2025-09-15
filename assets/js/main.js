@@ -65,10 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
       // You can adjust the `bg-white/10` (10% opacity) and `backdrop-blur-xl` (extra large blur) classes here.
       if (scrollTop > 50) {
         headerNav.classList.add('bg-[#06141B]/10', 'backdrop-blur-xl', 'shadow-md', 'border-[#4A5C6A]/20');
-        headerNav.classList.remove('bg-[#11212D]/80', 'backdrop-blur-sm', 'border-[#253745]');
+        headerNav.classList.remove('bg-[#101010]/80', 'backdrop-blur-sm', 'border-white/20');
       } else {
         // Revert to the default, less transparent style when at the top of the page.
-        headerNav.classList.add('bg-[#11212D]/80', 'backdrop-blur-sm', 'border-[#253745]');
+        headerNav.classList.add('bg-[#101010]/80', 'backdrop-blur-sm', 'border-white/20');
         headerNav.classList.remove('bg-[#06141B]/10', 'backdrop-blur-xl', 'shadow-md', 'border-[#4A5C6A]/20');
       }
 
@@ -92,7 +92,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // This uses the Intersection Observer API to add a 'visible' class to elements as they enter the viewport.
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) entry.target.classList.add('visible');
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Special handling for the floating card section
+        if (entry.target.id === 'services-sticky-parent') {
+          entry.target.style.transform = 'scale(1)';
+          entry.target.style.opacity = '1';
+        }
+      }
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));

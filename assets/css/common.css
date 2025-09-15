@@ -1,11 +1,24 @@
 /* ==========================================================================
    Base & Global Styles
    ========================================================================== */
-:root { color-scheme: dark; }
-body {
-  font-family: 'Inter', sans-serif;
-  background-color: #11212D;
-}
+ :root {
+   --primary-color: #0b0b0b;
+   --secondary-color: #ffffff;
+   --tertiary-color: #007BFF;
+   --text-primary: #ffffff;
+   --text-secondary: #CCD0CF;
+   --text-muted: #9BA8AB;
+   --border-color: rgba(255, 255, 255, 0.2);
+   --bg-overlay: rgba(16, 16, 16, 0.8);
+   --floating-card-bg: #1a1a1a;
+   --floating-card-border: #333333;
+   color-scheme: dark;
+ }
+ body {
+   font-family: 'Inter', sans-serif;
+   background-color: var(--primary-color);
+   color: var(--text-primary);
+ }
 
 /* ==========================================================================
    Animations & Transitions
@@ -35,8 +48,52 @@ body {
 }
 
 /* Helper class to create gradient text */
-.gradient-text {
-  color: #CCD0CF;
+ .gradient-text {
+   color: var(--text-primary);
+ }
+
+/* ==========================================================================
+   Parallax Zoom Effect for Index Page
+   ========================================================================== */
+
+.parallax-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.parallax-element {
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Parallax zoom effect */
+.zoom-parallax {
+  transform-origin: center center;
+  transition: transform 0.1s ease-out;
+}
+
+/* Enhanced 3D container for parallax */
+#threejs-container.parallax-enhanced {
+  transform-origin: center center;
+  will-change: transform;
+}
+
+/* Floating card zoom-in animation */
+#services-sticky-parent {
+  transform: scale(0.95);
+  opacity: 0;
+  transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), 
+              opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+#services-sticky-parent.visible {
+  transform: scale(1);
+  opacity: 1;
 }
 
 /* ==========================================================================
@@ -79,19 +136,19 @@ body {
   100% { background-position: 200% 50%; }
 }
 @keyframes glow-pulse {
-  0%,100% { 
-    text-shadow: 
-      0 0 6px rgba(204, 208, 207, 0.8),
-      0 0 12px rgba(155, 168, 171, 0.5),
-      0 0 24px rgba(74, 92, 106, 0.45); 
-  }
-  50% { 
-    text-shadow:
-      0 0 10px rgba(204, 208, 207, 1),
-      0 0 22px rgba(155, 168, 171, 0.6),
-      0 0 40px rgba(37, 55, 69, 0.55); 
-  }
-}
+   0%,100% {
+     text-shadow:
+       0 0 6px rgba(255, 255, 255, 0.8),
+       0 0 12px rgba(0, 123, 255, 0.5),
+       0 0 24px rgba(0, 123, 255, 0.45);
+   }
+   50% {
+     text-shadow:
+       0 0 10px rgba(255, 255, 255, 1),
+       0 0 22px rgba(0, 123, 255, 0.6),
+       0 0 40px rgba(0, 123, 255, 0.55);
+   }
+ }
 
 #header-wordmark { 
   display: inline-flex; 
@@ -100,14 +157,14 @@ body {
 }
 
 /* Individual letters of the wordmark */
-.rainbow-letter {
-  position: relative;
-  display: inline-block;
-  font-weight: 700;
-  color: #CCD0CF;
-  transition: transform .18s ease, filter .18s ease, color .18s ease;
-  will-change: transform, filter;
-}
+ .rainbow-letter {
+   position: relative;
+   display: inline-block;
+   font-weight: 700;
+   color: var(--secondary-color);
+   transition: transform .18s ease, filter .18s ease, color .18s ease;
+   will-change: transform, filter;
+ }
 
 /* The hover state that triggers the rainbow animation */
 .rainbow-letter:hover {
@@ -132,16 +189,16 @@ body {
 }
 
 /* The underline that appears on hover */
-.nav-link::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: #9BA8AB;
-  transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1);
-}
+ .nav-link::after {
+   content: '';
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 0;
+   height: 2px;
+   background-color: var(--tertiary-color);
+   transition: width 0.3s cubic-bezier(0.65, 0, 0.35, 1);
+ }
 
 .nav-link:hover::after {
   width: 100%;
