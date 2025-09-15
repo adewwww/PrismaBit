@@ -340,7 +340,7 @@
 
       /* Services Section Styles */
       #services-sticky-parent {
-        height: 300vh;
+        height: auto;
       }
       
       .service-icon-bg {
@@ -354,18 +354,19 @@
       #services-sticky-container {
         will-change: transform;
       }
-      .service-card-animated {
-        will-change: transform, opacity;
-        transform-origin: center;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-      }
       #service-text-content h3, #service-text-content p {
         transition: opacity 0.4s ease-in-out;
         will-change: opacity;
+      }
+
+      /* Static Service Card Hover Effects */
+      .service-card .service-card-inner {
+        transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      }
+      .service-card:hover .service-card-inner {
+        transform: translateY(-6px);
+        border-color: var(--glow-color);
+        box-shadow: 0 10px 30px -15px var(--glow-color);
       }
 
       #services-sticky-parent.reveal-on-scroll {
@@ -801,50 +802,45 @@
 
       <!-- Services Section -->
       <div id="services-sticky-parent" class="relative reveal-on-scroll">
-        <div id="services-sticky-container" class="sticky top-0 h-screen w-full overflow-hidden p-8 sm:p-12">
+        <div id="services-sticky-container" class="w-full overflow-hidden p-8 sm:p-12">
           <div class="bg-[#1a1a1a] border-2 border-[#333333] rounded-3xl shadow-2xl h-full w-full relative overflow-hidden max-w-6xl mx-auto">
-            <div class="container mx-auto px-6 h-full grid grid-cols-1 lg:grid-cols-2 items-center gap-16">
+            <div class="container mx-auto px-6 py-16 sm:py-24 grid grid-cols-1 lg:grid-cols-2 items-center gap-16">
               <!-- Text Content -->
               <div id="service-text-content" class="relative z-10">
                 <div class="mb-8">
                   <h2 class="text-base font-semibold uppercase tracking-wider text-white/60">Our Services</h2>
                   <p class="mt-2 text-3xl md:text-4xl font-bold gradient-text">Our Spectrum of Services</p>
                 </div>
-                <div class="min-h-[160px]">
-                  <h3 id="animated-service-title" class="text-2xl font-bold text-[#CCD0CF] mb-3"></h3>
-                  <p id="animated-service-description" class="text-[#9BA8AB] leading-relaxed"></p>
-                </div>
+                <p class="text-[#9BA8AB] leading-relaxed">We offer a comprehensive suite of services to bring your digital projects to life, from initial concept and design to development, deployment, and ongoing support.</p>
               </div>
 
               <!-- Animated Cards -->
-              <div class="relative h-full w-full flex items-center justify-center overflow-hidden">
-                <div id="service-glow" class="absolute w-[600px] h-[600px] rounded-full opacity-30 blur-3xl transition-all duration-1000" style="background-color: #60A5FA;"></div>
-                
-                <div id="service-cards-wrapper" class="w-full max-w-md h-[32rem] relative">
+              <div class="w-full flex items-center justify-center">
+                <div id="service-cards-wrapper" class="w-full grid grid-cols-2 gap-6">
                   <!-- Web Development -->
-                  <div class="service-card-animated" data-title="Web Development" data-description="Building responsive, high-performance websites and web applications with modern technologies." data-color="#60A5FA">
-                    <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                  <div class="service-card" data-title="Web Development" data-description="Building responsive, high-performance websites and web applications with modern technologies." data-color="#60A5FA">
+                    <div class="service-card-inner bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
                       <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 service-icon-bg"><svg class="w-8 h-8 service-icon-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg></div>
                       <h4 class="font-bold text-xl text-white">Web Development</h4>
                     </div>
                   </div>
                   <!-- UI/UX Design -->
-                  <div class="service-card-animated" data-title="UI/UX Design" data-description="Creating intuitive and beautiful user interfaces that provide a seamless user experience." data-color="#C084FC">
-                    <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                  <div class="service-card" data-title="UI/UX Design" data-description="Creating intuitive and beautiful user interfaces that provide a seamless user experience." data-color="#C084FC">
+                    <div class="service-card-inner bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
                       <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 service-icon-bg"><svg class="w-8 h-8 service-icon-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg></div>
                       <h4 class="font-bold text-xl text-white">UI/UX Design</h4>
                     </div>
                   </div>
                   <!-- Cloud Solutions -->
-                  <div class="service-card-animated" data-title="Cloud Solutions" data-description="Leveraging cloud infrastructure for scalable, secure, and reliable application deployment." data-color="#22D3EE">
-                    <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                  <div class="service-card" data-title="Cloud Solutions" data-description="Leveraging cloud infrastructure for scalable, secure, and reliable application deployment." data-color="#22D3EE">
+                    <div class="service-card-inner bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
                       <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 service-icon-bg"><svg class="w-8 h-8 service-icon-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.5 4.5 0 0 0 2.25 15Z" /></svg></div>
                       <h4 class="font-bold text-xl text-white">Cloud Solutions</h4>
                     </div>
                   </div>
                   <!-- AI Integration -->
-                  <div class="service-card-animated" data-title="AI Integration" data-description="Embedding intelligent features and automation into your products with cutting-edge AI." data-color="#34D399">
-                    <div class="bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                  <div class="service-card" data-title="AI Integration" data-description="Embedding intelligent features and automation into your products with cutting-edge AI." data-color="#34D399">
+                    <div class="service-card-inner bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
                       <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 service-icon-bg"><svg class="w-8 h-8 service-icon-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" /></svg></div>
                       <h4 class="font-bold text-xl text-white">AI Integration</h4>
                     </div>
@@ -961,7 +957,7 @@
           </div>
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div
-              class="bg-primary border border-white/20 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow flex flex-col"
+              class="bg-white/10 backdrop-blur-lg border border-white/10 p-8 rounded-2xl reveal-on-scroll shadow-lg hover:border-white/20 transition-all flex flex-col"
             >
               <div class="text-7xl font-serif text-white/20 leading-none">"</div>
               <blockquote
@@ -985,7 +981,7 @@
               </div>
             </div>
 
-            <div class="bg-primary border border-white/20 p-8 rounded-2xl reveal-on-scroll shadow-sm hover:shadow-lg transition-shadow flex flex-col">
+            <div class="bg-white/10 backdrop-blur-lg border border-white/10 p-8 rounded-2xl reveal-on-scroll shadow-lg hover:border-white/20 transition-all flex flex-col">
               <div class="text-7xl font-serif text-white/20 leading-none">"</div>
               <blockquote
                 class="text-white/80 italic mb-6 -mt-4 flex-grow"
@@ -1441,87 +1437,6 @@
            ticking = false;
          }
 
-        // Services Scroll Animation
-        const servicesStickyParent = document.getElementById('services-sticky-parent');
-        let lastActiveServiceIndex = -1;
-        let currentAnimationValue = 0; // This will be our smoothed value, from 0 to (numCards - 1)
-        const servicesLerpFactor = 0.08; // Controls smoothness. Smaller = smoother
-
-        function updateServicesAnimation() {
-          if (!servicesStickyParent) return;
-
-          const textTitle = document.getElementById('animated-service-title');
-          const textDesc = document.getElementById('animated-service-description');
-          const cards = Array.from(document.querySelectorAll('.service-card-animated'));
-          const glow = document.getElementById('service-glow');
-          const numCards = cards.length;
-
-          const rect = servicesStickyParent.getBoundingClientRect();
-          const scrollableHeight = servicesStickyParent.offsetHeight - window.innerHeight;
-          
-          // Calculate scroll progress within the sticky container (0 to 1)
-          let targetScrollProgress = -rect.top / scrollableHeight;
-          targetScrollProgress = Math.max(0, Math.min(1, targetScrollProgress));
-
-          // Map the scroll progress [0, 1] directly to an animation value [0, numCards - 1]
-          const targetAnimationValue = targetScrollProgress * (numCards - 1);
-
-          // Smooth the animation value using linear interpolation (lerp)
-          currentAnimationValue += (targetAnimationValue - currentAnimationValue) * servicesLerpFactor;
-
-          // Determine the active card by rounding the current animation value.
-          // Using Math.round() is more robust and ensures the last card becomes active.
-          const activeIndex = Math.min(numCards - 1, Math.round(currentAnimationValue));
-
-          // Animate each card based on its position relative to the active index
-          cards.forEach((card, i) => {
-            const innerCard = card.firstElementChild;
-            // The distance is the card's index minus the current animation value.
-            // This makes the card at the current animation value have a distance of 0 (centered).
-            const distance = i - currentAnimationValue;
-            const scale = Math.max(0, 1 - Math.abs(distance) * 0.2);
-            const opacity = Math.max(0, 1 - Math.abs(distance) * 0.5);
-            const zIndex = numCards - Math.abs(Math.round(distance));
-
-            // When a card is centered (distance is close to 0), make its background opaque.
-            // It smoothly transitions back to semi-transparent as it moves away.
-            // The alpha goes from 1 (opaque) down to 0.6 (the original transparency).
-            const bgAlpha = 1 - Math.min(1, Math.abs(distance) * 2) * 0.4; // 1 down to 0.6
-            innerCard.style.backgroundColor = `rgba(37, 55, 69, ${bgAlpha})`; // #253745
-
-            const translateX = distance * 80; // Move cards by 80% of their width
-            card.style.transform = `translateX(${translateX}%) scale(${scale})`;
-            card.style.opacity = opacity;
-            card.style.zIndex = zIndex;
-          });
-
-          // Update text content and glow with a fade effect if the active card has changed
-          if (activeIndex !== lastActiveServiceIndex) {
-            const activeCard = cards[activeIndex];
-            textTitle.style.opacity = 0;
-            textDesc.style.opacity = 0;
-            
-            setTimeout(() => {
-              textTitle.textContent = activeCard.dataset.title;
-              textDesc.textContent = activeCard.dataset.description;
-              glow.style.backgroundColor = activeCard.dataset.color;
-              textTitle.style.color = activeCard.dataset.color;
-              textTitle.style.opacity = 1;
-              textDesc.style.opacity = 1;
-              
-              // Update service icon colors
-              const iconBg = activeCard.querySelector('.service-icon-bg');
-              const iconColor = activeCard.querySelector('.service-icon-color');
-              if (iconBg && iconColor) {
-                iconBg.style.backgroundColor = `${activeCard.dataset.color}20`;
-                iconColor.style.color = activeCard.dataset.color;
-              }
-            }, 400); // Match transition duration
-
-            lastActiveServiceIndex = activeIndex;
-          }
-        }
-
         function updateNavbar() {
           // Navbar styling is now handled by CSS classes in main.js
           // No need to change background color on scroll
@@ -1532,7 +1447,6 @@
            if (!ticking) {
              window.requestAnimationFrame(() => {
                updateScrollEffects();
-               updateServicesAnimation();
                updateNavbar();
                ticking = false;
              });
@@ -1904,6 +1818,29 @@
             }, 400); // Corresponds to transition duration in CSS
           }, 2500); // Change every 2.5 seconds
         }
+      });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        // Static Service Card Effects
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            const color = card.dataset.color;
+            if (!color) return;
+
+            const innerCard = card.querySelector('.service-card-inner');
+            if (innerCard) {
+                // Set the --glow-color CSS variable on the inner card for the hover effect
+                innerCard.style.setProperty('--glow-color', color);
+            }
+
+            // Apply colors to the icon
+            const iconBg = card.querySelector('.service-icon-bg');
+            const iconColor = card.querySelector('.service-icon-color');
+            if (iconBg && iconColor) {
+                iconBg.style.backgroundColor = `${color}20`; // e.g., #60A5FA20
+                iconColor.style.color = color;
+            }
+        });
       });
     </script>
   </body>
