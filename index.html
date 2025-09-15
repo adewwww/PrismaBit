@@ -458,6 +458,45 @@
       @media (prefers-reduced-motion: reduce) {
         .logo-track { animation: none; }
       }
+
+      /* ===== Hero Blur Reveal (Linear-style) ===== */
+      @keyframes hero-blur-reveal {
+        0% {
+          opacity: 0;
+          filter: blur(18px) saturate(120%);
+          transform: translateY(18px) scale(1.02);
+        }
+        100% {
+          opacity: 1;
+          filter: blur(0) saturate(100%);
+          transform: translateY(0) scale(1);
+        }
+      }
+      @keyframes hero-geo-reveal {
+        0% {
+          opacity: 0;
+          filter: blur(22px) brightness(1.15);
+          transform: translateY(8px) scale(0.96);
+        }
+        100% {
+          opacity: 1;
+          filter: blur(0) brightness(1);
+          transform: translateY(0) scale(1);
+        }
+      }
+      #hero-section .hero-blur {
+        opacity: 0;
+        will-change: opacity, transform, filter;
+        animation: hero-blur-reveal 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+      }
+      #hero-section .hero-blur-1 { animation-delay: 0.15s; }
+      #hero-section .hero-blur-2 { animation-delay: 0.35s; }
+      #hero-section .hero-blur-3 { animation-delay: 0.55s; }
+      #hero-section .hero-geo-blur {
+        opacity: 0;
+        will-change: opacity, transform, filter;
+        animation: hero-geo-reveal 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s both;
+      }
     </style>
   </head>
   
@@ -844,10 +883,10 @@
           class="min-h-screen flex items-center container mx-auto px-6"
         >
           <div
-            class="w-full lg:w-1/2 text-center lg:text-left z-10 animate-fade-in-up drop-shadow-lg pt-32 pb-12 lg:pt-0 lg:pb-0"
+            class="w-full lg:w-1/2 text-center lg:text-left z-10 drop-shadow-lg pt-32 pb-12 lg:pt-0 lg:pb-0"
           >
             <h1
-              class="text-4xl md:text-6xl lg:text-6xl font-bold mb-4 leading-tight text-white"
+              class="text-4xl md:text-6xl lg:text-6xl font-bold mb-4 leading-tight text-white hero-blur hero-blur-1"
             >
               <span class="gradient-text text-white">
                 Crafting Digital Futures
@@ -855,7 +894,7 @@
             </h1>
             <p
               id="dynamic-text-container"
-              class="text-lg md:text-xl text-white/80 mt-6 mb-6 flex items-baseline justify-center lg:justify-start min-h-[6rem] md:min-h-[7rem] lg:min-h-fit"
+              class="text-lg md:text-xl text-white/80 mt-6 mb-6 flex items-baseline justify-center lg:justify-start min-h-[6rem] md:min-h-[7rem] lg:min-h-fit hero-blur hero-blur-2"
             >
               <span>
                 We help your business and ideas
@@ -863,7 +902,7 @@
               </span>
             </p>
             <p
-              class="text-lg md:text-xl text-white/80 max-w-xl mx-auto lg:mx-0"
+              class="text-lg md:text-xl text-white/80 max-w-xl mx-auto lg:mx-0 hero-blur hero-blur-3"
             >
               We transform complex ideas into elegant digital solutions. From
               stunning websites to powerful applications, our prism reveals the
@@ -873,7 +912,7 @@
         </div>
         <div
           id="threejs-container"
-          class="hidden lg:block fixed top-0 right-0 w-full lg:w-3/5 h-screen z-0 animate-fade-in-up transition-all duration-1000 ease-out"
+          class="hidden lg:block fixed top-0 right-0 w-full lg:w-3/5 h-screen z-0 transition-all duration-1000 ease-out hero-geo-blur"
         ></div>
         <div id="next-page-vibe" class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-primary to-transparent opacity-0 transition-opacity duration-1000"></div>
       </section>
