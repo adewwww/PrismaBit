@@ -397,104 +397,9 @@
       #services-sticky-parent.reveal-on-scroll.visible #service-text-content > div:nth-child(2) {
         opacity: 1; transform: translateY(0); transition-delay: 0.7s;
       }
-
-      /* Subtle Grain Effect */
-      .grain-texture {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: 
-          radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.02) 0%, transparent 50%),
-          radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.015) 0%, transparent 50%),
-          radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.01) 0%, transparent 50%),
-          radial-gradient(circle at 60% 40%, rgba(255, 255, 255, 0.018) 0%, transparent 50%),
-          radial-gradient(circle at 10% 70%, rgba(255, 255, 255, 0.012) 0%, transparent 50%),
-          radial-gradient(circle at 90% 60%, rgba(255, 255, 255, 0.016) 0%, transparent 50%);
-        background-size: 200px 200px, 300px 300px, 150px 150px, 250px 250px, 180px 180px, 220px 220px;
-        pointer-events: none;
-        opacity: 0.4;
-      }
-
-      /* Cosmic background */
-      .cosmic-background {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: #000;
-        overflow: hidden;
-      }
-
-      .stars {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image: 
-          radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
-          radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
-          radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0,0,0,0)),
-          radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
-          radial-gradient(2px 2px at 130px 80px, #fff, rgba(0,0,0,0)),
-          radial-gradient(2px 2px at 160px 120px, #eee, rgba(0,0,0,0));
-        background-repeat: repeat;
-        background-size: 200px 200px;
-        animation: zoom 15s infinite;
-        opacity: 0;
-      }
-
-      .stars:nth-child(1) {
-        background-position: 50% 50%;
-        animation-delay: 0s;
-        opacity: 1;
-      }
-
-      .stars:nth-child(2) {
-        background-position: 20% 60%;
-        background-size: 400px 400px;
-        animation-delay: 3s;
-        animation-duration: 12s;
-        opacity: 0.8;
-      }
-
-      .stars:nth-child(3) {
-        background-position: -20% -30%;
-        background-size: 600px 600px;
-        animation-delay: 5s;
-        animation-duration: 18s;
-        opacity: 0.6;
-      }
-
-      @keyframes zoom {
-        0% {
-          opacity: 0;
-          transform: scale(0.5);
-          animation-timing-function: ease-in;
-        }
-        85% {
-          opacity: 1;
-          transform: scale(2.5);
-          animation-timing-function: linear;
-        }
-        100% {
-          opacity: 0;
-          transform: scale(3);
-        }
-      }
-
-      /* Footer Full Screen Effect */
-      footer {
-        position: relative;
-        z-index: 1;
-      }
-
-
     </style>
   </head>
+  
   <body class="bg-primary text-secondary">
     <!-- Splash Screen -->
     <div id="splash-container" class="fixed inset-0 z-50 overflow-hidden">
@@ -1105,7 +1010,6 @@
         </div>
       </section>
 
-      <!-- Footer Section -->
       <!-- Footer Section -->
       <footer class="bg-[#0a0a0a] text-white relative overflow-hidden min-h-screen">
         <!-- Subtle Grain Effect -->
