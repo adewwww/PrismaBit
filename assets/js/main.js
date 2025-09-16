@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // =================================================================
   // --- REVEAL ON SCROLL ---
   // =================================================================
-  // This uses the Intersection Observer API to add a 'visible' class to elements as they enter the viewport.
+  // This uses the Intersection Observer API to add/remove a 'visible' class to elements as they enter/leave the viewport.
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -96,10 +96,17 @@ document.addEventListener('DOMContentLoaded', () => {
           entry.target.style.transform = 'scale(1)';
           entry.target.style.opacity = '1';
         }
+      } else {
+        entry.target.classList.remove('visible');
+        // Reset special handling
+        if (entry.target.id === 'services-sticky-parent') {
+          entry.target.style.transform = '';
+          entry.target.style.opacity = '';
+        }
       }
     });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+  document.querySelectorAll('.reveal-on-scroll, .service-card-scroll').forEach(el => observer.observe(el));
   
   // =================================================================
   // --- MOBILE HAMBURGER MENU ---
