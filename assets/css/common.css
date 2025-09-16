@@ -194,7 +194,7 @@ html {
   background-clip: text;
   animation: rainbow-shift 1.2s linear infinite, glow-pulse 1.2s ease-in-out infinite;
   transform: translateY(-1px) scale(1.06);
-  cursor: default;
+  cursor: pointer;
 }
 
 /* --- Navigation Links --- */
