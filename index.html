@@ -507,15 +507,13 @@
         max-height: 100%;
         width: auto;
         max-width: 350px;
-        opacity: 1;
-        filter: none;
-        transition: transform 300ms ease, filter 300ms ease, opacity 300ms ease;
-        will-change: transform, filter, opacity;
+        filter: grayscale(100%);
+        transition: transform 300ms ease, filter 300ms ease;
+        will-change: transform, filter;
       }
       .logo-item:hover .client-logo {
         transform: scale(1.06);
-        filter: none;
-        opacity: 1;
+        filter: grayscale(0%);
       }
 
       /* ===== Testimonials Carousel (avatars + card) ===== */
@@ -884,22 +882,22 @@
         <div class="px-6 py-4 space-y-1">
           <a
             href="work.html"
-            class="block py-2 px-3 rounded-md text-base font-medium text-white hover:bg-white/10 hover:text-[#007BFF]"
+            class="block py-2 px-3 rounded-lg text-base font-medium text-white hover:bg-white/10 hover:text-[#007BFF]"
             >Work</a
           >
           <a
             href="services.html"
-            class="block py-2 px-3 rounded-md text-base font-medium text-white hover:bg-white/10 hover:text-[#007BFF]"
+            class="block py-2 px-3 rounded-lg text-base font-medium text-white hover:bg-white/10 hover:text-[#007BFF]"
             >Services</a
           >
           <a
             href="about.html"
-            class="block py-2 px-3 rounded-md text-base font-medium text-white hover:bg-white/10 hover:text-[#007BFF]"
+            class="block py-2 px-3 rounded-lg text-base font-medium text-white hover:bg-white/10 hover:text-[#007BFF]"
             >About</a
           >
           <a
             href="contact.html"
-            class="block py-2 px-3 rounded-md text-base font-medium text-white hover:bg-white/10 hover:text-[#007BFF]"
+            class="block py-2 px-3 rounded-lg text-base font-medium text-white hover:bg-white/10 hover:text-[#007BFF]"
             >Contact</a
           >
         </div>
@@ -921,10 +919,10 @@
             class="w-full lg:w-1/2 text-center lg:text-left z-10 drop-shadow-lg pt-32 pb-12 lg:pt-0 lg:pb-0"
           >
             <h1
-              class="text-4xl md:text-6xl lg:text-6xl font-bold mb-4 leading-tight text-white hero-blur hero-blur-1"
+              class="text-4xl md:text-6xl lg:text-5xl font-bold mb-4 leading-tight text-white hero-blur hero-blur-1"
             >
               <span class="gradient-text text-white">
-                Crafting Digital Futures
+                Your Trusted Partner in Networking & Digital Solutions Worldwide
               </span>
             </h1>
             <p
@@ -933,7 +931,7 @@
             >
               <span>
                 We help your business and ideas
-                <span id="dynamic-text" class="gradient-text font-bold text-2xl md:text-4xl">Grow.</span>
+                <span id="dynamic-text" class="font-bold text-2xl md:text-4xl bg-gradient-to-r from-blue-400 via-blue-500 to-blue-700 text-transparent bg-clip-text">Grow.</span>
               </span>
             </p>
             <p
@@ -972,28 +970,28 @@
                 <div id="service-cards-wrapper" class="w-full grid grid-cols-2 gap-6">
                   <!-- Web Development -->
                   <div class="service-card" data-title="Web Development" data-description="Building responsive, high-performance websites and web applications with modern technologies." data-color="#60A5FA">
-                    <div class="service-card-inner bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                    <div class="service-card-inner bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-2xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
                       <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 service-icon-bg"><svg class="w-8 h-8 service-icon-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" /></svg></div>
                       <h4 class="font-bold text-xl text-white">Web Development</h4>
                     </div>
                   </div>
                   <!-- UI/UX Design -->
                   <div class="service-card" data-title="UI/UX Design" data-description="Creating intuitive and beautiful user interfaces that provide a seamless user experience." data-color="#C084FC">
-                    <div class="service-card-inner bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                    <div class="service-card-inner bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-2xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
                       <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 service-icon-bg"><svg class="w-8 h-8 service-icon-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456Z" /></svg></div>
                       <h4 class="font-bold text-xl text-white">UI/UX Design</h4>
                     </div>
                   </div>
                   <!-- Cloud Solutions -->
                   <div class="service-card" data-title="Cloud Solutions" data-description="Leveraging cloud infrastructure for scalable, secure, and reliable application deployment." data-color="#22D3EE">
-                    <div class="service-card-inner bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                    <div class="service-card-inner bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-2xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
                       <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 service-icon-bg"><svg class="w-8 h-8 service-icon-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 0 0 4.5 4.5H18a3.75 3.75 0 0 0 1.332-7.257 3 3 0 0 0-3.758-3.848 5.25 5.25 0 0 0-10.233 2.33A4.5 4.5 0 0 0 2.25 15Z" /></svg></div>
                       <h4 class="font-bold text-xl text-white">Cloud Solutions</h4>
                     </div>
                   </div>
                   <!-- AI Integration -->
                   <div class="service-card" data-title="AI Integration" data-description="Embedding intelligent features and automation into your products with cutting-edge AI." data-color="#34D399">
-                    <div class="service-card-inner bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
+                    <div class="service-card-inner bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-2xl shadow-2xl shadow-black/20 h-full flex flex-col justify-center items-center text-center">
                       <div class="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 service-icon-bg"><svg class="w-8 h-8 service-icon-color" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 19.5V21M12 3v1.5m0 15V21m3.75-18v1.5m0 15V21m-9-1.5h10.5a2.25 2.25 0 0 0 2.25-2.25V6.75a2.25 2.25 0 0 0-2.25-2.25H6.75A2.25 2.25 0 0 0 4.5 6.75v10.5a2.25 2.25 0 0 0 2.25 2.25Zm.75-12h9v9h-9v-9Z" /></svg></div>
                       <h4 class="font-bold text-xl text-white">AI Integration</h4>
                     </div>
@@ -1156,7 +1154,7 @@
                 <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6">
                   <a
                     href="contact.html"
-                    class="inline-flex items-center px-8 py-3 bg-[#007BFF] text-white font-semibold rounded-lg hover:bg-[#0056b3] transition-colors duration-300"
+                    class="inline-flex items-center px-8 py-3 bg-[#007BFF] text-white font-semibold rounded-xl hover:bg-[#0056b3] transition-colors duration-300"
                   >
                     Start Your Project
                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1165,7 +1163,7 @@
                   </a>
                   <a
                     href="mailto:hello@prismabit.com"
-                    class="inline-flex items-center px-8 py-3 border border-white/30 text-white font-semibold rounded-lg hover:bg-white/10 transition-colors duration-300"
+                    class="inline-flex items-center px-8 py-3 border border-white/30 text-white font-semibold rounded-xl hover:bg-white/10 transition-colors duration-300"
                   >
                     <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
@@ -2009,7 +2007,7 @@
         if (dynamicTextElement) {
           const phrases = [
             "Grow.",
-            "Make money.",
+            "Make Revenue.",
             "Save time.",
             "Bring status.",
           ];
@@ -2032,101 +2030,237 @@
           }, 2500); // Change every 2.5 seconds
         }
 
-        // ===== Client Logos: Drag-to-scroll =====
+        // ===== Client Logos: Smooth Drag-to-scroll =====
         const scrollers = document.querySelectorAll('.logo-scroller');
         scrollers.forEach((scroller) => {
           const track = scroller.querySelector('.logo-track');
           if (!track) return;
 
-          let isDown = false;
+          // State variables
+          let isDragging = false;
+          let isAnimating = false;
           let startX = 0;
-          let startTranslate = 0; // in px
+          let startTranslate = 0;
           let currentTranslate = 0;
+          let targetTranslate = 0;
           let lastX = 0;
+          let lastTime = 0;
           let velocity = 0;
           let rafId = null;
           let hasMoved = false;
+
+          // Configuration - Natural drag feel with controlled responsiveness
+          const DRAG_THRESHOLD = 12; // pixels before considering it a drag
+          const MAX_VELOCITY = 8; // maximum velocity for inertia (controlled)
+          const MIN_VELOCITY = 0.01; // minimum velocity to stop animation
+          const FRICTION = 0.99; // friction for inertia (very high friction)
+          const EASE_FACTOR = 0.02; // easing factor for smooth following (very gentle)
+          const DRAG_DAMPING = 0.3; // damping factor for mouse movement (less responsive)
+
+          // Calculate bounds based on track width
+          const getBounds = () => {
+            const trackWidth = track.scrollWidth;
+            const containerWidth = scroller.clientWidth;
+            const maxTranslate = 0;
+            const minTranslate = -(trackWidth - containerWidth);
+            return { min: minTranslate, max: maxTranslate };
+          };
 
           const getTrackTransformX = () => {
             const transform = track.style.transform || window.getComputedStyle(track).transform;
             if (transform && transform !== 'none') {
               const m = new DOMMatrix(transform);
-              return m.m41; // translateX part
+              return m.m41;
             }
             return 0;
           };
 
-          const setTranslateX = (x) => {
-            currentTranslate = x;
-            track.style.animation = 'none'; // pause CSS animation while dragging
-            track.style.transform = `translateX(${x}px)`;
+          const setTranslateX = (x, useAnimation = false) => {
+            const bounds = getBounds();
+            // Apply bounds with some overscroll resistance
+            let constrainedX = x;
+            if (x > bounds.max) {
+              constrainedX = bounds.max + (x - bounds.max) * 0.3; // Allow some overscroll
+            } else if (x < bounds.min) {
+              constrainedX = bounds.min + (x - bounds.min) * 0.3;
+            }
+
+            currentTranslate = constrainedX;
+            track.style.animation = useAnimation ? '' : 'none';
+            track.style.transform = `translateX(${constrainedX}px)`;
           };
 
-          const onPointerDown = (e) => {
-            isDown = true;
-            scroller.classList.add('dragging');
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-            startX = clientX;
-            startTranslate = getTrackTransformX();
-            lastX = clientX;
-            velocity = 0;
-            cancelAnimationFrame(rafId);
-            hasMoved = false;
-            // Prevent selecting text/images while dragging
-            document.body.style.userSelect = 'none';
-          };
+          const animateToTarget = () => {
+            if (!isAnimating) return;
 
-          const onPointerMove = (e) => {
-            if (!isDown) return;
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-            const dx = clientX - startX;
-            if (!hasMoved && Math.abs(dx) < 2) return; // small click tolerance
-            hasMoved = true;
-            setTranslateX(startTranslate + dx);
-            velocity = clientX - lastX;
-            lastX = clientX;
-            e.preventDefault();
-          };
+            // Smooth easing towards target
+            const delta = targetTranslate - currentTranslate;
+            currentTranslate += delta * EASE_FACTOR;
 
-          const startInertia = () => {
-            const friction = 0.95;
-            const step = () => {
-              velocity *= friction;
-              if (Math.abs(velocity) < 0.2) {
-                track.style.animation = '';
-                scroller.classList.remove('dragging');
-                cancelAnimationFrame(rafId);
-                document.body.style.userSelect = '';
-                return;
-              }
-              setTranslateX(currentTranslate + velocity);
-              rafId = requestAnimationFrame(step);
-            };
-            rafId = requestAnimationFrame(step);
-          };
+            // Stop if we're very close to target
+            if (Math.abs(delta) < 0.1) {
+              currentTranslate = targetTranslate;
+              isAnimating = false;
+            }
 
-          const onPointerUp = () => {
-            if (!isDown) return;
-            isDown = false;
-            if (hasMoved) {
-              startInertia();
+            setTranslateX(currentTranslate);
+
+            if (isAnimating) {
+              rafId = requestAnimationFrame(animateToTarget);
             } else {
-              // No drag occurred: ensure animation continues and cleanup state
+              // Resume CSS animation when done
               track.style.animation = '';
               scroller.classList.remove('dragging');
               document.body.style.userSelect = '';
             }
+          };
+
+          const startInertia = (initialVelocity) => {
+            if (Math.abs(initialVelocity) < MIN_VELOCITY) {
+              // No significant velocity, just ease back to bounds
+              const bounds = getBounds();
+              if (currentTranslate > bounds.max) {
+                targetTranslate = bounds.max;
+              } else if (currentTranslate < bounds.min) {
+                targetTranslate = bounds.min;
+              } else {
+                targetTranslate = currentTranslate;
+              }
+              isAnimating = true;
+              animateToTarget();
+              return;
+            }
+
+            velocity = Math.max(-MAX_VELOCITY, Math.min(MAX_VELOCITY, initialVelocity * 0.5)); // Reduce release speed by 50%
+            let lastTimestamp = performance.now();
+
+            const step = (timestamp) => {
+              const deltaTime = timestamp - lastTimestamp;
+              lastTimestamp = timestamp;
+
+              // Apply very gentle friction
+              velocity *= Math.pow(FRICTION, deltaTime * 0.01); // Much gentler friction
+
+              // Update position
+              currentTranslate += velocity;
+
+              // Apply soft bounds (no bouncing)
+              const bounds = getBounds();
+              if (currentTranslate > bounds.max) {
+                currentTranslate = bounds.max;
+                velocity = 0; // Stop completely at bounds
+              } else if (currentTranslate < bounds.min) {
+                currentTranslate = bounds.min;
+                velocity = 0; // Stop completely at bounds
+              }
+
+              setTranslateX(currentTranslate);
+
+              // Continue animation if velocity is significant
+              if (Math.abs(velocity) > MIN_VELOCITY) {
+                rafId = requestAnimationFrame(step);
+              } else {
+                // Resume CSS animation
+                track.style.animation = '';
+                scroller.classList.remove('dragging');
+                document.body.style.userSelect = '';
+              }
+            };
+
+            rafId = requestAnimationFrame(step);
+          };
+
+          const onPointerDown = (e) => {
+            isDragging = true;
+            scroller.classList.add('dragging');
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            startX = clientX;
+            startTranslate = getTrackTransformX();
+            currentTranslate = startTranslate;
+            targetTranslate = startTranslate;
+            lastX = clientX;
+            lastTime = performance.now();
+            velocity = 0;
+            hasMoved = false;
+
+            // Cancel any ongoing animation
+            if (rafId) {
+              cancelAnimationFrame(rafId);
+              rafId = null;
+            }
+            isAnimating = false;
+
+            // Prevent text selection
+            document.body.style.userSelect = 'none';
+            e.preventDefault();
+          };
+
+          const onPointerMove = (e) => {
+            if (!isDragging) return;
+
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const currentTime = performance.now();
+            const deltaX = clientX - lastX;
+            const deltaTime = currentTime - lastTime;
+
+            // Calculate time-based velocity with damping for natural feel
+            if (deltaTime > 0) {
+              const rawVelocity = deltaX / deltaTime * 16.67; // Normalize to 60fps
+              velocity = velocity * 0.8 + rawVelocity * 0.2; // Smooth velocity changes
+            }
+
+            const totalDeltaX = clientX - startX;
+
+            // Check if we've moved enough to consider this a drag
+            if (!hasMoved && Math.abs(totalDeltaX) < DRAG_THRESHOLD) return;
+
+            hasMoved = true;
+
+            // Update target position with damping for natural feel
+            const dampedDeltaX = totalDeltaX * DRAG_DAMPING;
+            targetTranslate = startTranslate + dampedDeltaX;
+            currentTranslate = targetTranslate; // Direct update during drag for responsiveness
+
+            setTranslateX(currentTranslate);
+
+            lastX = clientX;
+            lastTime = currentTime;
+            e.preventDefault();
+          };
+
+          const onPointerUp = () => {
+            if (!isDragging) return;
+            isDragging = false;
+
+            if (hasMoved) {
+              // Start inertia with calculated velocity
+              startInertia(velocity);
+            } else {
+              // No drag occurred, resume animation
+              track.style.animation = '';
+              scroller.classList.remove('dragging');
+              document.body.style.userSelect = '';
+            }
+
             hasMoved = false;
           };
 
-
+          // Event listeners with improved passive handling
           scroller.addEventListener('mousedown', onPointerDown);
-          window.addEventListener('mousemove', onPointerMove);
-          window.addEventListener('mouseup', onPointerUp);
-          scroller.addEventListener('touchstart', onPointerDown, { passive: true });
+          scroller.addEventListener('touchstart', onPointerDown, { passive: false });
+
+          // Use scroller for move events to improve performance
+          scroller.addEventListener('mousemove', onPointerMove);
           scroller.addEventListener('touchmove', onPointerMove, { passive: false });
+
+          // Global up events to handle release outside element
+          window.addEventListener('mouseup', onPointerUp);
           window.addEventListener('touchend', onPointerUp);
-          // Wheel/trackpad panning intentionally disabled
+
+          // Prevent context menu during drag
+          scroller.addEventListener('contextmenu', (e) => {
+            if (isDragging) e.preventDefault();
+          });
         });
 
         // ===== Testimonials Carousel Logic =====
