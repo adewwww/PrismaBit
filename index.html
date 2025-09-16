@@ -500,6 +500,19 @@
         animation: hero-geo-reveal 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s both;
       }
 
+      /* ===== 3D Model Nebula Effect ===== */
+      #model-nebula {
+        background: 
+          radial-gradient(ellipse 50% 60% at 50% 50%, rgba(0, 123, 255, 0.25), transparent 70%);
+        opacity: 0;
+        transform: scale(1.2);
+        transition: opacity 800ms cubic-bezier(0.2, 0.8, 0.2, 1), transform 800ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      #model-nebula.visible {
+        opacity: 1;
+        transform: scale(1);
+      }
+
       /* ===== Client Logos: uniform sizing + hover zoom/color ===== */
       .logo-item { height: 80px; display: flex; align-items: center; }
       @media (min-width: 800px) { .logo-item { height: 110px; } }
@@ -946,7 +959,9 @@
         <div
           id="threejs-container"
           class="hidden lg:block fixed top-0 right-0 w-full lg:w-3/5 h-screen z-0 transition-all duration-1000 ease-out hero-geo-blur"
-        ></div>
+        >
+          <div id="model-nebula" class="absolute inset-0 -z-10 pointer-events-none"></div>
+        </div>
         <div id="next-page-vibe" class="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-primary to-transparent opacity-0 transition-opacity duration-1000"></div>
       </section>
       <!-- ---------- 3.1) Hero Section END ---------- -->
@@ -1516,6 +1531,7 @@
          // ===== Dynamic Scroll Effects =====
          const heroSection = document.getElementById("hero-section");
          const threeContainer = document.getElementById("threejs-container");
+         const modelNebula = document.getElementById('model-nebula');
          const nextPageVibe = document.getElementById("next-page-vibe");
          let currentScrollY = window.scrollY;
          let lastScrollY = currentScrollY;
@@ -1548,6 +1564,7 @@
                  threeContainer.style.opacity = "0.3"; // Make it more subtle as background
                  threeContainer.style.transform = "translateX(20%) scale(0.8)"; // Move and scale for background effect
                }
+               if (modelNebula) modelNebula.classList.add('visible');
              } else {
                // Always return to original position when not scrolling or at top
                targetZoomLevel = 5;
@@ -1558,6 +1575,7 @@
                  threeContainer.style.opacity = "1";
                  threeContainer.style.transform = "translateX(0) scale(1)";
                }
+               if (modelNebula) modelNebula.classList.remove('visible');
              }
              
              // Target zoom level is set above, smooth interpolation happens in animateZoom()
