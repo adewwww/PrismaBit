@@ -117,4 +117,21 @@ document.addEventListener('DOMContentLoaded', () => {
       menuCloseIcon.classList.toggle('hidden');
     });
   }
+
+  // =================================================================
+  // --- WHATSAPP FAB VISIBILITY ---
+  // =================================================================
+  // The FAB is hidden by default. This makes it visible on all pages.
+  // On index.html, this is handled by the splash screen logic, but this
+  // script ensures it appears on all other pages.
+  const fab = document.querySelector('.whatsapp-fab');
+  if (fab) {
+    // A small delay to ensure the page is settled before it pops in.
+    // The check for 'hidden' prevents conflicts with index.html's splash logic.
+    setTimeout(() => {
+      if (fab.classList.contains('hidden')) {
+        fab.classList.remove('hidden');
+      }
+    }, 300);
+  }
 });

@@ -45,21 +45,22 @@
       -webkit-backdrop-filter: blur(10px);
     }
 
+    /* Nebula background effect for the hero section */
     .hero-section {
-      background: linear-gradient(135deg, #06141B 0%, #11212D 100%);
       position: relative;
+      overflow: hidden;
     }
 
     .hero-section::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: 
-        radial-gradient(circle at 20% 30%, rgba(155, 168, 171, 0.05) 0%, transparent 50%),
-        radial-gradient(circle at 80% 70%, rgba(74, 92, 106, 0.05) 0%, transparent 50%);
+        radial-gradient(ellipse 40% 50% at 20% 40%, rgba(34, 211, 238, 0.15), transparent 70%), /* Cyan */
+        radial-gradient(ellipse 40% 50% at 80% 60%, rgba(52, 211, 153, 0.15), transparent 70%); /* Green */
+      opacity: 0;
+      animation: fadeIn 1.2s 0.2s forwards;
+      z-index: 0;
       pointer-events: none;
     }
 
@@ -182,11 +183,13 @@
   <main id="main-content" class="pt-24">
     
     <!-- HERO SECTION -->
-    <section class="py-20 sm:py-32 text-center container mx-auto px-6">
-      <h1 class="text-4xl md:text-6xl font-bold gradient-text mb-4">Our Work</h1>
-      <p class="text-lg md:text-xl text-white/80 max-w-3xl mx-auto">
-        We build digital solutions that transform businesses. From enterprise systems to mobile experiences, each project reflects our commitment to innovation and excellence.
-      </p>
+    <section class="hero-section">
+      <div class="relative z-10 py-20 sm:py-32 text-center container mx-auto px-6">
+        <h1 class="text-4xl md:text-6xl font-bold gradient-text mb-4">Our Work</h1>
+        <p class="text-lg md:text-xl text-white/80 max-w-3xl mx-auto">
+          We build digital solutions that transform businesses. From enterprise systems to mobile experiences, each project reflects our commitment to innovation and excellence.
+        </p>
+      </div>
     </section>
         
         <!-- Stats -->
@@ -524,7 +527,7 @@
                     <svg class="w-4 h-4 mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                     </svg>
-                    <span class="text-sm">+91 709927696</span>
+                    <span class="text-sm">+91 70024 43005</span>
                   </div>
                 </div>
 
@@ -639,17 +642,25 @@
         </div>
       </footer>
 
-  <!-- WhatsApp Floating Action Button -->
-  <a
-    href="https://wa.me/917099277696"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="whatsapp-fab group"
-    aria-label="Chat on WhatsApp"
-  >
-    <svg class="w-8 h-8 text-white transition-transform duration-300 group-hover:scale-110" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413 0 6.557-5.338 11.892-11.894 11.892-1.99 0-3.903-.52-5.586-1.456l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 6.269.001 11.37-5.101 11.37-11.371 0-6.27-5.101-11.37-11.37-11.37-6.27.001-11.371 5.101-11.371 11.371 0 2.136.59 4.125 1.674 5.83l-1.036 3.787 3.894-1.023zm11.37-8.232c-.267-.136-1.585-.78-1.83-.87-.245-.09-.423-.136-.6-.136-.177 0-.354.045-.531.227-.177.182-.693.693-.849.849-.156.156-.312.182-.589.045-.277-.136-1.172-.434-2.231-1.366-.825-.72-1.38-1.614-1.536-1.891-.156-.277-.015-.434.12-.561.12-.11.267-.277.4-.423.133-.136.177-.227.267-.382.09-.156.045-.292-.015-.404-.06-.112-.531-1.274-.728-1.744-.182-.455-.364-.393-.5-.393-.12 0-.267-.015-.404-.015-.136 0-.354.045-.531.227-.177.182-.693.693-.693 1.676 0 .984.71 1.941.81 2.077.09.136 1.397 2.136 3.38 2.991.47.205.84.329 1.12.422.48.156.91.136 1.24.09.37-.045 1.172-.477 1.338-.943.166-.466.166-.861.12-.943-.045-.082-.177-.136-.354-.227z"/></svg>
-    <span class="whatsapp-pulse"></span>
-  </a>
+  <!-- ========= 6) WhatsApp Floating Button START ========== -->
+    <a
+      href="https://wa.me/917002443005"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="whatsapp-fab group hidden"
+      aria-label="Chat on WhatsApp"
+    >
+      <svg
+        class="w-6 h-6 text-white transition-all duration-300 group-hover:scale-110"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"
+        />
+      </svg>
+    </a>
+    <!-- =========== 6) WhatsApp Floating Button END =========== -->
 
 </body>
 </html>
