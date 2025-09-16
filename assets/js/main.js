@@ -129,16 +129,25 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- WHATSAPP FAB VISIBILITY ---
   // =================================================================
   // The FAB is hidden by default. This makes it visible on all pages.
-  // On index.html, this is handled by the splash screen logic, but this
-  // script ensures it appears on all other pages.
+  // This logic centralizes the visibility trigger for all scenarios.
   const fab = document.querySelector('.whatsapp-fab');
   if (fab) {
-    // A small delay to ensure the page is settled before it pops in.
-    // The check for 'hidden' prevents conflicts with index.html's splash logic.
-    setTimeout(() => {
-      if (fab.classList.contains('hidden')) {
+    const splashContainer = document.getElementById('splash-container');
+    const urlParams = new URLSearchParams(window.location.search);
+    const skipSplash = urlParams.get("nosplash") === "true";
+
+    // This logic handles showing the button on all pages *except* for the
+    // homepage when the splash screen is running. The visibility on the homepage
+    // is handled by the inline script in index.html.
+    //
+    // The button will be shown if:
+    // 1. There is no splash container (i.e., not the homepage).
+    // 2. The splash screen is explicitly skipped via URL parameter.
+    if (!splashContainer || skipSplash) {
+      // Show the button after a brief delay to let the page settle.
+      setTimeout(() => {
         fab.classList.remove('hidden');
-      }
-    }, 300);
+      }, 300);
+    }
   }
 });

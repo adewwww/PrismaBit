@@ -1389,7 +1389,6 @@
           mainContent.style.opacity = "1";
           headerNav.classList.remove("hidden");
           headerNav.style.opacity = "1";
-          document.querySelector('.whatsapp-fab').classList.remove("hidden");
           setTimeout(initThreeJS, 100);
         } else {
           // Run the full splash animation sequence
@@ -1511,8 +1510,12 @@
                       headerNav.classList.add("fade-in-nav");
                       headerNav.style.opacity = "1";
                     }
-                    document.querySelector('.whatsapp-fab').classList.remove("hidden");
-                    setTimeout(initThreeJS, 100);
+                    // Show the FAB now that the page is visible
+                    const fab = document.querySelector('.whatsapp-fab');
+                    if (fab) {
+                      fab.classList.remove('hidden');
+                    }
+                    setTimeout(initThreeJS, 100); // Init 3D model last
                   }, 50);
                 },
                 { once: true }
