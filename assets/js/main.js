@@ -156,6 +156,41 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // =================================================================
+  // --- DESKTOP NAV DROPDOWNS (Industries, Tech) ---
+  // =================================================================
+  // Toggle dropdown menus on click and close on outside click/escape.
+  const dropdownToggles = Array.from(document.querySelectorAll('.dropdown-toggle'));
+  const closeAllDropdowns = () => {
+    document.querySelectorAll('.dropdown-menu').forEach(menu => menu.classList.add('hidden'));
+    dropdownToggles.forEach(btn => btn.setAttribute('aria-expanded', 'false'));
+  };
+
+  dropdownToggles.forEach(toggle => {
+    const wrapper = toggle.parentElement;
+    const menu = wrapper ? wrapper.querySelector('.dropdown-menu') : null;
+    if (!wrapper || !menu) return;
+
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      const isOpen = !menu.classList.contains('hidden');
+      closeAllDropdowns();
+      if (!isOpen) {
+        menu.classList.remove('hidden');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    const isInsideDropdown = (e.target.closest && e.target.closest('.dropdown-toggle, .dropdown-menu'));
+    if (!isInsideDropdown) closeAllDropdowns();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeAllDropdowns();
+  });
+
+  // =================================================================
   // --- WHATSAPP FAB VISIBILITY ---
   // =================================================================
   // The FAB is hidden by default. This makes it visible on all pages.

@@ -129,9 +129,30 @@
         </div>
         <span id="header-wordmark" class="font-bold text-xl text-white cursor-pointer">Prismabit</span>
       </a>
-      <div class="hidden md:flex space-x-8 text-white">
+      <div class="hidden md:flex space-x-8 text-white items-center">
         <a href="work.html" class="nav-link text-[#007BFF] font-bold transition-colors">Work</a>
         <a href="services.html" class="nav-link hover:text-[#007BFF] transition-colors">Services</a>
+
+        <div class="relative group">
+          <button class="nav-link hover:text-[#007BFF] transition-colors dropdown-toggle" aria-haspopup="true" aria-expanded="false">Industries</button>
+          <div class="dropdown-menu absolute right-0 mt-2 w-52 bg-[#101010] border border-white/10 rounded-xl shadow-xl hidden">
+            <a href="#" class="block px-4 py-2 text-sm text-white/80 hover:bg-white/10">Government</a>
+            <a href="#" class="block px-4 py-2 text-sm text-white/80 hover:bg-white/10">Manufacturing</a>
+            <a href="#" class="block px-4 py-2 text-sm text-white/80 hover:bg-white/10">Retail & E‑commerce</a>
+            <a href="#" class="block px-4 py-2 text-sm text-white/80 hover:bg-white/10">Finance</a>
+          </div>
+        </div>
+
+        <div class="relative group">
+          <button class="nav-link hover:text-[#007BFF] transition-colors dropdown-toggle" aria-haspopup="true" aria-expanded="false">Tech</button>
+          <div class="dropdown-menu absolute right-0 mt-2 w-56 bg-[#101010] border border-white/10 rounded-xl shadow-xl hidden">
+            <a href="#" class="block px-4 py-2 text-sm text-white/80 hover:bg-white/10">Web (React, Vue)</a>
+            <a href="#" class="block px-4 py-2 text-sm text-white/80 hover:bg-white/10">Mobile (Flutter, RN)</a>
+            <a href="#" class="block px-4 py-2 text-sm text-white/80 hover:bg-white/10">Cloud (AWS, Azure)</a>
+            <a href="#" class="block px-4 py-2 text-sm text-white/80 hover:bg-white/10">AI/ML</a>
+          </div>
+        </div>
+
         <a href="about.html" class="nav-link hover:text-[#007BFF] transition-colors">About</a>
         <a href="contact.html" class="nav-link hover:text-[#007BFF] transition-colors">Contact</a>
       </div>
@@ -148,6 +169,27 @@
         <div class="px-6 py-4 space-y-1">
             <a href="work.html" class="block py-2 px-3 rounded-md text-base font-medium bg-white/10 text-[#007BFF]">Work</a>
             <a href="services.html" class="block py-2 px-3 rounded-md text-base font-medium text-white hover:bg-white/10 hover:text-[#007BFF]">Services</a>
+
+            <details class="group">
+              <summary class="flex items-center justify-between py-2 px-3 rounded-md text-base font-medium text-white hover:bg-white/10 cursor-pointer">Industries</summary>
+              <div class="pl-4 py-1">
+                <a href="#" class="block py-2 px-3 rounded-md text-sm text-white/80 hover:bg-white/10">Government</a>
+                <a href="#" class="block py-2 px-3 rounded-md text-sm text-white/80 hover:bg-white/10">Manufacturing</a>
+                <a href="#" class="block py-2 px-3 rounded-md text-sm text-white/80 hover:bg-white/10">Retail & E‑commerce</a>
+                <a href="#" class="block py-2 px-3 rounded-md text-sm text-white/80 hover:bg-white/10">Finance</a>
+              </div>
+            </details>
+
+            <details class="group">
+              <summary class="flex items-center justify-between py-2 px-3 rounded-md text-base font-medium text-white hover:bg-white/10 cursor-pointer">Tech</summary>
+              <div class="pl-4 py-1">
+                <a href="#" class="block py-2 px-3 rounded-md text-sm text-white/80 hover:bg-white/10">Web (React, Vue)</a>
+                <a href="#" class="block py-2 px-3 rounded-md text-sm text-white/80 hover:bg-white/10">Mobile (Flutter, RN)</a>
+                <a href="#" class="block py-2 px-3 rounded-md text-sm text-white/80 hover:bg-white/10">Cloud (AWS, Azure)</a>
+                <a href="#" class="block py-2 px-3 rounded-md text-sm text-white/80 hover:bg-white/10">AI/ML</a>
+              </div>
+            </details>
+
             <a href="about.html" class="block py-2 px-3 rounded-md text-base font-medium text-white hover:bg-white/10 hover:text-[#007BFF]">About</a>
             <a href="contact.html" class="block py-2 px-3 rounded-md text-base font-medium text-white hover:bg-white/10 hover:text-[#007BFF]">Contact</a>
         </div>
@@ -176,7 +218,7 @@
                     <p class="text-white/60 mt-2">Projects Delivered</p>
                 </div>
                 <div class="reveal-on-scroll" style="transition-delay:150ms;">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white"><span class="stat-number" data-target="50" data-suffix="+">0</span></h2>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white"><span class="stat-number" data-target="400" data-suffix="+">0</span></h2>
                     <p class="text-white/60 mt-2">Happy Clients</p>
                 </div>
                 <div class="reveal-on-scroll" style="transition-delay:300ms;">
@@ -231,8 +273,8 @@
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-bold text-[#CCD0CF] mb-3">Citizen Services Portal</h3>
-              <p class="text-[#9BA8AB] mb-4 leading-relaxed">Digital transformation platform enabling citizens to access government services online, reducing bureaucracy and improving service delivery.</p>
+              <h3 class="text-xl font-bold text-[#CCD0CF] mb-3">Grievance Management App</h3>
+              <p class="text-[#9BA8AB] mb-4 leading-relaxed">A cross-platform mobile and web application designed to streamline grievance management by allowing employees to securely submit complaints, track their status in real time, and ensure transparent resolution with advanced reporting and analytics.</p>
               <div class="flex flex-wrap gap-2 mb-4">
                 <span class="bg-[#253745] text-[#9BA8AB] text-xs font-semibold px-3 py-1 rounded-full">Government Tech</span>
                 <span class="bg-[#253745] text-[#9BA8AB] text-xs font-semibold px-3 py-1 rounded-full">Accessibility</span>
@@ -256,11 +298,11 @@
               </div>
             </div>
             <div class="p-6">
-              <h3 class="text-xl font-bold text-[#CCD0CF] mb-3">FinTech Mobile Platform</h3>
-              <p class="text-[#9BA8AB] mb-4 leading-relaxed">Cross-platform mobile application for digital banking with advanced security features and intuitive user experience.</p>
+              <h3 class="text-xl font-bold text-[#CCD0CF] mb-3">Staff management Mobile Platform</h3>
+              <p class="text-[#9BA8AB] mb-4 leading-relaxed">A cross-platform mobile application for staff management, attendance, task tracking, invoicing, and route tracking — secured with advanced features and designed for an intuitive user experience.</p>
               <div class="flex flex-wrap gap-2 mb-4">
-                <span class="bg-[#253745] text-[#9BA8AB] text-xs font-semibold px-3 py-1 rounded-full">React Native</span>
-                <span class="bg-[#253745] text-[#9BA8AB] text-xs font-semibold px-3 py-1 rounded-full">Biometric Auth</span>
+                <span class="bg-[#253745] text-[#9BA8AB] text-xs font-semibold px-3 py-1 rounded-full">Flutter</span>
+                <span class="bg-[#253745] text-[#9BA8AB] text-xs font-semibold px-3 py-1 rounded-full">OAuth</span>
                 <span class="bg-[#253745] text-[#9BA8AB] text-xs font-semibold px-3 py-1 rounded-full">Real-time</span>
               </div>
               <div class="flex items-center text-[#9BA8AB] font-medium group cursor-pointer">
