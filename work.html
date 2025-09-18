@@ -104,31 +104,6 @@
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
     }
 
-    .filter-tabs {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      justify-content: center;
-      margin-bottom: 3rem;
-    }
-
-    .filter-tab {
-      padding: 0.75rem 1.5rem;
-      border: 1px solid #253745;
-      border-radius: 2rem;
-      background: #11212D;
-      color: #9BA8AB;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 500;
-    }
-
-    .filter-tab:hover,
-    .filter-tab.active {
-      background: #9BA8AB;
-      color: #06141B;
-      border-color: #9BA8AB;
-    }
   </style>
 </head>
 <body class="bg-primary text-secondary">
@@ -197,39 +172,25 @@
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
                 <div class="reveal-on-scroll">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white">150+</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white"><span class="stat-number" data-target="150" data-suffix="+">0</span></h2>
                     <p class="text-white/60 mt-2">Projects Delivered</p>
                 </div>
                 <div class="reveal-on-scroll" style="transition-delay:150ms;">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white">50+</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white"><span class="stat-number" data-target="50" data-suffix="+">0</span></h2>
                     <p class="text-white/60 mt-2">Happy Clients</p>
                 </div>
                 <div class="reveal-on-scroll" style="transition-delay:300ms;">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white">8+</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white"><span class="stat-number" data-target="8" data-suffix="+">0</span></h2>
                     <p class="text-white/60 mt-2">Years Experience</p>
                 </div>
                 <div class="reveal-on-scroll" style="transition-delay:450ms;">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white">24/7</h2>
+                    <h2 class="text-4xl md:text-5xl font-bold text-white"><span class="stat-number" data-target="24" data-suffix="/7">0</span></h2>
                     <p class="text-white/60 mt-2">Support</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FILTER TABS -->
-    <section class="py-12">
-      <div class="container mx-auto px-6">
-        <div class="filter-tabs reveal-on-scroll">
-          <button class="filter-tab active" data-filter="all">All Projects</button>
-          <button class="filter-tab" data-filter="erp">Enterprise Systems</button>
-          <button class="filter-tab" data-filter="government">Government Portals</button>
-          <button class="filter-tab" data-filter="mobile">Mobile Apps</button>
-          <button class="filter-tab" data-filter="web">Websites</button>
-          <button class="filter-tab" data-filter="infrastructure">Infrastructure</button>
-          <button class="filter-tab" data-filter="ai">AI Solutions</button>
-        </div>
-      </div>
-    </section>
 
     <!-- PROJECTS SHOWCASE -->
     <section class="pb-20 sm:pb-32">

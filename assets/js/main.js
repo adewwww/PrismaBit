@@ -72,8 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
         window.requestAnimationFrame(handleScroll);
         ticking = true;
       }
+    
     });
-
     // Recompute on resize (in case themes/bg change)
     window.addEventListener('resize', () => {
       if ((window.pageYOffset || document.documentElement.scrollTop) <= 50) {
@@ -87,10 +87,31 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- REVEAL ON SCROLL ---
   // =================================================================
   // This uses the Intersection Observer API to add/remove a 'visible' class to elements as they enter/leave the viewport.
+  const animateStat = (el) => {
+    if (el.dataset.animated === 'true') return;
+    const target = parseFloat(el.getAttribute('data-target') || '0');
+    const suffix = el.getAttribute('data-suffix') || '';
+    const durationMs = 1200; // sync with typical fade timing
+    const startTs = performance.now();
+    el.dataset.animated = 'true';
+
+    const step = (now) => {
+      const elapsed = now - startTs;
+      const progress = Math.min(elapsed / durationMs, 1);
+      const eased = 1 - Math.pow(1 - progress, 3); // easeOutCubic
+      const value = Math.round(target * eased);
+      el.textContent = `${value}${suffix}`;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
+        // Trigger stat counters inside this revealed block immediately with fade-in
+        entry.target.querySelectorAll('.stat-number').forEach(animateStat);
         // Special handling for the floating card section
         if (entry.target.id === 'services-sticky-parent') {
           entry.target.style.transform = 'scale(1)';
@@ -107,6 +128,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal-on-scroll, .service-card-scroll').forEach(el => observer.observe(el));
+
+  // Also handle stats that might already be in view on initial load
+  document.querySelectorAll('.reveal-on-scroll .stat-number').forEach(el => {
+    const parent = el.closest('.reveal-on-scroll');
+    if (parent && parent.getBoundingClientRect().top < window.innerHeight) {
+      animateStat(el);
+      parent.classList.add('visible');
+    }
+  });
   
   // =================================================================
   // --- MOBILE HAMBURGER MENU ---
@@ -150,4 +180,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 300);
     }
   }
+
 });
