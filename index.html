@@ -454,6 +454,11 @@
         from { transform: translateX(0); }
         to { transform: translateX(-50%); }
       }
+      @media (max-width: 767px) {
+        .logo-track {
+          animation-duration: 25s; /* Faster on mobile */
+        }
+      }
       @media (prefers-reduced-motion: reduce) {
         .logo-track { animation: none; }
       }
@@ -1033,9 +1038,7 @@
             <!-- Row 1 -->
             <div class="logo-track" aria-label="Trusted by leading brands">
               <div class="flex items-center gap-14 logo-set">
-                <div class="logo-item" style="height: 190px; width: 300px; display: flex; align-items: center; justify-content: center;">
-                  <img class="client-logo" style="max-height: 100%; max-width: 100%;" src="assets/images/clients/agri-removebg-preview.png" alt="Agri client logo" />
-                </div>
+                <div class="logo-item"><img class="client-logo" src="assets/images/clients/agri-removebg-preview.png" alt="Agri client logo" /></div>
                 <div class="logo-item"><img class="client-logo" src="assets/images/clients/agroforestlogo-removebg-preview.png" alt="Agroforest client logo" /></div>
                 <div class="logo-item"><img class="client-logo" src="assets/images/clients/amtron-logo.png" alt="AMTRON logo" /></div>
                 <div class="logo-item"><img class="client-logo" src="assets/images/clients/axis.png" alt="Axis logo" /></div>
@@ -1047,9 +1050,7 @@
               </div>
               <div class="flex items-center gap-14 logo-set">
                 <!-- Duplicate set for seamless loop -->
-                <div class="logo-item" style="height: 190px; width: 300px; display: flex; align-items: center; justify-content: center;">
-                  <img class="client-logo" style="max-height: 100%; max-width: 100%;" src="assets/images/clients/agri-removebg-preview.png" alt="Agri client logo" />
-                </div>
+                <div class="logo-item"><img class="client-logo" src="assets/images/clients/agri-removebg-preview.png" alt="Agri client logo" /></div>
                 <div class="logo-item"><img class="client-logo" src="assets/images/clients/agroforestlogo-removebg-preview.png" alt="Agroforest client logo" /></div>
                 <div class="logo-item"><img class="client-logo" src="assets/images/clients/amtron-logo.png" alt="AMTRON logo" /></div>
                 <div class="logo-item"><img class="client-logo" src="assets/images/clients/axis.png" alt="Axis logo" /></div>
