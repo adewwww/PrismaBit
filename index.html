@@ -444,6 +444,7 @@
         display: flex;
         align-items: center;
         gap: 3.5rem;
+        padding-right: 3.5rem; /* Ensures the loop is seamless with gap */
         will-change: transform;
         animation: logo-scroll 35s linear infinite;
       }
@@ -456,7 +457,7 @@
       }
       @media (max-width: 767px) {
         .logo-track {
-          animation-duration: 5s; /* Faster on mobile */
+          animation-duration: 25s; /* Adjusted for a smoother, fast scroll on mobile */
         }
       }
       @media (prefers-reduced-motion: reduce) {
@@ -1037,29 +1038,26 @@
           <div class="space-y-8 logo-scroller masked">
             <!-- Row 1 -->
             <div class="logo-track" aria-label="Trusted by leading brands">
-              <div class="flex items-center gap-14 logo-set">
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/agri-removebg-preview.png" alt="Agri client logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/agroforestlogo-removebg-preview.png" alt="Agroforest client logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/amtron-logo.png" alt="AMTRON logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/axis.png" alt="Axis logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/BSF_Logo..png" alt="BSF logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/IAF.png" alt="IAF logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/logo-gucl.png" alt="GUCL logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/Marico-Logo.png" alt="Marico logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/pngwing.com.png" alt="Client logo" /></div>
-              </div>
-              <div class="flex items-center gap-14 logo-set">
-                <!-- Duplicate set for seamless loop -->
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/agri-removebg-preview.png" alt="Agri client logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/agroforestlogo-removebg-preview.png" alt="Agroforest client logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/amtron-logo.png" alt="AMTRON logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/axis.png" alt="Axis logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/BSF_Logo..png" alt="BSF logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/IAF.png" alt="IAF logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/logo-gucl.png" alt="GUCL logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/Marico-Logo.png" alt="Marico logo" /></div>
-                <div class="logo-item"><img class="client-logo" src="assets/images/clients/pngwing.com.png" alt="Client logo" /></div>
-              </div>
+              <!-- Logos are duplicated for a seamless loop -->
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/agri-removebg-preview.png" alt="Agri client logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/agroforestlogo-removebg-preview.png" alt="Agroforest client logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/amtron-logo.png" alt="AMTRON logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/axis.png" alt="Axis logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/BSF_Logo..png" alt="BSF logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/IAF.png" alt="IAF logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/logo-gucl.png" alt="GUCL logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/Marico-Logo.png" alt="Marico logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/pngwing.com.png" alt="Client logo" /></div>
+              <!-- Duplicate set -->
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/agri-removebg-preview.png" alt="Agri client logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/agroforestlogo-removebg-preview.png" alt="Agroforest client logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/amtron-logo.png" alt="AMTRON logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/axis.png" alt="Axis logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/BSF_Logo..png" alt="BSF logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/IAF.png" alt="IAF logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/logo-gucl.png" alt="GUCL logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/Marico-Logo.png" alt="Marico logo" /></div>
+              <div class="logo-item"><img class="client-logo" src="assets/images/clients/pngwing.com.png" alt="Client logo" /></div>
             </div>
 
           </div>
